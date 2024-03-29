@@ -37,7 +37,7 @@ class WelcomeView extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
                         Image.asset(
-                          "assets/Images/1.2.png",
+                          "assets/Icons/1.2.png",
                           color: kLogoColor,
                         ),
                         Gap(10.w),
