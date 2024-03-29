@@ -1,3 +1,4 @@
+import 'package:fashion_flare/Views/onboarding_view.dart';
 import 'package:fashion_flare/Widgets/app_button.dart';
 import 'package:fashion_flare/Widgets/app_text.dart';
 import 'package:fashion_flare/constants.dart';
@@ -53,9 +54,14 @@ class WelcomeView extends StatelessWidget {
               ),
             ),
           ),
-          const Expanded(
+          Expanded(
             flex: 1,
-            child: AppButton(text: "Get Started"),
+            child: AppButton(
+              text: "Get Started",
+              onTap: () {
+                Navigator.pushNamed(context, OnBoardingView.id);
+              },
+            ),
           ),
         ],
       ),

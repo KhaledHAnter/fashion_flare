@@ -7,12 +7,14 @@ class AppText extends StatelessWidget {
     this.size,
     this.color,
     this.weight,
+    this.textAlign,
   });
 
   final String text;
   final double? size;
   final Color? color;
   final FontWeight? weight;
+  final TextAlign? textAlign;
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +25,7 @@ class AppText extends StatelessWidget {
         fontSize: size ?? 20,
         fontWeight: weight ?? FontWeight.w500,
       ),
+      textAlign: textAlign ?? TextAlign.center,
     );
   }
 }

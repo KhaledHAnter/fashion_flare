@@ -1,3 +1,4 @@
+import 'package:fashion_flare/Views/onboarding_view.dart';
 import 'package:fashion_flare/Views/welcome_view.dart';
 import 'package:fashion_flare/constants.dart';
 import 'package:flutter/material.dart';
@@ -31,6 +32,7 @@ class FashionFalre extends StatelessWidget {
       ),
       routes: {
         WelcomeView.id: (context) => const WelcomeView(),
+        OnBoardingView.id: (context) => const OnBoardingView(),
       },
       initialRoute: WelcomeView.id,
     );
