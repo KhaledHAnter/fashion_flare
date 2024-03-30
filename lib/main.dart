@@ -1,3 +1,4 @@
+import 'package:fashion_flare/Views/Register_view.dart';
 import 'package:fashion_flare/Views/onboarding_view.dart';
 import 'package:fashion_flare/Views/sign_in_view.dart';
 import 'package:fashion_flare/Views/user_credentials_view.dart';
@@ -37,6 +38,7 @@ class FashionFalre extends StatelessWidget {
         OnBoardingView.id: (context) => const OnBoardingView(),
         UserCredentialsView.id: (context) => const UserCredentialsView(),
         SignInView.id: (context) => const SignInView(),
+        RegisterView.id: (context) => const RegisterView(),
       },
       initialRoute: WelcomeView.id,
     );

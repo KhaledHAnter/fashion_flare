@@ -1,4 +1,4 @@
-import 'package:fashion_flare/Views/Register_view.dart';
+import 'package:fashion_flare/Views/sign_in_view.dart';
 import 'package:fashion_flare/Widgets/app_text.dart';
 import 'package:fashion_flare/Widgets/app_text_form_field.dart';
 import 'package:fashion_flare/Widgets/custom_button.dart';
@@ -10,20 +10,23 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 
-class SignInView extends StatefulWidget {
-  const SignInView({super.key});
+class RegisterView extends StatefulWidget {
+  const RegisterView({super.key});
 
-  static const String id = 'Sign In';
+  static String id = "Resgister";
 
   @override
-  State<SignInView> createState() => _SignInViewState();
+  State<RegisterView> createState() => _RegisterViewState();
 }
 
-class _SignInViewState extends State<SignInView> {
-  String? email, password;
-  bool obscureText = true;
+class _RegisterViewState extends State<RegisterView> {
+  String? email, password, Rpassword;
+  bool obscureText = true,
+      RobscureText = true,
+      autoValidate = false,
+      termsAgreed = false,
+      ArgumentError = false;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  bool autoValidate = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +42,7 @@ class _SignInViewState extends State<SignInView> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 const AppText(
-                  text: "Sign In",
+                  text: "Create Account",
                   size: 40,
                   weight: FontWeight.w700,
                 ),
@@ -48,7 +51,7 @@ class _SignInViewState extends State<SignInView> {
                   padding: EdgeInsets.symmetric(horizontal: 70),
                   child: AppText(
                     text:
-                        "Welcome back! Let's continue your style journey together.",
+                        "Fill your information below or register with your social account.",
                     size: 14,
                     weight: FontWeight.w700,
                     color: kSecondaryFontColor,
@@ -106,27 +109,87 @@ class _SignInViewState extends State<SignInView> {
                           });
                         },
                       ),
+                      Gap(24.h),
+                      AppTextFormField(
+                        autoValidate: autoValidate,
+                        labelText: "Retype Password",
+                        onChanged: (p0) {
+                          Rpassword = p0;
+                        },
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your password';
+                          }
+                          if (value.length < 8 || !(value == password)) {
+                            return 'Passwords do not match';
+                          }
+
+                          return null;
+                        },
+                        prefixIcon: FontAwesomeIcons.lock,
+                        obscureText: RobscureText,
+                        suffixIcon: RobscureText
+                            ? FontAwesomeIcons.eye
+                            : FontAwesomeIcons.eyeSlash,
+                        onSuffixTap: () {
+                          setState(() {
+                            RobscureText = !RobscureText;
+                          });
+                        },
+                      ),
                     ],
                   ),
                 ),
                 Gap(8.h),
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    AppText(
-                      text: "Forget password?        ",
-                      size: 14,
-                      weight: FontWeight.w700,
-                      color: kSecondaryFontColor,
-                    ),
-                  ],
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      termsAgreed = !termsAgreed;
+                      ArgumentError ? ArgumentError = false : null;
+                    });
+                  },
+                  child: Row(
+                    children: <Widget>[
+                      Icon(
+                        termsAgreed
+                            ? FontAwesomeIcons.squareCheck
+                            : FontAwesomeIcons.square,
+                        // size: 25,
+                      ),
+                      Gap(4.w),
+                      const AppText(
+                        text: "Agree with ",
+                        size: 16,
+                        weight: FontWeight.w700,
+                      ),
+                      const AppText(
+                        text: "Terms & Conditions",
+                        size: 18,
+                        weight: FontWeight.w700,
+                        decoretions: TextDecoration.underline,
+                      ),
+                    ],
+                  ),
+                ),
+                Gap(8.h),
+                Visibility(
+                  visible: ArgumentError,
+                  child: const AppText(
+                    text: "you must accept terms and conditions",
+                    color: Colors.red,
+                    size: 18,
+                  ),
                 ),
                 Gap(24.h),
                 CustomButton(
-                  text: "Sign In",
+                  text: "Register",
                   onTap: () async {
                     if (formKey.currentState!.validate()) {
                       print("Vaild");
+                    } else if (termsAgreed == false) {
+                      setState(() {
+                        ArgumentError = true;
+                      });
                     } else {
                       print("invalid");
                       setState(() {
@@ -137,7 +200,7 @@ class _SignInViewState extends State<SignInView> {
                 ),
                 Gap(40.h),
                 const AppText(
-                  text: "Or continue with",
+                  text: "Or sign up with",
                   size: 14,
                   weight: FontWeight.w700,
                   color: kSecondaryFontColor,
@@ -161,7 +224,7 @@ class _SignInViewState extends State<SignInView> {
                   text: TextSpan(
                     children: [
                       const TextSpan(
-                        text: "Don't have an account? ",
+                        text: "Already have an account? ",
                         style: TextStyle(
                             fontFamily: kFontFamily,
                             color: kSecondaryFontColor,
@@ -169,11 +232,11 @@ class _SignInViewState extends State<SignInView> {
                             fontWeight: FontWeight.w700),
                       ),
                       TextSpan(
+                        text: "Sign In",
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            Navigator.pushNamed(context, RegisterView.id);
+                            Navigator.pushNamed(context, SignInView.id);
                           },
-                        text: "Sign Up",
                         style: const TextStyle(
                           fontFamily: kFontFamily,
                           color: Color(0XFF4A4A68),

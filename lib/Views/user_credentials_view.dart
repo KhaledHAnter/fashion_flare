@@ -1,3 +1,4 @@
+import 'package:fashion_flare/Views/Register_view.dart';
 import 'package:fashion_flare/Views/sign_in_view.dart';
 import 'package:fashion_flare/Widgets/app_text.dart';
 import 'package:fashion_flare/Widgets/custom_button.dart';
@@ -44,8 +45,11 @@ class UserCredentialsView extends StatelessWidget {
                         size: 16,
                       ),
                       const Spacer(),
-                      const CustomButton(
+                      CustomButton(
                         text: "Register",
+                        onTap: () {
+                          Navigator.pushNamed(context, RegisterView.id);
+                        },
                       ),
                       Gap(12.h),
                       CustomButton(
