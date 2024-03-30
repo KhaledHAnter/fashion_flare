@@ -71,8 +71,17 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                   OnBoardData.length,
                   (index) => Padding(
                     padding: EdgeInsets.only(right: 6.w),
-                    child: DotIndicator(
-                      isActive: index == _pageIndex,
+                    child: GestureDetector(
+                      onTap: () {
+                        _pageController.animateToPage(
+                          index,
+                          duration: const Duration(milliseconds: 250),
+                          curve: Curves.easeIn,
+                        );
+                      },
+                      child: DotIndicator(
+                        isActive: index == _pageIndex,
+                      ),
                     ),
                   ),
                 )),

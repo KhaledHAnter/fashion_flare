@@ -1,3 +1,4 @@
+import 'package:fashion_flare/constants.dart';
 import 'package:flutter/material.dart';
 
 class AppText extends StatelessWidget {
@@ -21,6 +22,7 @@ class AppText extends StatelessWidget {
     return Text(
       text,
       style: TextStyle(
+        fontFamily: kFontFamily,
         color: color ?? Colors.black,
         fontSize: size ?? 20,
         fontWeight: weight ?? FontWeight.w500,
