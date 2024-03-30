@@ -1,5 +1,7 @@
 import 'package:fashion_flare/Widgets/app_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
 
 class OnBoardingContent extends StatelessWidget {
   const OnBoardingContent({
@@ -51,6 +53,7 @@ class OnBoardingContent extends StatelessWidget {
                 size: 40,
                 weight: FontWeight.w700,
               ),
+              Gap(12.h),
               AppText(
                 text: description,
                 size: 14,
