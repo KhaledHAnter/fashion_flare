@@ -18,7 +18,10 @@ class SignInView extends StatefulWidget {
 }
 
 class _SignInViewState extends State<SignInView> {
+  String? email, password;
   bool obscureText = true;
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  bool autoValidate = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,110 +29,162 @@ class _SignInViewState extends State<SignInView> {
         padding: const EdgeInsets.symmetric(
           horizontal: 16,
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            const AppText(
-              text: "Sign In",
-              size: 40,
-              weight: FontWeight.w700,
-            ),
-            Gap(8.h),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 70),
-              child: AppText(
-                text:
-                    "Welcome back! Let's continue your style journey together.",
-                size: 14,
-                weight: FontWeight.w700,
-                color: kSecondaryFontColor,
-              ),
-            ),
-            Gap(40.h),
-            const AppTextFormField(
-              labelText: "Email",
-              prefixIcon: FontAwesomeIcons.solidEnvelope,
-              obscureText: false,
-            ),
-            Gap(24.h),
-            AppTextFormField(
-              labelText: "Password",
-              prefixIcon: FontAwesomeIcons.lock,
-              obscureText: obscureText,
-              suffixIcon: obscureText
-                  ? FontAwesomeIcons.eye
-                  : FontAwesomeIcons.eyeSlash,
-              onTap: () {
-                setState(() {
-                  obscureText = !obscureText;
-                });
-              },
-            ),
-            Gap(8.h),
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                AppText(
-                  text: "Forget password?        ",
+        child: Center(
+          child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                const AppText(
+                  text: "Sign In",
+                  size: 40,
+                  weight: FontWeight.w700,
+                ),
+                Gap(8.h),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 70),
+                  child: AppText(
+                    text:
+                        "Welcome back! Let's continue your style journey together.",
+                    size: 14,
+                    weight: FontWeight.w700,
+                    color: kSecondaryFontColor,
+                  ),
+                ),
+                Gap(40.h),
+                Form(
+                  key: formKey,
+                  child: Column(
+                    children: [
+                      AppTextFormField(
+                        autoValidate: autoValidate,
+                        labelText: "Email",
+                        onChanged: (p0) {
+                          email = p0;
+                        },
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your email';
+                          }
+                          if (!(value.contains('.com') &&
+                              value.contains('@'))) {
+                            return 'Invalid Email';
+                          }
+                          return null;
+                        },
+                        keyboardType: TextInputType.emailAddress,
+                        prefixIcon: FontAwesomeIcons.solidEnvelope,
+                        obscureText: false,
+                      ),
+                      Gap(24.h),
+                      AppTextFormField(
+                        autoValidate: autoValidate,
+                        labelText: "Password",
+                        onChanged: (p0) {
+                          password = p0;
+                        },
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your password';
+                          }
+                          if (value.length < 8) {
+                            return 'password must be at least 8 characters';
+                          }
+                          return null;
+                        },
+                        prefixIcon: FontAwesomeIcons.lock,
+                        obscureText: obscureText,
+                        suffixIcon: obscureText
+                            ? FontAwesomeIcons.eye
+                            : FontAwesomeIcons.eyeSlash,
+                        onSuffixTap: () {
+                          setState(() {
+                            obscureText = !obscureText;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+                Gap(8.h),
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    AppText(
+                      text: "Forget password?        ",
+                      size: 14,
+                      weight: FontWeight.w700,
+                      color: kSecondaryFontColor,
+                    ),
+                  ],
+                ),
+                Gap(24.h),
+                CustomButton(
+                  text: "Sign In",
+                  onTap: () async {
+                    if (formKey.currentState!.validate()) {
+                      print("Vaild");
+                    } else {
+                      print("invalid");
+                      setState(() {
+                        autoValidate = true;
+                      });
+                    }
+                  },
+                ),
+                Gap(40.h),
+                const AppText(
+                  text: "Or continue with",
                   size: 14,
                   weight: FontWeight.w700,
                   color: kSecondaryFontColor,
                 ),
+                Gap(24.h),
+                const Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 50,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      SocialMediaIcon(image: "assets/Icons/Facebook.png"),
+                      SocialMediaIcon(image: "assets/Icons/Apple.png"),
+                      SocialMediaIcon(image: "assets/Icons/Google.png"),
+                    ],
+                  ),
+                ),
+                Gap(24.h),
+                RichText(
+                  text: const TextSpan(
+                    children: [
+                      TextSpan(
+                        text: "Don't have an account? ",
+                        style: TextStyle(
+                            fontFamily: kFontFamily,
+                            color: kSecondaryFontColor,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w700),
+                      ),
+                      TextSpan(
+                        text: "Sign Up",
+                        style: TextStyle(
+                          fontFamily: kFontFamily,
+                          color: Color(0XFF4A4A68),
+                          fontSize: 18,
+                          fontWeight: FontWeight.w700,
+                          decoration: TextDecoration.underline,
+                          decorationColor: Color(0xff4A4A68),
+                          decorationThickness: 2.0,
+                          decorationStyle: TextDecorationStyle.wavy,
+                        ),
+                      ),
+                    ],
+                  ),
+                )
               ],
             ),
-            Gap(24.h),
-            const CustomButton(text: "Sign In"),
-            Gap(40.h),
-            const AppText(
-              text: "Or continue with",
-              size: 14,
-              weight: FontWeight.w700,
-              color: kSecondaryFontColor,
-            ),
-            Gap(24.h),
-            const Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: 50,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  SocialMediaIcon(image: "assets/Icons/Facebook.png"),
-                  SocialMediaIcon(image: "assets/Icons/Apple.png"),
-                  SocialMediaIcon(image: "assets/Icons/Google.png"),
-                ],
-              ),
-            ),
-            Gap(24.h),
-            RichText(
-              text: const TextSpan(
-                children: [
-                  TextSpan(
-                    text: "Don't have an account? ",
-                    style: TextStyle(
-                        fontFamily: kFontFamily,
-                        color: kSecondaryFontColor,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w700),
-                  ),
-                  TextSpan(
-                    text: "Sign Up",
-                    style: TextStyle(
-                      fontFamily: kFontFamily,
-                      color: Color(0XFF4A4A68),
-                      fontSize: 18,
-                      fontWeight: FontWeight.w700,
-                      decoration: TextDecoration.underline,
-                      decorationColor: Color(0xff4A4A68),
-                      decorationThickness: 2.0,
-                      decorationStyle: TextDecorationStyle.wavy,
-                    ),
-                  ),
-                ],
-              ),
-            )
-          ],
+          ),
         ),
       ),
     );

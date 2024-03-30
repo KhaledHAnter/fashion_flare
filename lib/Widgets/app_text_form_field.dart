@@ -2,24 +2,38 @@ import 'package:fashion_flare/constants.dart';
 import 'package:flutter/material.dart';
 
 class AppTextFormField extends StatelessWidget {
-  const AppTextFormField(
-      {super.key,
-      required this.labelText,
-      required this.prefixIcon,
-      required this.obscureText,
-      this.suffixIcon,
-      this.onTap});
+  const AppTextFormField({
+    super.key,
+    required this.labelText,
+    required this.prefixIcon,
+    required this.obscureText,
+    this.suffixIcon,
+    this.onSuffixTap,
+    this.validator,
+    this.onChanged,
+    this.keyboardType,
+    this.autoValidate = false,
+  });
 
   final String labelText;
   final IconData prefixIcon;
   final IconData? suffixIcon;
   final bool obscureText;
-  final void Function()? onTap;
+  final void Function()? onSuffixTap;
+  final String? Function(String?)? validator;
+  final void Function(String)? onChanged;
+  final TextInputType? keyboardType;
+  final bool autoValidate;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      keyboardType: TextInputType.emailAddress,
+      autovalidateMode: autoValidate
+          ? AutovalidateMode.onUserInteraction
+          : AutovalidateMode.disabled,
+      onChanged: onChanged,
+      validator: validator,
+      keyboardType: keyboardType ?? TextInputType.text,
       obscureText: obscureText,
       style: const TextStyle(
         color: Colors.black,
@@ -27,11 +41,12 @@ class AppTextFormField extends StatelessWidget {
         fontWeight: FontWeight.w700,
       ),
       decoration: InputDecoration(
+        errorStyle: const TextStyle(fontSize: 16),
         prefixIcon: Icon(prefixIcon),
         suffixIcon: suffixIcon == null
             ? null
             : GestureDetector(
-                onTap: onTap,
+                onTap: onSuffixTap,
                 child: Icon(suffixIcon),
               ),
         contentPadding: const EdgeInsets.all(18),
