@@ -1,4 +1,5 @@
 import 'package:fashion_flare/Views/Register_view.dart';
+import 'package:fashion_flare/Views/forgot_password_view.dart';
 import 'package:fashion_flare/Widgets/app_text.dart';
 import 'package:fashion_flare/Widgets/app_text_form_field.dart';
 import 'package:fashion_flare/Widgets/custom_button.dart';
@@ -110,16 +111,21 @@ class _SignInViewState extends State<SignInView> {
                   ),
                 ),
                 Gap(8.h),
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    AppText(
-                      text: "Forget password?        ",
-                      size: 14,
-                      weight: FontWeight.w700,
-                      color: kSecondaryFontColor,
-                    ),
-                  ],
+                GestureDetector(
+                  onTap: () {
+                    Navigator.popAndPushNamed(context, ForgotPassword.id);
+                  },
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      AppText(
+                        text: "Forget password?        ",
+                        size: 14,
+                        weight: FontWeight.w700,
+                        color: kSecondaryFontColor,
+                      ),
+                    ],
+                  ),
                 ),
                 Gap(24.h),
                 CustomButton(
