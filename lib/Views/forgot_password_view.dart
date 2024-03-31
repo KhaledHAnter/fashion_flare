@@ -1,3 +1,4 @@
+import 'package:fashion_flare/Views/otp_verfication_view.dart';
 import 'package:fashion_flare/Widgets/app_text.dart';
 import 'package:fashion_flare/Widgets/app_text_form_field.dart';
 import 'package:fashion_flare/Widgets/custom_button.dart';
@@ -7,10 +8,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 
-class ForgotPassword extends StatelessWidget {
+class ForgotPassword extends StatefulWidget {
   const ForgotPassword({super.key});
 
   static String id = 'Forgot Password';
+
+  @override
+  State<ForgotPassword> createState() => _ForgotPasswordState();
+}
+
+class _ForgotPasswordState extends State<ForgotPassword> {
+  String? phoneNumber;
 
   @override
   Widget build(BuildContext context) {
@@ -38,14 +46,31 @@ class ForgotPassword extends StatelessWidget {
                 ),
               ),
               Gap(40.h),
-              const AppTextFormField(
+              AppTextFormField(
+                onChanged: (p0) {
+                  setState(() {});
+                  phoneNumber = p0;
+                },
                 keyboardType: TextInputType.phone,
                 labelText: "Phone Number",
                 prefixIcon: FontAwesomeIcons.phone,
                 obscureText: false,
               ),
               Gap(45.h),
-              const CustomButton(text: "Continue")
+              CustomButton(
+                text: "Continue",
+                color: phoneNumber == null
+                    ? kSecondaryFontColor.withOpacity(0.5)
+                    : kPrimaryColor,
+                onTap: () {
+                  if (!(phoneNumber == null || phoneNumber!.isEmpty)) {
+                    Navigator.pushNamed(context, OTPverficationView.id,
+                        arguments: phoneNumber);
+                  } else {
+                    return;
+                  }
+                },
+              )
             ],
           ),
         ),

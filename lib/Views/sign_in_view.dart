@@ -113,7 +113,7 @@ class _SignInViewState extends State<SignInView> {
                 Gap(8.h),
                 GestureDetector(
                   onTap: () {
-                    Navigator.popAndPushNamed(context, ForgotPassword.id);
+                    Navigator.pushNamed(context, ForgotPassword.id);
                   },
                   child: const Row(
                     mainAxisAlignment: MainAxisAlignment.end,
