@@ -39,18 +39,18 @@ class _SignInViewState extends State<SignInView> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                const AppText(
+                AppText(
                   text: "Sign In",
-                  size: 40,
+                  size: 40.sp,
                   weight: FontWeight.w700,
                 ),
                 Gap(8.h),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 70),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 70),
                   child: AppText(
                     text:
                         "Welcome back! Let's continue your style journey together.",
-                    size: 14,
+                    size: 14.sp,
                     weight: FontWeight.w700,
                     color: kSecondaryFontColor,
                   ),
@@ -115,12 +115,12 @@ class _SignInViewState extends State<SignInView> {
                   onTap: () {
                     Navigator.pushNamed(context, ForgotPassword.id);
                   },
-                  child: const Row(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       AppText(
                         text: "Forget password?        ",
-                        size: 14,
+                        size: 14.sp,
                         weight: FontWeight.w700,
                         color: kSecondaryFontColor,
                       ),
@@ -142,9 +142,9 @@ class _SignInViewState extends State<SignInView> {
                   },
                 ),
                 Gap(40.h),
-                const AppText(
+                AppText(
                   text: "Or continue with",
-                  size: 14,
+                  size: 14.sp,
                   weight: FontWeight.w700,
                   color: kSecondaryFontColor,
                 ),
@@ -166,12 +166,12 @@ class _SignInViewState extends State<SignInView> {
                 RichText(
                   text: TextSpan(
                     children: [
-                      const TextSpan(
+                      TextSpan(
                         text: "Don't have an account? ",
                         style: TextStyle(
                             fontFamily: kFontFamily,
                             color: kSecondaryFontColor,
-                            fontSize: 14,
+                            fontSize: 14.sp,
                             fontWeight: FontWeight.w700),
                       ),
                       TextSpan(
@@ -180,13 +180,13 @@ class _SignInViewState extends State<SignInView> {
                             Navigator.pushNamed(context, RegisterView.id);
                           },
                         text: "Sign Up",
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontFamily: kFontFamily,
-                          color: Color(0XFF4A4A68),
-                          fontSize: 18,
+                          color: const Color(0XFF4A4A68),
+                          fontSize: 18.sp,
                           fontWeight: FontWeight.w700,
                           decoration: TextDecoration.underline,
-                          decorationColor: Color(0xff4A4A68),
+                          decorationColor: const Color(0xff4A4A68),
                           decorationThickness: 2.0,
                           decorationStyle: TextDecorationStyle.dashed,
                         ),

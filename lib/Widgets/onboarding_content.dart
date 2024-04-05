@@ -35,12 +35,12 @@ class OnBoardingContent extends StatelessWidget {
                 onTap: onTap,
                 child: Visibility(
                   visible: screenNum == 3 ? false : true,
-                  child: const Row(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
                       AppText(
                         text: "Skip",
-                        size: 18,
+                        size: 18.sp,
                         color: Colors.grey,
                       ),
                     ],
@@ -50,13 +50,13 @@ class OnBoardingContent extends StatelessWidget {
               const Spacer(),
               AppText(
                 text: title,
-                size: 40,
+                size: 40.sp,
                 weight: FontWeight.w700,
               ),
               Gap(12.h),
               AppText(
                 text: description,
-                size: 14,
+                size: 14.sp,
               ),
             ],
           ),

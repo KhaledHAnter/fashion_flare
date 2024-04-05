@@ -22,7 +22,7 @@ class UserCredentialsView extends StatelessWidget {
               decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage("assets/Images/3.png"),
-                  fit: BoxFit.fill,
+                  fit: BoxFit.contain,
                 ),
               ),
               child: Padding(
@@ -34,15 +34,15 @@ class UserCredentialsView extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      const AppText(
+                      AppText(
                         text: "Hello there!",
-                        size: 40,
+                        size: 40.sp,
                         weight: FontWeight.w700,
                       ),
                       Gap(12.h),
-                      const AppText(
+                      AppText(
                         text: "Let's find your perfect look together!",
-                        size: 16,
+                        size: 16.sp,
                       ),
                       const Spacer(),
                       CustomButton(

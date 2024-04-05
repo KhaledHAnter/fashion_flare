@@ -56,19 +56,19 @@ class _OTPverficationViewState extends State<OTPverficationView> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              const AppText(
+              AppText(
                 text: "OTP Veriefication",
-                size: 40,
+                size: 40.sp,
                 weight: FontWeight.w700,
               ),
               Gap(8.h),
               RichText(
                 text: TextSpan(
                   children: [
-                    const TextSpan(
+                    TextSpan(
                       text: "Enter the OTP sent to ",
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 16.sp,
                         fontWeight: FontWeight.w500,
                         fontFamily: kFontFamily,
                         color: kSecondaryFontColor,
@@ -76,8 +76,8 @@ class _OTPverficationViewState extends State<OTPverficationView> {
                     ),
                     TextSpan(
                       text: phoneNumber,
-                      style: const TextStyle(
-                        fontSize: 16,
+                      style: TextStyle(
+                        fontSize: 16.sp,
                         fontWeight: FontWeight.w700,
                         fontFamily: kFontFamily,
                         color: Colors.black,
@@ -100,17 +100,17 @@ class _OTPverficationViewState extends State<OTPverficationView> {
               Gap(30.h),
               AppText(
                 text: "00:${timeLift.toString()} Sec",
-                size: 16,
+                size: 16.sp,
                 color: const Color(0xff464646),
               ),
               Gap(25.h),
               RichText(
                 text: TextSpan(
                   children: [
-                    const TextSpan(
+                     TextSpan(
                       text: "Don't receive code ? ",
                       style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 18.sp,
                         fontWeight: FontWeight.w500,
                         fontFamily: kFontFamily,
                         color: Color(0xff5A5A5A),
@@ -120,7 +120,7 @@ class _OTPverficationViewState extends State<OTPverficationView> {
                       text: ' Re-send',
                       style: TextStyle(
                         decoration: TextDecoration.underline,
-                        fontSize: 18,
+                        fontSize: 18.sp,
                         fontWeight: FontWeight.w700,
                         fontFamily: kFontFamily,
                         color: timeLift == 0

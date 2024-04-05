@@ -1,5 +1,6 @@
 import 'package:fashion_flare/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppTextFormField extends StatelessWidget {
   const AppTextFormField({
@@ -35,13 +36,13 @@ class AppTextFormField extends StatelessWidget {
       validator: validator,
       keyboardType: keyboardType ?? TextInputType.text,
       obscureText: obscureText,
-      style: const TextStyle(
+      style: TextStyle(
         color: Colors.black,
-        fontSize: 18,
+        fontSize: 18.sp,
         fontWeight: FontWeight.w700,
       ),
       decoration: InputDecoration(
-        errorStyle: const TextStyle(fontSize: 16),
+        errorStyle: TextStyle(fontSize: 16.sp),
         prefixIcon: Icon(prefixIcon),
         suffixIcon: suffixIcon == null
             ? null

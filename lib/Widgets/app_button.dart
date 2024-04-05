@@ -1,6 +1,7 @@
 import 'package:fashion_flare/Widgets/app_text.dart';
 import 'package:fashion_flare/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppButton extends StatelessWidget {
   const AppButton({super.key, required this.text, this.onTap});
@@ -18,7 +19,7 @@ class AppButton extends StatelessWidget {
         child: Center(
           child: AppText(
             text: text,
-            size: 22,
+            size: 22.sp,
             weight: FontWeight.w900,
           ),
         ),

@@ -11,29 +11,35 @@ class OTPsquare extends StatelessWidget {
     return SizedBox(
       height: 62.h,
       width: 58.w,
-      child: TextFormField(
-        showCursor: false,
-        decoration: InputDecoration(
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
+      child: Center(
+        child: TextFormField(
+          showCursor: false,
+          decoration: InputDecoration(
+            contentPadding: const EdgeInsets.all(8),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            hintText: "-",
+            hintStyle: TextStyle(
+              color: kSecondaryFontColor.withOpacity(0.5),
+            ),
           ),
-          hintText: "0",
-          hintStyle: TextStyle(
-            color: kSecondaryFontColor.withOpacity(0.5),
-          ),
+          onChanged: (value) {
+            if (value.length == 1) {
+              FocusScope.of(context).nextFocus();
+            }
+            if (value.isEmpty) {
+              FocusScope.of(context).previousFocus();
+            }
+          },
+          style: Theme.of(context).textTheme.headlineLarge,
+          keyboardType: TextInputType.number,
+          textAlign: TextAlign.center,
+          inputFormatters: [
+            LengthLimitingTextInputFormatter(1),
+            FilteringTextInputFormatter.digitsOnly,
+          ],
         ),
-        onChanged: (value) {
-          if (value.length == 1) {
-            FocusScope.of(context).nextFocus();
-          }
-        },
-        style: Theme.of(context).textTheme.headlineLarge,
-        keyboardType: TextInputType.number,
-        textAlign: TextAlign.center,
-        inputFormatters: [
-          LengthLimitingTextInputFormatter(1),
-          FilteringTextInputFormatter.digitsOnly,
-        ],
       ),
     );
   }

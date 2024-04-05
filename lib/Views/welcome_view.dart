@@ -6,11 +6,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
-class WelcomeView extends StatelessWidget {
+class WelcomeView extends StatefulWidget {
   const WelcomeView({super.key});
 
   static String id = 'Welcome';
 
+  @override
+  State<WelcomeView> createState() => _WelcomeViewState();
+}
+
+class _WelcomeViewState extends State<WelcomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,9 +34,9 @@ class WelcomeView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    const AppText(
+                    AppText(
                       text: "Welcome To",
-                      size: 24,
+                      size: 24.sp,
                       weight: FontWeight.w700,
                     ),
                     Row(
@@ -42,9 +47,9 @@ class WelcomeView extends StatelessWidget {
                           color: kLogoColor,
                         ),
                         Gap(10.w),
-                        const AppText(
+                        AppText(
                           text: "Fashion Flare",
-                          size: 40,
+                          size: 40.sp,
                           weight: FontWeight.w700,
                         ),
                       ],

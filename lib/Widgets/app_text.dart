@@ -1,5 +1,6 @@
 import 'package:fashion_flare/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppText extends StatelessWidget {
   const AppText({
@@ -26,7 +27,7 @@ class AppText extends StatelessWidget {
       style: TextStyle(
         fontFamily: kFontFamily,
         color: color ?? Colors.black,
-        fontSize: size ?? 20,
+        fontSize: size ?? 20.sp,
         fontWeight: weight ?? FontWeight.w500,
         decoration: decoretions,
       ),

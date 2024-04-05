@@ -41,18 +41,18 @@ class _RegisterViewState extends State<RegisterView> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                const AppText(
+                AppText(
                   text: "Create Account",
-                  size: 40,
+                  size: 40.sp,
                   weight: FontWeight.w700,
                 ),
                 Gap(8.h),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 70),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 70),
                   child: AppText(
                     text:
                         "Fill your information below or register with your social account.",
-                    size: 14,
+                    size: 14.sp,
                     weight: FontWeight.w700,
                     color: kSecondaryFontColor,
                   ),
@@ -157,14 +157,14 @@ class _RegisterViewState extends State<RegisterView> {
                         // size: 25,
                       ),
                       Gap(4.w),
-                      const AppText(
+                      AppText(
                         text: "Agree with ",
-                        size: 16,
+                        size: 16.sp,
                         weight: FontWeight.w700,
                       ),
-                      const AppText(
+                      AppText(
                         text: "Terms & Conditions",
-                        size: 18,
+                        size: 18.sp,
                         weight: FontWeight.w700,
                         decoretions: TextDecoration.underline,
                       ),
@@ -174,10 +174,10 @@ class _RegisterViewState extends State<RegisterView> {
                 Gap(8.h),
                 Visibility(
                   visible: ArgumentError,
-                  child: const AppText(
+                  child: AppText(
                     text: "you must accept terms and conditions",
                     color: Colors.red,
-                    size: 18,
+                    size: 18.sp,
                   ),
                 ),
                 Gap(24.h),
@@ -199,9 +199,9 @@ class _RegisterViewState extends State<RegisterView> {
                   },
                 ),
                 Gap(40.h),
-                const AppText(
+                AppText(
                   text: "Or sign up with",
-                  size: 14,
+                  size: 14.sp,
                   weight: FontWeight.w700,
                   color: kSecondaryFontColor,
                 ),
@@ -223,12 +223,12 @@ class _RegisterViewState extends State<RegisterView> {
                 RichText(
                   text: TextSpan(
                     children: [
-                      const TextSpan(
+                      TextSpan(
                         text: "Already have an account? ",
                         style: TextStyle(
                             fontFamily: kFontFamily,
                             color: kSecondaryFontColor,
-                            fontSize: 14,
+                            fontSize: 14.sp,
                             fontWeight: FontWeight.w700),
                       ),
                       TextSpan(
@@ -237,13 +237,13 @@ class _RegisterViewState extends State<RegisterView> {
                           ..onTap = () {
                             Navigator.pushNamed(context, SignInView.id);
                           },
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontFamily: kFontFamily,
-                          color: Color(0XFF4A4A68),
-                          fontSize: 18,
+                          color: const Color(0XFF4A4A68),
+                          fontSize: 18.sp,
                           fontWeight: FontWeight.w700,
                           decoration: TextDecoration.underline,
-                          decorationColor: Color(0xff4A4A68),
+                          decorationColor: const Color(0xff4A4A68),
                           decorationThickness: 2.0,
                           decorationStyle: TextDecorationStyle.dashed,
                         ),

@@ -20,6 +20,10 @@ class ForgotPassword extends StatefulWidget {
 class _ForgotPasswordState extends State<ForgotPassword> {
   String? phoneNumber;
 
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+  bool autoValidate = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,32 +33,42 @@ class _ForgotPasswordState extends State<ForgotPassword> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              const AppText(
+              AppText(
                 text: "Forgot Password?",
-                size: 40,
+                size: 40.sp,
                 weight: FontWeight.w700,
               ),
               Gap(8.h),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: AppText(
                   text:
                       "Don't worry ! It happens. Please enter the phone number we will send the OTP in this phone number.?",
-                  size: 16,
+                  size: 16.sp,
                   weight: FontWeight.w500,
                   color: kSecondaryFontColor,
                 ),
               ),
               Gap(40.h),
-              AppTextFormField(
-                onChanged: (p0) {
-                  setState(() {});
-                  phoneNumber = p0;
-                },
-                keyboardType: TextInputType.phone,
-                labelText: "Phone Number",
-                prefixIcon: FontAwesomeIcons.phone,
-                obscureText: false,
+              Form(
+                key: formKey,
+                child: AppTextFormField(
+                  autoValidate: autoValidate,
+                  validator: (value) {
+                    if (!(value!.length == 11)) {
+                      return "Invalid Phone Number";
+                    }
+                    return null;
+                  },
+                  onChanged: (value) {
+                    setState(() {});
+                    phoneNumber = value;
+                  },
+                  keyboardType: TextInputType.phone,
+                  labelText: "Phone Number",
+                  prefixIcon: FontAwesomeIcons.phone,
+                  obscureText: false,
+                ),
               ),
               Gap(45.h),
               CustomButton(
@@ -63,11 +77,14 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     ? kSecondaryFontColor.withOpacity(0.5)
                     : kPrimaryColor,
                 onTap: () {
-                  if (!(phoneNumber == null || phoneNumber!.isEmpty)) {
+                  if (!(phoneNumber == null || phoneNumber!.isEmpty) &&
+                      formKey.currentState!.validate()) {
                     Navigator.pushNamed(context, OTPverficationView.id,
                         arguments: phoneNumber);
                   } else {
-                    return;
+                    setState(() {
+                      autoValidate = true;
+                    });
                   }
                 },
               )
