@@ -1,16 +1,30 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:fashion_flare/Views/Register_view.dart';
 import 'package:fashion_flare/Views/forgot_password_view.dart';
+import 'package:fashion_flare/Views/home_page.dart';
 import 'package:fashion_flare/Views/onboarding_view.dart';
 import 'package:fashion_flare/Views/otp_verfication_view.dart';
 import 'package:fashion_flare/Views/sign_in_view.dart';
 import 'package:fashion_flare/Views/user_credentials_view.dart';
 import 'package:fashion_flare/Views/welcome_view.dart';
 import 'package:fashion_flare/constants.dart';
+import 'package:fashion_flare/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() async {
-  runApp(const FashionFalre());
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(
+    DevicePreview(
+      enabled: !kReleaseMode,
+      builder: (context) => const FashionFalre(),
+    ),
+  );
   await ScreenUtil.ensureScreenSize();
 }
 
@@ -43,6 +57,7 @@ class FashionFalre extends StatelessWidget {
         RegisterView.id: (context) => const RegisterView(),
         ForgotPassword.id: (context) => const ForgotPassword(),
         OTPverficationView.id: (context) => const OTPverficationView(),
+        HomePage.id: (context) => const HomePage(),
       },
       initialRoute: WelcomeView.id,
     );
