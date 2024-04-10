@@ -163,9 +163,9 @@ final List<UserDetailsModel> userDetailsData = [
       egyGovernoratesList[i]['governorate_name_en'],
   ], hintText: "City"),
   UserDetailsModel(
-      listItems: [for (int i = 140; i <= 220; i++) "${i.toString()}Cm"],
+      listItems: [for (int i = 140; i <= 220; i++) "${i.toString()} Cm"],
       hintText: "Height"),
   UserDetailsModel(
-      listItems: [for (int i = 40; i <= 120; i++) "${i.toString()}Kg"],
+      listItems: [for (int i = 40; i <= 120; i++) "${i.toString()} Kg"],
       hintText: "Weight"),
 ];

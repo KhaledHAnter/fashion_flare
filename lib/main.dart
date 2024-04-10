@@ -2,6 +2,7 @@ import 'package:device_preview/device_preview.dart';
 import 'package:fashion_flare/Views/Register_view.dart';
 import 'package:fashion_flare/Views/choose_style_view.dart';
 import 'package:fashion_flare/Views/forgot_password_view.dart';
+import 'package:fashion_flare/Views/home_view.dart';
 import 'package:fashion_flare/Views/onboarding_view.dart';
 import 'package:fashion_flare/Views/otp_verfication_view.dart';
 import 'package:fashion_flare/Views/sign_in_view.dart';
@@ -62,8 +63,9 @@ class FashionFalre extends StatelessWidget {
         UserDetails.id: (context) => const UserDetails(),
         chooseStyleView.id: (context) => const chooseStyleView(),
         Your3DModel.id: (context) => const Your3DModel(),
+        HomeView.id: (context) => const HomeView(),
       },
-      initialRoute: UserDetails.id,
+      initialRoute: WelcomeView.id,
     );
   }
 }

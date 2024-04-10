@@ -3,6 +3,7 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:fashion_flare/Helper/show_awsome_snakbar.dart';
 import 'package:fashion_flare/Views/sign_in_view.dart';
+import 'package:fashion_flare/Views/user_details_view.dart';
 import 'package:fashion_flare/Widgets/app_text.dart';
 import 'package:fashion_flare/Widgets/app_text_form_field.dart';
 import 'package:fashion_flare/Widgets/custom_button.dart';
@@ -210,7 +211,7 @@ class _RegisterViewState extends State<RegisterView> {
                             try {
                               await registerUser();
 
-                              Navigator.pushNamed(context, SignInView.id);
+                              Navigator.pushNamed(context, UserDetails.id);
 
                               showAwsomeSnakBar(context,
                                   message: "",
