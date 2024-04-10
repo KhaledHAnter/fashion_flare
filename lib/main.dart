@@ -1,12 +1,14 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:fashion_flare/Views/Register_view.dart';
+import 'package:fashion_flare/Views/choose_style_view.dart';
 import 'package:fashion_flare/Views/forgot_password_view.dart';
-import 'package:fashion_flare/Views/home_page.dart';
 import 'package:fashion_flare/Views/onboarding_view.dart';
 import 'package:fashion_flare/Views/otp_verfication_view.dart';
 import 'package:fashion_flare/Views/sign_in_view.dart';
 import 'package:fashion_flare/Views/user_credentials_view.dart';
+import 'package:fashion_flare/Views/user_details_view.dart';
 import 'package:fashion_flare/Views/welcome_view.dart';
+import 'package:fashion_flare/Views/your_3d_model.dart';
 import 'package:fashion_flare/constants.dart';
 import 'package:fashion_flare/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -57,9 +59,11 @@ class FashionFalre extends StatelessWidget {
         RegisterView.id: (context) => const RegisterView(),
         ForgotPassword.id: (context) => const ForgotPassword(),
         OTPverficationView.id: (context) => const OTPverficationView(),
-        HomePage.id: (context) => const HomePage(),
+        UserDetails.id: (context) => const UserDetails(),
+        chooseStyleView.id: (context) => const chooseStyleView(),
+        Your3DModel.id: (context) => const Your3DModel(),
       },
-      initialRoute: WelcomeView.id,
+      initialRoute: UserDetails.id,
     );
   }
 }

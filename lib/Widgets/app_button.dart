@@ -4,15 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppButton extends StatelessWidget {
-  const AppButton({super.key, required this.text, this.onTap});
+  const AppButton({super.key, required this.text, this.onTap, this.height});
   final String text;
   final void Function()? onTap;
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
+        width: double.infinity,
+        height: height,
         decoration: const BoxDecoration(
           color: kPrimaryColor,
         ),

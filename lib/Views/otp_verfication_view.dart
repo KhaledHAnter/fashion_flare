@@ -18,7 +18,7 @@ class OTPverficationView extends StatefulWidget {
 }
 
 class _OTPverficationViewState extends State<OTPverficationView> {
-  int timeLift = 30;
+  int timeLift = 25;
 
   void _startCountdown() {
     Timer.periodic(const Duration(seconds: 1), (timer) {
@@ -107,13 +107,13 @@ class _OTPverficationViewState extends State<OTPverficationView> {
               RichText(
                 text: TextSpan(
                   children: [
-                     TextSpan(
+                    TextSpan(
                       text: "Don't receive code ? ",
                       style: TextStyle(
                         fontSize: 18.sp,
                         fontWeight: FontWeight.w500,
                         fontFamily: kFontFamily,
-                        color: Color(0xff5A5A5A),
+                        color: const Color(0xff5A5A5A),
                       ),
                     ),
                     TextSpan(

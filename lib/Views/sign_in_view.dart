@@ -6,7 +6,7 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:fashion_flare/Helper/show_awsome_snakbar.dart';
 import 'package:fashion_flare/Views/Register_view.dart';
 import 'package:fashion_flare/Views/forgot_password_view.dart';
-import 'package:fashion_flare/Views/home_page.dart';
+import 'package:fashion_flare/Views/your_3d_model.dart';
 import 'package:fashion_flare/Widgets/app_text.dart';
 import 'package:fashion_flare/Widgets/app_text_form_field.dart';
 import 'package:fashion_flare/Widgets/custom_button.dart';
@@ -152,7 +152,7 @@ class _SignInViewState extends State<SignInView> {
                             });
                             try {
                               await loginUser();
-                              Navigator.pushNamed(context, HomePage.id);
+                              Navigator.pushNamed(context, Your3DModel.id);
                             } on FirebaseAuthException catch (e) {
                               if (e.code == 'wrong-password') {
                                 showAwsomeSnakBar(
