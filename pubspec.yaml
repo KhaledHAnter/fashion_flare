@@ -18,6 +18,7 @@ dependencies:
   flutter_screenutil: ^5.9.0
   font_awesome_flutter: ^10.7.0
   gap: ^3.0.1
+  google_nav_bar: ^5.0.6
   loading_animation_widget: ^1.2.1
 
 dev_dependencies:

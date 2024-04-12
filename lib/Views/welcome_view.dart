@@ -19,56 +19,59 @@ class _WelcomeViewState extends State<WelcomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: <Widget>[
-          Expanded(
-            flex: 11,
-            child: Container(
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage("assets/Images/1.1.png"),
+      body: Padding(
+        padding: const EdgeInsets.only(top: 50),
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              flex: 11,
+              child: Container(
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage("assets/Images/1.1.png"),
+                  ),
                 ),
-              ),
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    AppText(
-                      text: "Welcome To",
-                      size: 24.sp,
-                      weight: FontWeight.w700,
-                    ),
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        Image.asset(
-                          "assets/Icons/1.2.png",
-                          color: kLogoColor,
-                        ),
-                        Gap(10.w),
-                        AppText(
-                          text: "Fashion Flare",
-                          size: 40.sp,
-                          weight: FontWeight.w700,
-                        ),
-                      ],
-                    )
-                  ],
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      AppText(
+                        text: "Welcome To",
+                        size: 24.sp,
+                        weight: FontWeight.w700,
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          Image.asset(
+                            "assets/Icons/1.2.png",
+                            color: kLogoColor,
+                          ),
+                          Gap(10.w),
+                          AppText(
+                            text: "Fashion Flare",
+                            size: 40.sp,
+                            weight: FontWeight.w700,
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-          Expanded(
-            flex: 1,
-            child: AppButton(
-              text: "Get Started",
-              onTap: () {
-                Navigator.pushNamed(context, OnBoardingView.id);
-              },
+            Expanded(
+              flex: 1,
+              child: AppButton(
+                text: "Get Started",
+                onTap: () {
+                  Navigator.pushNamed(context, OnBoardingView.id);
+                },
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

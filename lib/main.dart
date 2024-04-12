@@ -61,11 +61,11 @@ class FashionFalre extends StatelessWidget {
         ForgotPassword.id: (context) => const ForgotPassword(),
         OTPverficationView.id: (context) => const OTPverficationView(),
         UserDetails.id: (context) => const UserDetails(),
-        chooseStyleView.id: (context) => const chooseStyleView(),
+        ChooseStyleView.id: (context) => const ChooseStyleView(),
         Your3DModel.id: (context) => const Your3DModel(),
         HomeView.id: (context) => const HomeView(),
       },
-      initialRoute: WelcomeView.id,
+      initialRoute: HomeView.id,
     );
   }
 }

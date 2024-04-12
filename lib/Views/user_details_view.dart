@@ -143,7 +143,7 @@ class _UserDetailsState extends State<UserDetails> {
               onTap: () {
                 print(
                     "${userDetailsData[0].dropDownValue}  ${userDetailsData[1].dropDownValue}  ${userDetailsData[2].dropDownValue}  ${userDetailsData[3].dropDownValue}  ${userDetailsData[4].dropDownValue}");
-                Navigator.pushNamed(context, chooseStyleView.id);
+                Navigator.pushNamed(context, ChooseStyleView.id);
               },
             ),
           ],

@@ -1,3 +1,4 @@
+import 'package:fashion_flare/Views/home_view.dart';
 import 'package:fashion_flare/Widgets/app_button.dart';
 import 'package:fashion_flare/Widgets/app_text.dart';
 import 'package:fashion_flare/Widgets/image_container.dart';
@@ -13,37 +14,45 @@ class Your3DModel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                AppText(
-                  text: "Your 3D Model",
-                  size: 40.sp,
-                  weight: FontWeight.w700,
-                ),
-                Gap(8.h),
-                AppText(
-                  text:
-                      "Here's your 3D model where you'll see your selected items come to life.",
-                  size: 16.sp,
-                ),
-              ],
+      body: Padding(
+        padding: const EdgeInsets.only(top: 50),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  AppText(
+                    text: "Your 3D Model",
+                    size: 40.sp,
+                    weight: FontWeight.w700,
+                  ),
+                  Gap(8.h),
+                  AppText(
+                    text:
+                        "Here's your 3D model where you'll see your selected items come to life.",
+                    size: 16.sp,
+                  ),
+                ],
+              ),
             ),
-          ),
-          const Expanded(
-            flex: 10,
-            child: ImageContainer(imagePath: "assets/Images/4.png"),
-          ),
-          const Expanded(
-            flex: 1,
-            child: AppButton(text: "Continue"),
-          )
-        ],
+            const Expanded(
+              flex: 10,
+              child: ImageContainer(imagePath: "assets/Images/4.png"),
+            ),
+            Expanded(
+              flex: 1,
+              child: AppButton(
+                text: "Continue",
+                onTap: () {
+                  Navigator.pushNamed(context, HomeView.id);
+                },
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

@@ -35,74 +35,77 @@ class _OnBoardingViewState extends State<OnBoardingView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: <Widget>[
-          Expanded(
-            flex: 21,
-            child: PageView.builder(
-              physics: const BouncingScrollPhysics(),
-              itemCount: OnBoardData.length,
-              onPageChanged: (value) {
-                setState(() {
-                  _pageIndex = value;
-                });
-              },
-              controller: _pageController,
-              itemBuilder: (context, index) {
-                return OnBoardingContent(
-                  image: OnBoardData[index].image,
-                  title: OnBoardData[index].title,
-                  description: OnBoardData[index].description,
-                  screenNum: index + 1,
-                  onTap: () {
-                    _pageController.jumpToPage(
-                      2,
-                    );
-                  },
-                );
-              },
+      body: Padding(
+        padding: const EdgeInsets.only(top: 40),
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              flex: 21,
+              child: PageView.builder(
+                physics: const BouncingScrollPhysics(),
+                itemCount: OnBoardData.length,
+                onPageChanged: (value) {
+                  setState(() {
+                    _pageIndex = value;
+                  });
+                },
+                controller: _pageController,
+                itemBuilder: (context, index) {
+                  return OnBoardingContent(
+                    image: OnBoardData[index].image,
+                    title: OnBoardData[index].title,
+                    description: OnBoardData[index].description,
+                    screenNum: index + 1,
+                    onTap: () {
+                      _pageController.jumpToPage(
+                        2,
+                      );
+                    },
+                  );
+                },
+              ),
             ),
-          ),
-          Expanded(
-            flex: 1,
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: List.generate(
-                  OnBoardData.length,
-                  (index) => Padding(
-                    padding: EdgeInsets.only(right: 6.w),
-                    child: GestureDetector(
-                      onTap: () {
-                        _pageController.animateToPage(
-                          index,
-                          duration: const Duration(milliseconds: 250),
-                          curve: Curves.easeIn,
-                        );
-                      },
-                      child: DotIndicator(
-                        isActive: index == _pageIndex,
+            Expanded(
+              flex: 1,
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List.generate(
+                    OnBoardData.length,
+                    (index) => Padding(
+                      padding: EdgeInsets.only(right: 6.w),
+                      child: GestureDetector(
+                        onTap: () {
+                          _pageController.animateToPage(
+                            index,
+                            duration: const Duration(milliseconds: 250),
+                            curve: Curves.easeIn,
+                          );
+                        },
+                        child: DotIndicator(
+                          isActive: index == _pageIndex,
+                        ),
                       ),
                     ),
-                  ),
-                )),
-          ),
-          Expanded(
-            flex: 2,
-            child: AppButton(
-              onTap: () {
-                if (_pageIndex == 2) {
-                  Navigator.pushNamed(context, UserCredentialsView.id);
-                } else {
-                  _pageController.nextPage(
-                    duration: const Duration(milliseconds: 250),
-                    curve: Curves.easeIn,
-                  );
-                }
-              },
-              text: _pageIndex == 2 ? "Start" : "Next",
+                  )),
             ),
-          ),
-        ],
+            Expanded(
+              flex: 2,
+              child: AppButton(
+                onTap: () {
+                  if (_pageIndex == 2) {
+                    Navigator.pushNamed(context, UserCredentialsView.id);
+                  } else {
+                    _pageController.nextPage(
+                      duration: const Duration(milliseconds: 250),
+                      curve: Curves.easeIn,
+                    );
+                  }
+                },
+                text: _pageIndex == 2 ? "Start" : "Next",
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
