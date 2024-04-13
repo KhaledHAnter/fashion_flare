@@ -1,6 +1,6 @@
 import 'package:fashion_flare/Views/home_view.dart';
 import 'package:fashion_flare/Widgets/custom_floating_app_bar.dart';
-import 'package:fashion_flare/Widgets/item_card.dart';
+import 'package:fashion_flare/Widgets/discont_item_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -31,7 +31,7 @@ class _OffersViewState extends State<OffersView> {
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2, childAspectRatio: 0.6),
                 itemBuilder: (context, index) {
-                  return ItemCard(
+                  return DiscountItemCard(
                     onTap: () {
                       setState(() {
                         itemsData[index + 4].isFavourite =
@@ -41,11 +41,10 @@ class _OffersViewState extends State<OffersView> {
                     imagePath: itemsData[index + 4].image,
                     itemFav: itemsData[index + 4].isFavourite,
                     title: itemsData[index + 4].title,
-                    price: itemsData[index + 4].price,
+                    index: index,
+                    newPrice: itemsData[index + 4].discountPrice! ??
+                        itemsData[index + 4].price,
                     oldPrice: itemsData[index + 4].price,
-                    newPrice: itemsData[index + 4].discountPrice,
-                    index: index + 3,
-                    isDiscount: true,
                   );
                 },
               ),

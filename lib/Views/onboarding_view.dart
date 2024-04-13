@@ -42,6 +42,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
             Expanded(
               flex: 21,
               child: PageView.builder(
+                
                 physics: const BouncingScrollPhysics(),
                 itemCount: OnBoardData.length,
                 onPageChanged: (value) {

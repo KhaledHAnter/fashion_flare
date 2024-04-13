@@ -4,19 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
-class ItemCard extends StatelessWidget {
-  const ItemCard({
+class DiscountItemCard extends StatelessWidget {
+  const DiscountItemCard({
     super.key,
     this.onTap,
     required this.imagePath,
     required this.itemFav,
     required this.title,
-    required this.price,
     required this.index,
+    required this.newPrice,
+    required this.oldPrice,
   });
 
   final void Function()? onTap;
-  final String imagePath, title, price;
+  final String imagePath, title, newPrice, oldPrice;
   final bool itemFav;
   final int index;
 
@@ -74,11 +75,37 @@ class ItemCard extends StatelessWidget {
           weight: FontWeight.w600,
         ),
         Gap(8.h),
-        AppText(
-          text: price,
-          size: 18.sp,
-          weight: FontWeight.w700,
-        ),
+        RichText(
+          textAlign: TextAlign.center,
+          text: TextSpan(
+            children: [
+              TextSpan(
+                text: "${oldPrice ?? 999.99}",
+                style: TextStyle(
+                  color: Colors.black,
+                  letterSpacing: 1.h,
+                  fontSize: 16.sp,
+                  fontFamily: kFontFamily,
+                  decoration: TextDecoration.lineThrough,
+                  decorationStyle: TextDecorationStyle.solid,
+                  decorationThickness: 2.h,
+                ),
+              ),
+              TextSpan(
+                text: "   ${newPrice ?? 99.99}",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20.sp,
+                  letterSpacing: 1.h,
+                  fontWeight: FontWeight.w700,
+                  fontFamily: kFontFamily,
+                  decorationStyle: TextDecorationStyle.solid,
+                  decorationThickness: 2.h,
+                ),
+              ),
+            ],
+          ),
+        )
       ],
     );
   }
