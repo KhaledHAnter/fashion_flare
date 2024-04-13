@@ -13,12 +13,17 @@ class ItemCard extends StatelessWidget {
     required this.title,
     required this.price,
     required this.index,
+    this.isDiscount = false,
+    this.newPrice,
+    this.oldPrice,
   });
 
   final void Function()? onTap;
   final String imagePath, title, price;
-  final bool itemFav;
+  final bool itemFav, isDiscount;
   final int index;
+  final String? newPrice;
+  final String? oldPrice;
 
   @override
   Widget build(BuildContext context) {
@@ -74,11 +79,43 @@ class ItemCard extends StatelessWidget {
           weight: FontWeight.w600,
         ),
         Gap(8.h),
-        AppText(
-          text: price,
-          size: 18.sp,
-          weight: FontWeight.w700,
-        ),
+        isDiscount
+            ? RichText(
+                textAlign: TextAlign.center,
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: "${oldPrice ?? 999.99}",
+                      style: TextStyle(
+                        color: Colors.black,
+                        letterSpacing: 1.h,
+                        fontSize: 16.sp,
+                        fontFamily: kFontFamily,
+                        decoration: TextDecoration.lineThrough,
+                        decorationStyle: TextDecorationStyle.solid,
+                        decorationThickness: 2.h,
+                      ),
+                    ),
+                    TextSpan(
+                      text: "   ${newPrice ?? 99.99}",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20.sp,
+                        letterSpacing: 1.h,
+                        fontWeight: FontWeight.w700,
+                        fontFamily: kFontFamily,
+                        decorationStyle: TextDecorationStyle.solid,
+                        decorationThickness: 2.h,
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            : AppText(
+                text: price,
+                size: 18.sp,
+                weight: FontWeight.w700,
+              ),
       ],
     );
   }

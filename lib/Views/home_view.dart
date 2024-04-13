@@ -1,5 +1,8 @@
 import 'package:fashion_flare/Models/category_model.dart';
 import 'package:fashion_flare/Models/item_model.dart';
+import 'package:fashion_flare/Views/nearby_shops_view.dart';
+import 'package:fashion_flare/Views/offers_view.dart';
+import 'package:fashion_flare/Views/today_outfit_view.dart';
 import 'package:fashion_flare/Widgets/app_text.dart';
 import 'package:fashion_flare/Widgets/item_card.dart';
 import 'package:fashion_flare/constants.dart';
@@ -24,6 +27,7 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: GNav(
+        padding: const EdgeInsets.all(25),
         gap: 8.w,
         backgroundColor: Colors.black,
         color: Colors.white,
@@ -93,7 +97,7 @@ class _HomeViewState extends State<HomeView> {
                 ),
               ],
             ),
-            Gap(18.h),
+            Gap(8.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -135,7 +139,6 @@ class _HomeViewState extends State<HomeView> {
                 ),
               ],
             ),
-            Gap(18.h),
             SizedBox(
               height: 86.h,
               width: double.infinity,
@@ -144,20 +147,36 @@ class _HomeViewState extends State<HomeView> {
                 itemCount: 3,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
-                  return Container(
-                    margin: EdgeInsets.only(right: 10.w),
-                    height: 86.h,
-                    width: 300.w,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage("assets/Images/5.${index + 1}.png"),
+                  return GestureDetector(
+                    onTap: () {
+                      switch (index) {
+                        case 0:
+                          Navigator.pushNamed(context, TodayOutfitView.id);
+                          break;
+                        case 1:
+                          Navigator.pushNamed(context, NearbyShops.id);
+
+                          break;
+                        case 2:
+                          Navigator.pushNamed(context, OffersView.id);
+
+                          break;
+                      }
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(right: 10.w),
+                      height: 86.h,
+                      width: 300.w,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage("assets/Images/5.${index + 1}.png"),
+                        ),
                       ),
                     ),
                   );
                 },
               ),
             ),
-            Gap(8.h),
             SizedBox(
               height: 36.h,
               child: ListView.builder(
@@ -211,7 +230,7 @@ class _HomeViewState extends State<HomeView> {
                   crossAxisSpacing: 10,
                 ),
                 physics: const BouncingScrollPhysics(),
-                itemCount: 4,
+                itemCount: itemsData.length,
                 padding: const EdgeInsets.all(0),
                 itemBuilder: (context, index) {
                   return ItemCard(
@@ -273,6 +292,20 @@ final List<itemModel> itemsData = [
     title: "Turtle Neck Shirt",
     price: r"$499.99",
     image: "assets/Images/6.4.png",
+    isFavourite: false,
+  ),
+  itemModel(
+    title: "Jacket",
+    price: r"$559.99",
+    discountPrice: r"$200.99",
+    image: "assets/Images/6.5.png",
+    isFavourite: false,
+  ),
+  itemModel(
+    title: "Long Sleeve T-shirt",
+    price: r"$299.99",
+    discountPrice: r"$150.99",
+    image: "assets/Images/6.6.png",
     isFavourite: false,
   ),
 ];

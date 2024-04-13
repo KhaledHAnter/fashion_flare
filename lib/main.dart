@@ -3,9 +3,12 @@ import 'package:fashion_flare/Views/Register_view.dart';
 import 'package:fashion_flare/Views/choose_style_view.dart';
 import 'package:fashion_flare/Views/forgot_password_view.dart';
 import 'package:fashion_flare/Views/home_view.dart';
+import 'package:fashion_flare/Views/nearby_shops_view.dart';
+import 'package:fashion_flare/Views/offers_view.dart';
 import 'package:fashion_flare/Views/onboarding_view.dart';
 import 'package:fashion_flare/Views/otp_verfication_view.dart';
 import 'package:fashion_flare/Views/sign_in_view.dart';
+import 'package:fashion_flare/Views/today_outfit_view.dart';
 import 'package:fashion_flare/Views/user_credentials_view.dart';
 import 'package:fashion_flare/Views/user_details_view.dart';
 import 'package:fashion_flare/Views/welcome_view.dart';
@@ -64,6 +67,9 @@ class FashionFalre extends StatelessWidget {
         ChooseStyleView.id: (context) => const ChooseStyleView(),
         Your3DModel.id: (context) => const Your3DModel(),
         HomeView.id: (context) => const HomeView(),
+        TodayOutfitView.id: (context) => const TodayOutfitView(),
+        NearbyShops.id: (context) => const NearbyShops(),
+        OffersView.id: (context) => const OffersView(),
       },
       initialRoute: HomeView.id,
     );

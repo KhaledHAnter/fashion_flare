@@ -14,6 +14,7 @@ class AppButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
+        constraints: BoxConstraints(minHeight: 70.h, minWidth: double.infinity),
         width: double.infinity,
         height: height,
         decoration: const BoxDecoration(
