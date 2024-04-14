@@ -1,15 +1,39 @@
+import 'package:flutter/material.dart';
+
 class itemModel {
   String title, image, price;
   bool isFavourite;
-  String? discountPrice;
-  
+  String? discountPrice,
+      mainfabric,
+      pattern,
+      fit,
+      thickness,
+      sleevelength,
+      prducttype,
+      season,
+      ocassion,
+      gender;
+  List? images, colors, sizes;
 
-  itemModel(
-      {required this.title,
-      required this.image,
-      required this.price,
-      this.isFavourite = false,
-      this.discountPrice});
+  itemModel({
+    required this.title,
+    required this.image,
+    required this.price,
+    this.isFavourite = false,
+    this.discountPrice,
+    this.images,
+    this.colors,
+    this.sizes,
+    this.fit,
+    this.gender,
+    this.ocassion,
+    this.pattern,
+    this.mainfabric,
+    this.prducttype,
+    this.season,
+    this.sleevelength,
+    this.thickness,
+  });
 }
 
 final List<itemModel> itemsData = [
@@ -24,6 +48,32 @@ final List<itemModel> itemsData = [
     price: r"$212.99",
     image: "assets/Images/6.2.png",
     isFavourite: false,
+    images: [
+      "assets/Images/7.1.png",
+      "assets/Images/7.2.png",
+    ],
+    colors: <Color>[
+      Colors.deepPurpleAccent,
+      Colors.blueGrey.shade200,
+      Colors.red,
+    ],
+    sizes: <String>[
+      "S",
+      "M",
+      "L",
+      "XL",
+      "2XL",
+      "3XL",
+    ],
+    mainfabric: "100% cotton",
+    pattern: "Plain",
+    fit: "Comfortable Cut",
+    thickness: "Thick",
+    sleevelength: "Short Sleeve",
+    prducttype: "Shirt",
+    ocassion: "Casual",
+    season: "Summer",
+    gender: "Male",
   ),
   itemModel(
     title: "Puffer Jackett",
@@ -51,4 +101,16 @@ final List<itemModel> itemsData = [
     image: "assets/Images/6.6.png",
     isFavourite: false,
   ),
+];
+
+final List infoHeadlines = [
+  "Main Fabric",
+  "Pattern",
+  "Fit",
+  "Thickness",
+  "Sleeve Length",
+  "Product Type",
+  "Occasion",
+  "Season",
+  "Gender",
 ];

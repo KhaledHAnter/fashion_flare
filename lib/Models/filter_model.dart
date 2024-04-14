@@ -39,7 +39,8 @@ final List<filterModel> filterData = [
       filterItem(name: "M"),
       filterItem(name: "L"),
       filterItem(name: "XL"),
-      filterItem(name: "XXL"),
+      filterItem(name: "2XL"),
+      filterItem(name: "3XL"),
     ],
   ),
   filterModel(

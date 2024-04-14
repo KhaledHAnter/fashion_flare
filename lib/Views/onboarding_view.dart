@@ -68,25 +68,26 @@ class _OnBoardingViewState extends State<OnBoardingView> {
             Expanded(
               flex: 1,
               child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: List.generate(
-                    OnBoardData.length,
-                    (index) => Padding(
-                      padding: EdgeInsets.only(right: 6.w),
-                      child: GestureDetector(
-                        onTap: () {
-                          _pageController.animateToPage(
-                            index,
-                            duration: const Duration(milliseconds: 250),
-                            curve: Curves.easeIn,
-                          );
-                        },
-                        child: DotIndicator(
-                          isActive: index == _pageIndex,
-                        ),
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(
+                  OnBoardData.length,
+                  (index) => Padding(
+                    padding: EdgeInsets.only(right: 6.w),
+                    child: GestureDetector(
+                      onTap: () {
+                        _pageController.animateToPage(
+                          index,
+                          duration: const Duration(milliseconds: 250),
+                          curve: Curves.easeIn,
+                        );
+                      },
+                      child: DotIndicator(
+                        isActive: index == _pageIndex,
                       ),
                     ),
-                  )),
+                  ),
+                ),
+              ),
             ),
             Expanded(
               flex: 2,

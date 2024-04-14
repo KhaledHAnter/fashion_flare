@@ -2,6 +2,7 @@ import 'package:fashion_flare/Models/category_model.dart';
 import 'package:fashion_flare/Models/item_model.dart';
 import 'package:fashion_flare/Models/search_delegate_model.dart';
 import 'package:fashion_flare/Views/filter_view.dart';
+import 'package:fashion_flare/Views/item_details_view.dart';
 import 'package:fashion_flare/Views/nearby_shops_view.dart';
 import 'package:fashion_flare/Views/offers_view.dart';
 import 'package:fashion_flare/Views/today_outfit_view.dart';
@@ -108,7 +109,6 @@ class _HomeViewState extends State<HomeView> {
                     onTap: () {
                       showSearch(
                           context: context, delegate: customSearchDelegate());
-                      print(searchData);
                     },
                     child: Container(
                       padding: const EdgeInsets.symmetric(
@@ -141,9 +141,10 @@ class _HomeViewState extends State<HomeView> {
                     Navigator.pushNamed(context, FilterView.id);
                   },
                   child: Container(
-                    constraints: BoxConstraints(minHeight: 49.h, minWidth: 44.w),
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 10.w, vertical: 12.5.h),
+                    constraints:
+                        BoxConstraints(minHeight: 49.h, minWidth: 44.w),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: 10.w, vertical: 12.5.h),
                     decoration: BoxDecoration(
                       color: kPrimaryColor,
                       borderRadius: BorderRadius.circular(12),
@@ -248,6 +249,10 @@ class _HomeViewState extends State<HomeView> {
                 padding: const EdgeInsets.all(0),
                 itemBuilder: (context, index) {
                   return GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, ItemDetailsView.id,
+                          arguments: itemsData[index]);
+                    },
                     child: ItemCard(
                       onTap: () {
                         setState(() {

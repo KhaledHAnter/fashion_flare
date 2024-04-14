@@ -4,6 +4,7 @@ import 'package:fashion_flare/Views/choose_style_view.dart';
 import 'package:fashion_flare/Views/filter_view.dart';
 import 'package:fashion_flare/Views/forgot_password_view.dart';
 import 'package:fashion_flare/Views/home_view.dart';
+import 'package:fashion_flare/Views/item_details_view.dart';
 import 'package:fashion_flare/Views/nearby_shops_view.dart';
 import 'package:fashion_flare/Views/offers_view.dart';
 import 'package:fashion_flare/Views/onboarding_view.dart';
@@ -72,8 +73,9 @@ class FashionFalre extends StatelessWidget {
         NearbyShops.id: (context) => const NearbyShops(),
         OffersView.id: (context) => const OffersView(),
         FilterView.id: (context) => const FilterView(),
-      },    
-      initialRoute: HomeView.id,
+        ItemDetailsView.id: (context) => const ItemDetailsView(),
+      },
+      initialRoute: WelcomeView.id,
     );
   }
 }
