@@ -4,6 +4,7 @@ import 'dart:developer';
 
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:fashion_flare/Helper/show_awsome_snakbar.dart';
+import 'package:fashion_flare/Services/FireBase%20Services/auth_service.dart';
 import 'package:fashion_flare/Views/Register_view.dart';
 import 'package:fashion_flare/Views/forgot_password_view.dart';
 import 'package:fashion_flare/Views/home_view.dart';
@@ -151,7 +152,7 @@ class _SignInViewState extends State<SignInView> {
                               isLoading = true;
                             });
                             try {
-                              await loginUser();
+                              await loginUser(email: email, password: password);
                               Navigator.pushNamed(context, HomeView.id);
                             } on FirebaseAuthException catch (e) {
                               if (e.code == 'wrong-password') {
@@ -254,10 +255,5 @@ class _SignInViewState extends State<SignInView> {
               ),
             ),
     );
-  }
-
-  Future<void> loginUser() async {
-    UserCredential user = await FirebaseAuth.instance
-        .signInWithEmailAndPassword(email: email!, password: password!);
   }
 }

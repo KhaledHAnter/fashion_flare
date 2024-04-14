@@ -1,4 +1,3 @@
-import 'package:fashion_flare/Helper/governorates.dart';
 import 'package:fashion_flare/Models/user_details.dart';
 import 'package:fashion_flare/Views/choose_style_view.dart';
 import 'package:fashion_flare/Widgets/app_text.dart';
@@ -152,20 +151,3 @@ class _UserDetailsState extends State<UserDetails> {
     ));
   }
 }
-
-final List<UserDetailsModel> userDetailsData = [
-  UserDetailsModel(listItems: ['Male', 'Female'], hintText: "Gender"),
-  UserDetailsModel(listItems: [
-    for (int i = 18; i <= 65; i++) i.toString(),
-  ], hintText: "Age"),
-  UserDetailsModel(listItems: [
-    for (int i = 0; i < egyGovernoratesList.length; i++)
-      egyGovernoratesList[i]['governorate_name_en'],
-  ], hintText: "City"),
-  UserDetailsModel(
-      listItems: [for (int i = 140; i <= 220; i++) "${i.toString()} Cm"],
-      hintText: "Height"),
-  UserDetailsModel(
-      listItems: [for (int i = 40; i <= 120; i++) "${i.toString()} Kg"],
-      hintText: "Weight"),
-];

@@ -80,7 +80,7 @@ class DiscountItemCard extends StatelessWidget {
           text: TextSpan(
             children: [
               TextSpan(
-                text: "${oldPrice ?? 999.99}",
+                text: oldPrice,
                 style: TextStyle(
                   color: Colors.black,
                   letterSpacing: 1.h,
@@ -92,7 +92,7 @@ class DiscountItemCard extends StatelessWidget {
                 ),
               ),
               TextSpan(
-                text: "   ${newPrice ?? 99.99}",
+                text: "   $newPrice",
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 20.sp,

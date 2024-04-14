@@ -1,5 +1,6 @@
 import 'package:fashion_flare/Models/category_model.dart';
 import 'package:fashion_flare/Models/item_model.dart';
+import 'package:fashion_flare/Models/search_delegate_model.dart';
 import 'package:fashion_flare/Views/nearby_shops_view.dart';
 import 'package:fashion_flare/Views/offers_view.dart';
 import 'package:fashion_flare/Views/today_outfit_view.dart';
@@ -102,27 +103,34 @@ class _HomeViewState extends State<HomeView> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Expanded(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16, vertical: 12),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: kSecondaryFontColor),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Row(
-                      children: <Widget>[
-                        Icon(
-                          Icons.search,
-                          size: 24.r,
-                          color: kSecondaryFontColor,
-                        ),
-                        Gap(8.w),
-                        AppText(
-                          text: "Search clothes. . . ",
-                          color: kSecondaryFontColor,
-                          size: 16.sp,
-                        ),
-                      ],
+                  child: GestureDetector(
+                    onTap: () {
+                      showSearch(
+                          context: context, delegate: customSearchDelegate());
+                      print(searchData);
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 12),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: kSecondaryFontColor),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Row(
+                        children: <Widget>[
+                          Icon(
+                            Icons.search,
+                            size: 24.r,
+                            color: kSecondaryFontColor,
+                          ),
+                          Gap(8.w),
+                          AppText(
+                            text: "Search clothes. . . ",
+                            color: kSecondaryFontColor,
+                            size: 16.sp,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -255,57 +263,3 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 }
-
-final List<CategoryModel> categoriesData = [
-  CategoryModel(title: "All Items", image: "assets/Icons/2.1.png"),
-  CategoryModel(title: "Jacket", image: "assets/Icons/2.2.png"),
-  CategoryModel(title: "Shirt", image: "assets/Icons/2.3.png"),
-  CategoryModel(title: "Shorts", image: "assets/Icons/2.4.png"),
-  CategoryModel(title: "Skirt", image: "assets/Icons/2.5.png"),
-  CategoryModel(title: "Suit", image: "assets/Icons/2.6.png"),
-  CategoryModel(title: "T-shirt", image: "assets/Icons/2.7.png"),
-  CategoryModel(title: "Jeans", image: "assets/Icons/2.8.png"),
-  CategoryModel(title: "Dresss", image: "assets/Icons/2.9.png"),
-  CategoryModel(title: "Womens T-shirt", image: "assets/Icons/2.10.png"),
-];
-
-final List<itemModel> itemsData = [
-  itemModel(
-    title: "Long Sleeve T-shirt",
-    price: r"$452.99",
-    image: "assets/Images/6.1.png",
-    isFavourite: false,
-  ),
-  itemModel(
-    title: "Short Sleeve T-shirt",
-    price: r"$212.99",
-    image: "assets/Images/6.2.png",
-    isFavourite: false,
-  ),
-  itemModel(
-    title: "Puffer Jackett",
-    price: r"$550.99",
-    image: "assets/Images/6.3.png",
-    isFavourite: false,
-  ),
-  itemModel(
-    title: "Turtle Neck Shirt",
-    price: r"$499.99",
-    image: "assets/Images/6.4.png",
-    isFavourite: false,
-  ),
-  itemModel(
-    title: "Jacket",
-    price: r"$559.99",
-    discountPrice: r"$200.99",
-    image: "assets/Images/6.5.png",
-    isFavourite: false,
-  ),
-  itemModel(
-    title: "Long Sleeve T-shirt",
-    price: r"$299.99",
-    discountPrice: r"$150.99",
-    image: "assets/Images/6.6.png",
-    isFavourite: false,
-  ),
-];

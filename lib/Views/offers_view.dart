@@ -1,4 +1,4 @@
-import 'package:fashion_flare/Views/home_view.dart';
+import 'package:fashion_flare/Models/item_model.dart';
 import 'package:fashion_flare/Widgets/custom_floating_app_bar.dart';
 import 'package:fashion_flare/Widgets/discont_item_card.dart';
 import 'package:flutter/material.dart';
@@ -42,7 +42,7 @@ class _OffersViewState extends State<OffersView> {
                     itemFav: itemsData[index + 4].isFavourite,
                     title: itemsData[index + 4].title,
                     index: index,
-                    newPrice: itemsData[index + 4].discountPrice! ??
+                    newPrice: itemsData[index + 4].discountPrice ??
                         itemsData[index + 4].price,
                     oldPrice: itemsData[index + 4].price,
                   );

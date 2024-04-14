@@ -71,7 +71,7 @@ class FashionFalre extends StatelessWidget {
         NearbyShops.id: (context) => const NearbyShops(),
         OffersView.id: (context) => const OffersView(),
       },
-      initialRoute: HomeView.id,
+      initialRoute: WelcomeView.id,
     );
   }
 }

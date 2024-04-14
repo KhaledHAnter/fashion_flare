@@ -2,6 +2,7 @@
 
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:fashion_flare/Helper/show_awsome_snakbar.dart';
+import 'package:fashion_flare/Services/FireBase%20Services/auth_service.dart';
 import 'package:fashion_flare/Views/sign_in_view.dart';
 import 'package:fashion_flare/Views/user_details_view.dart';
 import 'package:fashion_flare/Widgets/app_text.dart';
@@ -209,7 +210,8 @@ class _RegisterViewState extends State<RegisterView> {
                               isLoading = true;
                             });
                             try {
-                              await registerUser();
+                              await registerUser(
+                                  email: email, password: password);
 
                               Navigator.pushNamed(context, UserDetails.id);
 
@@ -298,10 +300,5 @@ class _RegisterViewState extends State<RegisterView> {
               ),
             ),
     );
-  }
-
-  Future<void> registerUser() async {
-    UserCredential user = await FirebaseAuth.instance
-        .createUserWithEmailAndPassword(email: email!, password: password!);
   }
 }
