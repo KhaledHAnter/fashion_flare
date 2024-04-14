@@ -2,6 +2,7 @@ class itemModel {
   String title, image, price;
   bool isFavourite;
   String? discountPrice;
+  
 
   itemModel(
       {required this.title,

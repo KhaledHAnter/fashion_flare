@@ -1,6 +1,7 @@
 import 'package:fashion_flare/Models/category_model.dart';
 import 'package:fashion_flare/Models/item_model.dart';
 import 'package:fashion_flare/Models/search_delegate_model.dart';
+import 'package:fashion_flare/Views/filter_view.dart';
 import 'package:fashion_flare/Views/nearby_shops_view.dart';
 import 'package:fashion_flare/Views/offers_view.dart';
 import 'package:fashion_flare/Views/today_outfit_view.dart';
@@ -135,15 +136,20 @@ class _HomeViewState extends State<HomeView> {
                   ),
                 ),
                 Gap(20.w),
-                Container(
-                  constraints: BoxConstraints(minHeight: 49.h, minWidth: 44.w),
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 10.w, vertical: 12.5.h),
-                  decoration: BoxDecoration(
-                    color: kPrimaryColor,
-                    borderRadius: BorderRadius.circular(12),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, FilterView.id);
+                  },
+                  child: Container(
+                    constraints: BoxConstraints(minHeight: 49.h, minWidth: 44.w),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 10.w, vertical: 12.5.h),
+                    decoration: BoxDecoration(
+                      color: kPrimaryColor,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Image.asset("assets/Icons/Settings Slider.png"),
                   ),
-                  child: Image.asset("assets/Icons/Settings Slider.png"),
                 ),
               ],
             ),
@@ -241,18 +247,20 @@ class _HomeViewState extends State<HomeView> {
                 itemCount: itemsData.length,
                 padding: const EdgeInsets.all(0),
                 itemBuilder: (context, index) {
-                  return ItemCard(
-                    onTap: () {
-                      setState(() {
-                        itemsData[index].isFavourite =
-                            !itemsData[index].isFavourite;
-                      });
-                    },
-                    imagePath: itemsData[index].image,
-                    itemFav: itemsData[index].isFavourite,
-                    title: itemsData[index].title,
-                    price: itemsData[index].price,
-                    index: index + 1,
+                  return GestureDetector(
+                    child: ItemCard(
+                      onTap: () {
+                        setState(() {
+                          itemsData[index].isFavourite =
+                              !itemsData[index].isFavourite;
+                        });
+                      },
+                      imagePath: itemsData[index].image,
+                      itemFav: itemsData[index].isFavourite,
+                      title: itemsData[index].title,
+                      price: itemsData[index].price,
+                      index: index + 1,
+                    ),
                   );
                 },
               ),
