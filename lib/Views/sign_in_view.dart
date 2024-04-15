@@ -8,6 +8,7 @@ import 'package:fashion_flare/Services/FireBase%20Services/auth_service.dart';
 import 'package:fashion_flare/Views/Register_view.dart';
 import 'package:fashion_flare/Views/forgot_password_view.dart';
 import 'package:fashion_flare/Views/home_view.dart';
+import 'package:fashion_flare/Views/nav_home_view.dart';
 import 'package:fashion_flare/Widgets/app_text.dart';
 import 'package:fashion_flare/Widgets/app_text_form_field.dart';
 import 'package:fashion_flare/Widgets/custom_button.dart';
@@ -153,7 +154,7 @@ class _SignInViewState extends State<SignInView> {
                             });
                             try {
                               await loginUser(email: email, password: password);
-                              Navigator.pushNamed(context, HomeView.id);
+                              Navigator.pushNamed(context, NavHomeView.id);
                             } on FirebaseAuthException catch (e) {
                               if (e.code == 'wrong-password') {
                                 showAwsomeSnakBar(

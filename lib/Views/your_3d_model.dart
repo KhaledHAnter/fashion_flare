@@ -1,4 +1,4 @@
-import 'package:fashion_flare/Views/home_view.dart';
+import 'package:fashion_flare/Views/nav_home_view.dart';
 import 'package:fashion_flare/Widgets/app_button.dart';
 import 'package:fashion_flare/Widgets/app_text.dart';
 import 'package:fashion_flare/Widgets/image_container.dart';
@@ -47,7 +47,7 @@ class Your3DModel extends StatelessWidget {
               child: AppButton(
                 text: "Continue",
                 onTap: () {
-                  Navigator.pushNamed(context, HomeView.id);
+                  Navigator.pushNamed(context, NavHomeView.id);
                 },
               ),
             )
