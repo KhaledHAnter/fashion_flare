@@ -1,7 +1,7 @@
 import 'package:fashion_flare/Views/Register_view.dart';
 import 'package:fashion_flare/Views/home_view.dart';
 import 'package:fashion_flare/Views/sign_in_view.dart';
-import 'package:fashion_flare/Views/welcome_view.dart';
+import 'package:fashion_flare/Views/wishlist_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -20,7 +20,7 @@ class _NavHomeViewState extends State<NavHomeView> {
   int _selectedIndex = 0;
   static final List<Widget> _widgetOptions = [
     const HomeView(),
-    const WelcomeView(),
+    const WishListView(),
     const SignInView(),
     const RegisterView(),
   ];

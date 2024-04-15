@@ -18,7 +18,7 @@ class _OffersViewState extends State<OffersView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.only(top: 50.h),
+        padding: EdgeInsets.only(top: 50.h, right: 16.w, left: 16.w),
         child: Column(
           children: <Widget>[
             const CustomFloatingAppBar(
@@ -41,7 +41,7 @@ class _OffersViewState extends State<OffersView> {
                     imagePath: itemsData[index + 4].image,
                     itemFav: itemsData[index + 4].isFavourite,
                     title: itemsData[index + 4].title,
-                    index: index,
+                    index: index + 1,
                     newPrice: itemsData[index + 4].discountPrice ??
                         itemsData[index + 4].price,
                     oldPrice: itemsData[index + 4].price,

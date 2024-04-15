@@ -15,6 +15,7 @@ import 'package:fashion_flare/Views/today_outfit_view.dart';
 import 'package:fashion_flare/Views/user_credentials_view.dart';
 import 'package:fashion_flare/Views/user_details_view.dart';
 import 'package:fashion_flare/Views/welcome_view.dart';
+import 'package:fashion_flare/Views/wishlist_view.dart';
 import 'package:fashion_flare/Views/your_3d_model.dart';
 import 'package:fashion_flare/constants.dart';
 import 'package:fashion_flare/firebase_options.dart';
@@ -69,15 +70,16 @@ class FashionFalre extends StatelessWidget {
         UserDetails.id: (context) => const UserDetails(),
         ChooseStyleView.id: (context) => const ChooseStyleView(),
         Your3DModel.id: (context) => const Your3DModel(),
+        NavHomeView.id: (context) => const NavHomeView(),
         HomeView.id: (context) => const HomeView(),
         TodayOutfitView.id: (context) => const TodayOutfitView(),
         NearbyShops.id: (context) => const NearbyShops(),
         OffersView.id: (context) => const OffersView(),
         FilterView.id: (context) => const FilterView(),
         ItemDetailsView.id: (context) => const ItemDetailsView(),
-        NavHomeView.id: (context) => const NavHomeView(),
+        WishListView.id: (context) => const WishListView(),
       },
-      initialRoute: NavHomeView.id,
+      initialRoute: WelcomeView.id,
     );
   }
 }

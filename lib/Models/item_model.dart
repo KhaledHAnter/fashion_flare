@@ -103,14 +103,20 @@ final List<itemModel> itemsData = [
   ),
 ];
 
-final List infoHeadlines = [
-  "Main Fabric",
-  "Pattern",
-  "Fit",
-  "Thickness",
-  "Sleeve Length",
-  "Product Type",
-  "Occasion",
-  "Season",
-  "Gender",
+final List favoriteItems = [
+  for (int i = 0; i < itemsData.length; i++)
+    // itemsData[i].isFavourite
+    //     ? itemModel(
+    //         title: itemsData[i].title,
+    //         image: itemsData[i].image,
+    //         price: itemsData[i].price)
+    //     : null
+
+    if (itemsData[i].isFavourite == true)
+      {
+        itemModel(
+            title: itemsData[i].title,
+            image: itemsData[i].image,
+            price: itemsData[i].price)
+      }
 ];

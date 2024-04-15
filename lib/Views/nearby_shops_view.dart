@@ -25,9 +25,12 @@ class NearbyShops extends StatelessWidget {
           padding: EdgeInsets.only(top: 50.h),
           child: Column(
             children: [
-              const CustomFloatingAppBar(
-                title: "NEARBY SHOPS",
-                icon: Icons.arrow_back_ios_rounded,
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.w),
+                child: const CustomFloatingAppBar(
+                  title: "NEARBY SHOPS",
+                  icon: Icons.arrow_back_ios_rounded,
+                ),
               ),
               const Spacer(),
               GestureDetector(
