@@ -1,4 +1,5 @@
 import 'package:fashion_flare/Models/item_model.dart';
+import 'package:fashion_flare/Views/cart_view.dart';
 import 'package:fashion_flare/Views/item_details_view.dart';
 import 'package:fashion_flare/Widgets/custom_floating_app_bar_icon.dart';
 import 'package:fashion_flare/Widgets/item_card.dart';
@@ -27,7 +28,7 @@ class _WishListViewState extends State<WishListView> {
               icon: Icons.arrow_back_ios_new_rounded,
               image: "assets/Icons/Shopping bag.png",
               onTap: () {
-                print(favoriteItems);
+                Navigator.pushNamed(context, CartView.id);
               },
             ),
             Expanded(

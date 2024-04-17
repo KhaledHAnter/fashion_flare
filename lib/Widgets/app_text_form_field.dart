@@ -6,7 +6,7 @@ class AppTextFormField extends StatelessWidget {
   const AppTextFormField({
     super.key,
     required this.labelText,
-    required this.prefixIcon,
+    this.prefixIcon,
     required this.obscureText,
     this.suffixIcon,
     this.onSuffixTap,
@@ -17,7 +17,7 @@ class AppTextFormField extends StatelessWidget {
   });
 
   final String labelText;
-  final IconData prefixIcon;
+  final IconData? prefixIcon;
   final IconData? suffixIcon;
   final bool obscureText;
   final void Function()? onSuffixTap;
@@ -33,6 +33,7 @@ class AppTextFormField extends StatelessWidget {
           ? AutovalidateMode.onUserInteraction
           : AutovalidateMode.disabled,
       onChanged: onChanged,
+      
       validator: validator,
       keyboardType: keyboardType ?? TextInputType.text,
       obscureText: obscureText,
