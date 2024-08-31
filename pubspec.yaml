@@ -1,0 +1,78 @@
+name: fashion_flare
+description: A new Flutter project.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.1.0 <4.0.0'
+
+dependencies:
+  awesome_snackbar_content: ^0.1.3
+  cached_network_image: ^3.3.1
+  cloud_firestore: ^4.17.5
+  cupertino_icons: ^1.0.2
+  device_preview: ^1.1.0
+  dio: ^5.4.3+1
+  firebase_auth: ^4.16.0
+  firebase_core: ^2.24.2
+  flutter:
+    sdk: flutter
+  flutter_screenutil: ^5.9.0
+  font_awesome_flutter: ^10.7.0
+  gap: ^3.0.1
+  google_nav_bar: ^5.0.6
+  image_picker: ^1.1.2
+  loading_animation_widget: ^1.2.1
+  model_viewer_plus: ^1.8.0
+
+dev_dependencies:
+  flutter_launcher_icons: "^0.13.1"
+  flutter_lints: ^4.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/Icons/Clogo.png"
+
+flutter:
+
+  uses-material-design: true
+  assets:
+    - assets/Images/
+    - assets/Icons/
+    - assets/Videos/
+    - assets/GLBs/
+  #   - images/a_dot_ham.jpeg
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/assets-and-images/#resolution-aware
+  # For details regarding adding assets from package dependencies, see
+  # https://flutter.dev/assets-and-images/#from-packages
+  # To add custom fonts to your application, add a fonts section here,
+  # in this "flutter" section. Each entry in this list should have a
+  # "family" key with the font family name, and a "fonts" key with a
+  # list giving the asset and other descriptors for the font. For
+  # example:
+  fonts:
+    - family: NeuePowerTrial
+      fonts:
+        - asset: assets/Fonts/NeuePowerTrial/NeuePowerTrial-Light.ttf
+          weight: 200
+        - asset: assets/Fonts/NeuePowerTrial/NeuePowerTrial-Regular.ttf
+          weight: 500
+        - asset: assets/Fonts/NeuePowerTrial/NeuePowerTrial-Medium.ttf
+          weight: 600
+        - asset: assets/Fonts/NeuePowerTrial/NeuePowerTrial-Bold.ttf
+          weight: 700
+        - asset: assets/Fonts/NeuePowerTrial/NeuePowerTrial-Heavy.ttf
+          weight: 800
+        - asset: assets/Fonts/NeuePowerTrial/NeuePowerTrial-Ultra.ttf
+          weight: 900
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+  #

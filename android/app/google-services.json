@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "500770003659",
+    "project_id": "fashion-flare-56391",
+    "storage_bucket": "fashion-flare-56391.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:500770003659:android:bf290ab1ef3ba60635d94e",
+        "android_client_info": {
+          "package_name": "com.example.fashion_flare"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBl-tMnsT-hXqHvGH-3T1BSSgckeg2_Vxg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
