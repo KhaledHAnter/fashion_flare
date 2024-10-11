@@ -13,12 +13,11 @@ void main() async {
   );
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
-    // statusBarIconBrightness: Brightness.dark,
   ));
   runApp(
     // DevicePreview(
     //   enabled: !kReleaseMode,
-    //   builder: (context) => const FashionFalre(),
+    //   builder: (context) =>  FashionFlare(appRouter: AppRouter(),),
     // ),
     FashionFlare(
       appRouter: AppRouter(),
