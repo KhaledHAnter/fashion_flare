@@ -1,10 +1,9 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:fashion_flare/Core/Helper/constants.dart';
+import 'package:fashion_flare/Features/Auth/UI/views/sign_in_view.dart';
 import 'package:fashion_flare/core/Helper/show_snackbar.dart';
 import 'package:fashion_flare/Services/FireBase%20Services/auth_service.dart';
-import 'package:fashion_flare/Views/sign_in_view.dart';
-import 'package:fashion_flare/Views/user_details_view.dart';
 import 'package:fashion_flare/Widgets/app_text.dart';
 import 'package:fashion_flare/Widgets/app_text_form_field.dart';
 import 'package:fashion_flare/Widgets/custom_button.dart';
@@ -16,6 +15,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+
+import '../../../User_details/UI/views/user_details_view.dart';
 
 class RegisterView extends StatefulWidget {
   const RegisterView({super.key});

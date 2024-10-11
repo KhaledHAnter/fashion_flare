@@ -1,7 +1,7 @@
 import 'package:fashion_flare/Core/Helper/constants.dart';
+import 'package:fashion_flare/Features/Payment/UI/views/payment_methods_view.dart';
 import 'package:fashion_flare/Models/cart_model.dart';
 import 'package:fashion_flare/Models/item_model.dart';
-import 'package:fashion_flare/Views/payment_methods_view.dart';
 import 'package:fashion_flare/Widgets/app_button.dart';
 import 'package:fashion_flare/Widgets/app_text.dart';
 import 'package:fashion_flare/Widgets/cart_image.dart';

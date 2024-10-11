@@ -1,5 +1,5 @@
+import 'package:fashion_flare/Features/Auth/UI/views/user_credentials_view.dart';
 import 'package:fashion_flare/Models/onboard.dart';
-import 'package:fashion_flare/Views/user_credentials_view.dart';
 import 'package:fashion_flare/Widgets/app_button.dart';
 import 'package:fashion_flare/Widgets/dot_indicator.dart';
 import 'package:fashion_flare/Widgets/onboarding_content.dart';

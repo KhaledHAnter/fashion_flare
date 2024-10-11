@@ -2,11 +2,11 @@
 import 'dart:developer';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:fashion_flare/Core/Helper/constants.dart';
+import 'package:fashion_flare/Features/Auth/UI/views/Register_view.dart';
+import 'package:fashion_flare/Features/Auth/UI/views/forgot_password_view.dart';
 import 'package:fashion_flare/Features/NavBar/UI/views/nav_home_view.dart';
 import 'package:fashion_flare/core/Helper/show_awsome_snakbar.dart';
 import 'package:fashion_flare/Services/FireBase%20Services/auth_service.dart';
-import 'package:fashion_flare/Views/Register_view.dart';
-import 'package:fashion_flare/Views/forgot_password_view.dart';
 import 'package:fashion_flare/Widgets/app_text.dart';
 import 'package:fashion_flare/Widgets/app_text_form_field.dart';
 import 'package:fashion_flare/Widgets/custom_button.dart';

@@ -1,6 +1,6 @@
 import 'package:fashion_flare/Core/Helper/constants.dart';
+import 'package:fashion_flare/Features/Style_choose/UI/views/choose_style_view.dart';
 import 'package:fashion_flare/Models/user_details.dart';
-import 'package:fashion_flare/Views/choose_style_view.dart';
 import 'package:fashion_flare/Widgets/app_text.dart';
 import 'package:fashion_flare/Widgets/app_text_form_field.dart';
 import 'package:fashion_flare/Widgets/custom_button.dart';

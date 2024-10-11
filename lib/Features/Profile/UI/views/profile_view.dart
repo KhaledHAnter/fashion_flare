@@ -1,4 +1,4 @@
-import 'package:fashion_flare/Views/user_credentials_view.dart';
+import 'package:fashion_flare/Features/Auth/UI/views/user_credentials_view.dart';
 import 'package:fashion_flare/Widgets/app_text.dart';
 import 'package:fashion_flare/Widgets/custom_button.dart';
 import 'package:flutter/material.dart';

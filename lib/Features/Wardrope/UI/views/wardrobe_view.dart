@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:fashion_flare/Features/Wardrope/UI/views/generated_outfit_view.dart';
 import 'package:fashion_flare/Models/weather_model.dart';
 import 'package:fashion_flare/Services/weather_services.dart';
-import 'package:fashion_flare/Views/generated_outfit_view.dart';
 import 'package:fashion_flare/Widgets/app_button.dart';
 import 'package:fashion_flare/Widgets/app_text.dart';
 import 'package:fashion_flare/Widgets/custom_button.dart';

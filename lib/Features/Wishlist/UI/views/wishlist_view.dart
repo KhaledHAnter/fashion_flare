@@ -1,6 +1,6 @@
+import 'package:fashion_flare/Features/Cart/UI/views/cart_view.dart';
+import 'package:fashion_flare/Features/Item_details/UI/views/item_details_view.dart';
 import 'package:fashion_flare/Models/item_model.dart';
-import 'package:fashion_flare/Views/cart_view.dart';
-import 'package:fashion_flare/Views/item_details_view.dart';
 import 'package:fashion_flare/Widgets/custom_floating_app_bar_icon.dart';
 import 'package:fashion_flare/Widgets/item_card.dart';
 import 'package:flutter/material.dart';

@@ -1,13 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fashion_flare/Core/Helper/constants.dart';
+import 'package:fashion_flare/Features/Filter_home/UI/views/filter_view.dart';
+import 'package:fashion_flare/Features/Item_details/UI/views/item_details_view.dart';
+import 'package:fashion_flare/Features/Recommendations/UI/views/nearby_shops_view.dart';
 import 'package:fashion_flare/Features/Recommendations/UI/views/offers_view.dart';
 import 'package:fashion_flare/Features/Recommendations/UI/views/today_outfit_view.dart';
 import 'package:fashion_flare/Models/category_model.dart';
 import 'package:fashion_flare/Models/search_delegate_model.dart';
 import 'package:fashion_flare/Models/store_item_model.dart';
-import 'package:fashion_flare/Views/filter_view.dart';
-import 'package:fashion_flare/Views/item_details_view.dart';
-import 'package:fashion_flare/Views/nearby_shops_view.dart';
 import 'package:fashion_flare/Widgets/app_text.dart';
 import 'package:fashion_flare/Widgets/item_card.dart';
 import 'package:flutter/material.dart';

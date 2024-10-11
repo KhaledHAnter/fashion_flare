@@ -1,7 +1,7 @@
+import 'package:fashion_flare/Features/Home/UI/views/home_view.dart';
 import 'package:fashion_flare/Features/Profile/UI/views/profile_view.dart';
 import 'package:fashion_flare/Features/Wardrope/UI/views/wardrobe_view.dart';
 import 'package:fashion_flare/Features/Wishlist/UI/views/wishlist_view.dart';
-import 'package:fashion_flare/Views/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

@@ -1,5 +1,5 @@
 import 'package:fashion_flare/Core/Helper/constants.dart';
-import 'package:fashion_flare/Views/otp_verfication_view.dart';
+import 'package:fashion_flare/Features/Auth/UI/views/otp_verfication_view.dart';
 import 'package:fashion_flare/Widgets/app_text.dart';
 import 'package:fashion_flare/Widgets/app_text_form_field.dart';
 import 'package:fashion_flare/Widgets/custom_button.dart';

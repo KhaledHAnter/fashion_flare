@@ -1,5 +1,5 @@
 import 'package:fashion_flare/Core/Helper/constants.dart';
-import 'package:fashion_flare/Views/recept_view.dart';
+import 'package:fashion_flare/Features/Payment/UI/views/recept_view.dart';
 import 'package:fashion_flare/Widgets/app_button.dart';
 import 'package:fashion_flare/Widgets/app_text.dart';
 import 'package:flutter/material.dart';
