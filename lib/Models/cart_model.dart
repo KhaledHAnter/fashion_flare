@@ -1,4 +1,4 @@
-import 'package:fashion_flare/Models/item_model.dart';
+import 'item_model.dart';
 import 'package:flutter/material.dart';
 
 class CartModel {

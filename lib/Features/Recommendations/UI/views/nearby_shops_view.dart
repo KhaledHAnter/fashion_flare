@@ -1,7 +1,7 @@
-import 'package:fashion_flare/Core/Helper/constants.dart';
-import 'package:fashion_flare/Widgets/app_button.dart';
-import 'package:fashion_flare/Widgets/app_text.dart';
-import 'package:fashion_flare/Widgets/custom_floating_app_bar.dart';
+import '../../../../Core/Helper/constants.dart';
+import '../../../../Core/widgets/app_button.dart';
+import '../../../../Core/widgets/app_text.dart';
+import '../../../../Widgets/custom_floating_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';

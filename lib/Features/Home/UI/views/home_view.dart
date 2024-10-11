@@ -1,15 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fashion_flare/Core/Helper/constants.dart';
-import 'package:fashion_flare/Features/Filter_home/UI/views/filter_view.dart';
-import 'package:fashion_flare/Features/Item_details/UI/views/item_details_view.dart';
-import 'package:fashion_flare/Features/Recommendations/UI/views/nearby_shops_view.dart';
-import 'package:fashion_flare/Features/Recommendations/UI/views/offers_view.dart';
-import 'package:fashion_flare/Features/Recommendations/UI/views/today_outfit_view.dart';
-import 'package:fashion_flare/Models/category_model.dart';
-import 'package:fashion_flare/Models/search_delegate_model.dart';
-import 'package:fashion_flare/Models/store_item_model.dart';
-import 'package:fashion_flare/Widgets/app_text.dart';
-import 'package:fashion_flare/Widgets/item_card.dart';
+import '../../../../Core/Helper/constants.dart';
+import '../../../../Core/Helper/extentions.dart';
+import '../../../../Core/routing/routes.dart';
+import '../../../../Models/category_model.dart';
+import '../../../../Models/search_delegate_model.dart';
+import '../../../../Models/store_item_model.dart';
+import '../../../../Core/widgets/app_text.dart';
+import '../../../../Widgets/item_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
@@ -131,7 +128,7 @@ class _HomeViewState extends State<HomeView> {
                 Gap(20.w),
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, FilterView.id);
+                    context.pushNamed(Routes.filterView);
                   },
                   child: Container(
                     constraints:
@@ -159,14 +156,15 @@ class _HomeViewState extends State<HomeView> {
                     onTap: () {
                       switch (index) {
                         case 0:
-                          Navigator.pushNamed(context, TodayOutfitView.id);
+                          context.pushNamed(Routes.todayOutfitView);
+
                           break;
                         case 1:
-                          Navigator.pushNamed(context, NearbyShops.id);
+                          context.pushNamed(Routes.nearbyShops);
 
                           break;
                         case 2:
-                          Navigator.pushNamed(context, OffersView.id);
+                          context.pushNamed(Routes.offersView);
 
                           break;
                       }
@@ -245,7 +243,7 @@ class _HomeViewState extends State<HomeView> {
                 itemBuilder: (context, index) {
                   return GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, ItemDetailsView.id,
+                      context.pushNamed(Routes.itemDetailsView,
                           arguments: storeProducts[index]);
                     },
                     child: ItemCard(

@@ -1,20 +1,20 @@
-import 'package:fashion_flare/Core/Helper/constants.dart';
-import 'package:fashion_flare/Features/Payment/UI/views/recept_view.dart';
-import 'package:fashion_flare/Widgets/app_button.dart';
-import 'package:fashion_flare/Widgets/app_text.dart';
+import '../../../../Core/Helper/constants.dart';
+import '../../../../Core/Helper/extentions.dart';
+import '../../../../Core/routing/routes.dart';
+import '../../../../Core/widgets/app_button.dart';
+import '../../../../Core/widgets/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class PaymentDoneView extends StatelessWidget {
-  const PaymentDoneView({super.key});
+  final Map<String, dynamic> data;
+  const PaymentDoneView({super.key, required this.data});
 
   static String id = 'Payment Done';
 
   @override
   Widget build(BuildContext context) {
-    final Map<String, dynamic> Data =
-        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     return Scaffold(
       backgroundColor: Colors.black,
       body: Column(
@@ -40,7 +40,7 @@ class PaymentDoneView extends StatelessWidget {
           AppButton(
             text: "VIEW RECEPT",
             onTap: () {
-              Navigator.pushNamed(context, ReceptView.id, arguments: Data);
+              context.pushNamed(Routes.receptView, arguments: data);
             },
           )
         ],

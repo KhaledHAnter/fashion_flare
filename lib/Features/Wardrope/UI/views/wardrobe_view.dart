@@ -1,11 +1,12 @@
 import 'package:dio/dio.dart';
-import 'package:fashion_flare/Features/Wardrope/UI/views/generated_outfit_view.dart';
-import 'package:fashion_flare/Models/weather_model.dart';
-import 'package:fashion_flare/Services/weather_services.dart';
-import 'package:fashion_flare/Widgets/app_button.dart';
-import 'package:fashion_flare/Widgets/app_text.dart';
-import 'package:fashion_flare/Widgets/custom_button.dart';
-import 'package:fashion_flare/Widgets/custom_floating_app_bar.dart';
+import '../../../../Core/Helper/extentions.dart';
+import '../../../../Core/routing/routes.dart';
+import '../../../../Models/weather_model.dart';
+import '../../../../Services/weather_services.dart';
+import '../../../../Core/widgets/app_button.dart';
+import '../../../../Core/widgets/app_text.dart';
+import '../../../../Core/widgets/custom_button.dart';
+import '../../../../Widgets/custom_floating_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -74,7 +75,8 @@ class _WardrobeViewState extends State<WardrobeView> {
                           text: "Pick From Gallery",
                           onTap: () {
                             _pickImageFromGallery();
-                            Navigator.pop(context);
+                            context.pop();
+
                             showModalBottomSheet(
                               context: context,
                               builder: (context) {
@@ -147,7 +149,7 @@ class _WardrobeViewState extends State<WardrobeView> {
                                         AppButton(
                                             text: "Confirm",
                                             onTap: () {
-                                              Navigator.pop(context);
+                                              context.pop();
                                             }),
                                       ],
                                     ));
@@ -159,7 +161,8 @@ class _WardrobeViewState extends State<WardrobeView> {
                           text: "Pick From Camera",
                           onTap: () {
                             _pickImageFromCamera();
-                            Navigator.pop(context);
+
+                            context.pop();
                             showModalBottomSheet(
                               context: context,
                               builder: (context) {
@@ -232,7 +235,7 @@ class _WardrobeViewState extends State<WardrobeView> {
                                         AppButton(
                                             text: "Confirm",
                                             onTap: () {
-                                              Navigator.pop(context);
+                                              context.pop();
                                             }),
                                       ],
                                     ));
@@ -441,7 +444,7 @@ class _WardrobeViewState extends State<WardrobeView> {
                   } else if (_pageIndex2 == 3 && !(_pageIndex1 == 0)) {
                     return;
                   } else {
-                    Navigator.pushNamed(context, GeneratedOutfitView.id,
+                    context.pushNamed(Routes.generatedOutfitView,
                         arguments: list);
                   }
                 }),

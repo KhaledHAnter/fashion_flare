@@ -1,9 +1,10 @@
-import 'package:fashion_flare/Core/Helper/constants.dart';
-import 'package:fashion_flare/Features/Style_choose/UI/views/choose_hair_view.dart';
-import 'package:fashion_flare/Models/style.dart';
-import 'package:fashion_flare/Widgets/app_text.dart';
-import 'package:fashion_flare/Widgets/custom_button.dart';
-import 'package:fashion_flare/Widgets/style_choose_card.dart';
+import '../../../../Core/Helper/constants.dart';
+import '../../../../Core/Helper/extentions.dart';
+import '../../../../Core/routing/routes.dart';
+import '../../../../Models/style.dart';
+import '../../../../Core/widgets/app_text.dart';
+import '../../../../Core/widgets/custom_button.dart';
+import '../../../../Widgets/style_choose_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
@@ -61,7 +62,7 @@ class _ChooseStyleViewState extends State<ChooseStyleView> {
                 CustomButton(
                   text: "Continue",
                   onTap: () {
-                    Navigator.pushNamed(context, ChooseHairView.id);
+                    context.pushNamed(Routes.chooseHairView);
                   },
                 )
               ],

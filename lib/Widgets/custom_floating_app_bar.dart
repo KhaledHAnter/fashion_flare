@@ -1,5 +1,6 @@
-import 'package:fashion_flare/Widgets/app_text.dart';
-import 'package:fashion_flare/Widgets/cutom_icon_button.dart';
+import '../Core/Helper/extentions.dart';
+import '../Core/widgets/app_text.dart';
+import '../Core/widgets/cutom_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -22,7 +23,7 @@ class CustomFloatingAppBar extends StatelessWidget {
       children: <Widget>[
         visible
             ? CustomIconButton(
-                onTap: () => Navigator.pop(context),
+                onTap: () => context.pop(),
                 icon: icon,
               )
             : const SizedBox(),

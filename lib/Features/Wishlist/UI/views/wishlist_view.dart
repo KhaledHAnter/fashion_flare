@@ -1,8 +1,8 @@
-import 'package:fashion_flare/Features/Cart/UI/views/cart_view.dart';
-import 'package:fashion_flare/Features/Item_details/UI/views/item_details_view.dart';
-import 'package:fashion_flare/Models/item_model.dart';
-import 'package:fashion_flare/Widgets/custom_floating_app_bar_icon.dart';
-import 'package:fashion_flare/Widgets/item_card.dart';
+import '../../../../Core/Helper/extentions.dart';
+import '../../../../Core/routing/routes.dart';
+import '../../../../Models/item_model.dart';
+import '../../../../Widgets/custom_floating_app_bar_icon.dart';
+import '../../../../Widgets/item_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -28,7 +28,7 @@ class _WishListViewState extends State<WishListView> {
               icon: Icons.arrow_back_ios_new_rounded,
               image: "assets/Icons/Shopping bag.png",
               onTap: () {
-                Navigator.pushNamed(context, CartView.id);
+                context.pushNamed(Routes.cartView);
               },
             ),
             Expanded(
@@ -44,7 +44,7 @@ class _WishListViewState extends State<WishListView> {
                 itemBuilder: (context, index) {
                   return GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, ItemDetailsView.id,
+                      context.pushNamed(Routes.itemDetailsView,
                           arguments: itemsData[index]);
                     },
                     child: ItemCard(

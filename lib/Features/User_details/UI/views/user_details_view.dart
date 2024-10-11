@@ -1,10 +1,11 @@
-import 'package:fashion_flare/Core/Helper/constants.dart';
-import 'package:fashion_flare/Features/Style_choose/UI/views/choose_style_view.dart';
-import 'package:fashion_flare/Models/user_details.dart';
-import 'package:fashion_flare/Widgets/app_text.dart';
-import 'package:fashion_flare/Widgets/app_text_form_field.dart';
-import 'package:fashion_flare/Widgets/custom_button.dart';
-import 'package:fashion_flare/Widgets/custom_drop_down_button.dart';
+import '../../../../Core/Helper/constants.dart';
+import '../../../../Core/Helper/extentions.dart';
+import '../../../../Core/routing/routes.dart';
+import '../../../../Models/user_details.dart';
+import '../../../../Core/widgets/app_text.dart';
+import '../../../../Core/widgets/app_text_form_field.dart';
+import '../../../../Core/widgets/custom_button.dart';
+import '../../../../Widgets/custom_drop_down_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
@@ -171,7 +172,7 @@ class _UserDetailsState extends State<UserDetails> {
                   if (formKey.currentState!.validate()) {
                     print(
                         "$name  ${userDetailsData[0].dropDownValue}  ${userDetailsData[1].dropDownValue}  ${userDetailsData[2].dropDownValue}  ${userDetailsData[3].dropDownValue}  ${userDetailsData[4].dropDownValue}");
-                    Navigator.pushNamed(context, ChooseStyleView.id);
+                    context.pushNamed(Routes.chooseStyleView);
                   }
                 },
               ),

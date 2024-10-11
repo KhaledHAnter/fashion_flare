@@ -1,13 +1,14 @@
 import 'dart:math';
 
-import 'package:fashion_flare/Core/Helper/constants.dart';
-import 'package:fashion_flare/Features/Payment/UI/views/payment_done_view.dart';
-import 'package:fashion_flare/Models/cart_model.dart';
-import 'package:fashion_flare/Models/shipping_model.dart';
-import 'package:fashion_flare/Services/FireBase%20Services/firebase_services.dart';
-import 'package:fashion_flare/Widgets/app_button.dart';
-import 'package:fashion_flare/Widgets/app_text.dart';
-import 'package:fashion_flare/Widgets/custom_floating_app_bar.dart';
+import '../../../../Core/Helper/constants.dart';
+import '../../../../Core/Helper/extentions.dart';
+import '../../../../Core/routing/routes.dart';
+import '../../../../Models/cart_model.dart';
+import '../../../../Models/shipping_model.dart';
+import '../../../../Services/FireBase%20Services/firebase_services.dart';
+import '../../../../Core/widgets/app_button.dart';
+import '../../../../Core/widgets/app_text.dart';
+import '../../../../Widgets/custom_floating_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -241,7 +242,7 @@ class _CheckoutviewState extends State<Checkoutview> {
                     price: (cartData[0].price),
                     orderId: orderId,
                   );
-                  Navigator.pushNamed(context, PaymentDoneView.id, arguments: {
+                  context.pushNamed(Routes.paymentDoneView, arguments: {
                     "address": _addresses[_shippingIndex],
                     "orederId": orderId
                   });

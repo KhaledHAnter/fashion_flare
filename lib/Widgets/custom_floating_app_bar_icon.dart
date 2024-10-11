@@ -1,8 +1,10 @@
-import 'package:fashion_flare/Core/Helper/constants.dart';
-import 'package:fashion_flare/Widgets/app_text.dart';
-import 'package:fashion_flare/Widgets/cutom_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../Core/Helper/constants.dart';
+import '../Core/Helper/extentions.dart';
+import '../Core/widgets/app_text.dart';
+import '../Core/widgets/cutom_icon_button.dart';
 
 class CustomFloatingAppBarIcon extends StatelessWidget {
   const CustomFloatingAppBarIcon(
@@ -22,7 +24,7 @@ class CustomFloatingAppBarIcon extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         CustomIconButton(
-          onTap: () => Navigator.pop(context),
+          onTap: () => context.pop(),
           icon: icon,
         ),
         AppText(

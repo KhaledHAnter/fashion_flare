@@ -1,37 +1,38 @@
-import 'package:fashion_flare/Core/routing/routes.dart';
-import 'package:fashion_flare/Features/3D_model/UI/views/your_3d_model.dart';
-import 'package:fashion_flare/Features/Auth/UI/views/Register_view.dart';
-import 'package:fashion_flare/Features/Auth/UI/views/forgot_password_view.dart';
-import 'package:fashion_flare/Features/Auth/UI/views/otp_verfication_view.dart';
-import 'package:fashion_flare/Features/Auth/UI/views/sign_in_view.dart';
-import 'package:fashion_flare/Features/Auth/UI/views/user_credentials_view.dart';
-import 'package:fashion_flare/Features/Cart/UI/views/cart_view.dart';
-import 'package:fashion_flare/Features/Filter_home/UI/views/filter_view.dart';
-import 'package:fashion_flare/Features/Home/UI/views/home_view.dart';
-import 'package:fashion_flare/Features/Item_details/UI/views/item_details_view.dart';
-import 'package:fashion_flare/Features/NavBar/UI/views/nav_home_view.dart';
-import 'package:fashion_flare/Features/Onboarding/UI/views/onboarding_view.dart';
-import 'package:fashion_flare/Features/Payment/UI/views/checkout_view.dart';
-import 'package:fashion_flare/Features/Payment/UI/views/payment_done_view.dart';
-import 'package:fashion_flare/Features/Payment/UI/views/payment_methods_view.dart';
-import 'package:fashion_flare/Features/Payment/UI/views/recept_view.dart';
-import 'package:fashion_flare/Features/Profile/UI/views/profile_view.dart';
-import 'package:fashion_flare/Features/Recommendations/UI/views/nearby_shops_view.dart';
-import 'package:fashion_flare/Features/Recommendations/UI/views/offers_view.dart';
-import 'package:fashion_flare/Features/Recommendations/UI/views/today_outfit_view.dart';
-import 'package:fashion_flare/Features/Style_choose/UI/views/choose_hair_view.dart';
-import 'package:fashion_flare/Features/Style_choose/UI/views/choose_style_view.dart';
-import 'package:fashion_flare/Features/User_details/UI/views/user_details_view.dart';
-import 'package:fashion_flare/Features/Wardrope/UI/views/generated_outfit_view.dart';
-import 'package:fashion_flare/Features/Wardrope/UI/views/wardrobe_view.dart';
-import 'package:fashion_flare/Features/Welcome/UI/views/welcome_view.dart';
-import 'package:fashion_flare/Features/Wishlist/UI/views/wishlist_view.dart';
+import 'routes.dart';
+import '../../Features/3D_model/UI/views/your_3d_model.dart';
+import '../../Features/Auth/UI/views/Register_view.dart';
+import '../../Features/Auth/UI/views/forgot_password_view.dart';
+import '../../Features/Auth/UI/views/otp_verfication_view.dart';
+import '../../Features/Auth/UI/views/sign_in_view.dart';
+import '../../Features/Auth/UI/views/user_credentials_view.dart';
+import '../../Features/Cart/UI/views/cart_view.dart';
+import '../../Features/Filter_home/UI/views/filter_view.dart';
+import '../../Features/Home/UI/views/home_view.dart';
+import '../../Features/Item_details/UI/views/item_details_view.dart';
+import '../../Features/NavBar/UI/views/nav_home_view.dart';
+import '../../Features/Onboarding/UI/views/onboarding_view.dart';
+import '../../Features/Payment/UI/views/checkout_view.dart';
+import '../../Features/Payment/UI/views/payment_done_view.dart';
+import '../../Features/Payment/UI/views/payment_methods_view.dart';
+import '../../Features/Payment/UI/views/recept_view.dart';
+import '../../Features/Profile/UI/views/profile_view.dart';
+import '../../Features/Recommendations/UI/views/nearby_shops_view.dart';
+import '../../Features/Recommendations/UI/views/offers_view.dart';
+import '../../Features/Recommendations/UI/views/today_outfit_view.dart';
+import '../../Features/Style_choose/UI/views/choose_hair_view.dart';
+import '../../Features/Style_choose/UI/views/choose_style_view.dart';
+import '../../Features/User_details/UI/views/user_details_view.dart';
+import '../../Features/Wardrope/UI/views/generated_outfit_view.dart';
+import '../../Features/Wardrope/UI/views/wardrobe_view.dart';
+import '../../Features/Welcome/UI/views/welcome_view.dart';
+import '../../Features/Wishlist/UI/views/wishlist_view.dart';
+import '../../Models/store_item_model.dart';
 import 'package:flutter/material.dart';
 
 class AppRouter {
   Route generateRoute(RouteSettings settings) {
     // this arguments to be passed in any screen like this (arguments: arguments as ClassName)
-    // final arrguments = settings.arguments;
+    final arrguments = settings.arguments;
 
     switch (settings.name) {
       case Routes.welcomeView:
@@ -66,7 +67,9 @@ class AppRouter {
 
       case Routes.otpverficationView:
         return MaterialPageRoute(
-          builder: (_) => const OTPverficationView(),
+          builder: (_) => OTPverficationView(
+            phoneNumber: arrguments as String,
+          ),
         );
 
       case Routes.userDetails:
@@ -86,7 +89,9 @@ class AppRouter {
 
       case Routes.your3DModel:
         return MaterialPageRoute(
-          builder: (_) => const Your3DModel(),
+          builder: (_) => Your3DModel(
+            args: arrguments as int,
+          ),
         );
 
       case Routes.navHomeView:
@@ -121,7 +126,9 @@ class AppRouter {
 
       case Routes.itemDetailsView:
         return MaterialPageRoute(
-          builder: (_) => const ItemDetailsView(),
+          builder: (_) => ItemDetailsView(
+            args: arrguments as StoreItemModel,
+          ),
         );
 
       case Routes.wishListView:
@@ -146,12 +153,16 @@ class AppRouter {
 
       case Routes.paymentDoneView:
         return MaterialPageRoute(
-          builder: (_) => const PaymentDoneView(),
+          builder: (_) => PaymentDoneView(
+            data: arrguments as Map<String, dynamic>,
+          ),
         );
 
       case Routes.receptView:
         return MaterialPageRoute(
-          builder: (_) => const ReceptView(),
+          builder: (_) => ReceptView(
+            data: arrguments as Map<String, dynamic>,
+          ),
         );
 
       case Routes.wardrobeView:
@@ -161,7 +172,9 @@ class AppRouter {
 
       case Routes.generatedOutfitView:
         return MaterialPageRoute(
-          builder: (_) => const GeneratedOutfitView(),
+          builder: (_) => GeneratedOutfitView(
+            data: arrguments as List<String>,
+          ),
         );
 
       case Routes.profileView:

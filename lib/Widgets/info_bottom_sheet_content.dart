@@ -1,6 +1,6 @@
-import 'package:fashion_flare/Models/store_item_model.dart';
-import 'package:fashion_flare/Widgets/app_text.dart';
-import 'package:fashion_flare/Widgets/info_row.dart';
+import '../Models/store_item_model.dart';
+import '../Core/widgets/app_text.dart';
+import 'info_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';

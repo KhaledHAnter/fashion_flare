@@ -1,14 +1,15 @@
 import 'dart:async';
-import 'package:fashion_flare/Core/Helper/constants.dart';
-import 'package:fashion_flare/Widgets/app_text.dart';
-import 'package:fashion_flare/Widgets/custom_button.dart';
-import 'package:fashion_flare/Widgets/otp_square.dart';
+import '../../../../Core/Helper/constants.dart';
+import '../../../../Core/widgets/app_text.dart';
+import '../../../../Core/widgets/custom_button.dart';
+import '../../../../Widgets/otp_square.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class OTPverficationView extends StatefulWidget {
-  const OTPverficationView({super.key});
+  final String phoneNumber;
+  const OTPverficationView({super.key, required this.phoneNumber});
 
   static String id = "OTP Verfication";
 
@@ -47,7 +48,6 @@ class _OTPverficationViewState extends State<OTPverficationView> {
 
   @override
   Widget build(BuildContext context) {
-    final phoneNumber = ModalRoute.of(context)!.settings.arguments as String;
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -74,7 +74,7 @@ class _OTPverficationViewState extends State<OTPverficationView> {
                       ),
                     ),
                     TextSpan(
-                      text: phoneNumber,
+                      text: widget.phoneNumber,
                       style: TextStyle(
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w700,

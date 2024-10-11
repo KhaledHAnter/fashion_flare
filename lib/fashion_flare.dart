@@ -1,6 +1,6 @@
-import 'package:fashion_flare/Core/Helper/constants.dart';
-import 'package:fashion_flare/Core/routing/app_router.dart';
-import 'package:fashion_flare/Core/routing/routes.dart';
+import 'Core/Helper/constants.dart';
+import 'Core/routing/app_router.dart';
+import 'Core/routing/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

@@ -1,6 +1,6 @@
-import 'package:fashion_flare/Features/Auth/UI/views/user_credentials_view.dart';
-import 'package:fashion_flare/Widgets/app_text.dart';
-import 'package:fashion_flare/Widgets/custom_button.dart';
+import '../../../../Core/Helper/extentions.dart';
+import '../../../../Core/widgets/app_text.dart';
+import '../../../../Core/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
@@ -44,17 +44,14 @@ class ProfileView extends StatelessWidget {
                                 text: "Cancel",
                                 color: Colors.grey.shade300,
                                 onTap: () {
-                                  Navigator.pop(context);
+                                  context.pop();
                                 },
                               )),
                               Gap(16.w),
                               Expanded(
                                 child: CustomButton(
                                   text: "Log Out",
-                                  onTap: () {
-                                    Navigator.pushNamed(
-                                        context, UserCredentialsView.id);
-                                  },
+                                  onTap: () {},
                                 ),
                               ),
                             ],

@@ -1,4 +1,4 @@
-import 'package:fashion_flare/Core/theming/font_weights_helper.dart';
+import 'font_weights_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

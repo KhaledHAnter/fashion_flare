@@ -1,15 +1,18 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fashion_flare/Features/NavBar/UI/views/nav_home_view.dart';
-import 'package:fashion_flare/Widgets/app_button.dart';
-import 'package:fashion_flare/Widgets/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
+import '../../../../Core/Helper/extentions.dart';
+import '../../../../Core/routing/routes.dart';
+import '../../../../Core/widgets/app_button.dart';
+import '../../../../Core/widgets/app_text.dart';
+
 class Your3DModel extends StatefulWidget {
-  const Your3DModel({super.key});
+  final int args;
+  const Your3DModel({super.key, required this.args});
 
   static String id = 'Your 3d Model';
 
@@ -47,8 +50,6 @@ class _Your3DModelState extends State<Your3DModel> {
 
   @override
   Widget build(BuildContext context) {
-    final args = ModalRoute.of(context)!.settings.arguments as int;
-
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.only(top: 50),
@@ -81,7 +82,7 @@ class _Your3DModelState extends State<Your3DModel> {
                       child: LoadingAnimationWidget.discreteCircle(
                           color: Colors.black, size: 50))
                   : CachedNetworkImage(
-                      imageUrl: models3D[args],
+                      imageUrl: models3D[widget.args],
                       key: UniqueKey(),
                       fit: BoxFit.cover,
                       placeholder: (context, url) {
@@ -97,7 +98,7 @@ class _Your3DModelState extends State<Your3DModel> {
               child: AppButton(
                 text: "Continue",
                 onTap: () {
-                  Navigator.pushNamed(context, NavHomeView.id);
+                  context.pushNamed(Routes.navHomeView);
                 },
               ),
             )

@@ -1,23 +1,23 @@
-import 'package:fashion_flare/Core/Helper/constants.dart';
-import 'package:fashion_flare/Features/NavBar/UI/views/nav_home_view.dart';
-import 'package:fashion_flare/Models/shipping_model.dart';
-import 'package:fashion_flare/Widgets/app_button.dart';
-import 'package:fashion_flare/Widgets/app_text.dart';
+import '../../../../Core/Helper/constants.dart';
+import '../../../../Core/Helper/extentions.dart';
+import '../../../../Core/routing/routes.dart';
+import '../../../../Models/shipping_model.dart';
+import '../../../../Core/widgets/app_button.dart';
+import '../../../../Core/widgets/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class ReceptView extends StatelessWidget {
-  const ReceptView({super.key});
+  final Map<String, dynamic> data;
+  const ReceptView({super.key, required this.data});
 
   static String id = "Recept";
 
   @override
   Widget build(BuildContext context) {
-    final Map<String, dynamic> Data =
-        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
-    ShippingModel address = Data['address'] as ShippingModel;
-    int orderId = Data['orederId'] as int;
+    ShippingModel address = data['address'] as ShippingModel;
+    int orderId = data['orederId'] as int;
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.only(top: 50.h),
@@ -132,7 +132,7 @@ class ReceptView extends StatelessWidget {
             AppButton(
                 text: "COUNTINUE SHOPPING",
                 onTap: () {
-                  Navigator.pushNamed(context, NavHomeView.id);
+                  context.pushNamed(Routes.navHomeView);
                 }),
           ],
         ),

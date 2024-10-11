@@ -1,19 +1,20 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
-import 'package:fashion_flare/Core/Helper/constants.dart';
-import 'package:fashion_flare/core/Helper/show_awsome_snakbar.dart';
-import 'package:fashion_flare/Models/store_item_model.dart';
-import 'package:fashion_flare/Widgets/app_button.dart';
-import 'package:fashion_flare/Widgets/app_text.dart';
-import 'package:fashion_flare/Widgets/custom_floating_app_bar.dart';
-import 'package:fashion_flare/Widgets/dot_indicator.dart';
-import 'package:fashion_flare/Widgets/info_bottom_sheet_content.dart';
-import 'package:fashion_flare/Widgets/item_details_image.dart';
+import '../../../../Core/Helper/constants.dart';
+import '../../../../core/Helper/show_awsome_snakbar.dart';
+import '../../../../Models/store_item_model.dart';
+import '../../../../Core/widgets/app_button.dart';
+import '../../../../Core/widgets/app_text.dart';
+import '../../../../Widgets/custom_floating_app_bar.dart';
+import '../../../Onboarding/UI/widgets/dot_indicator.dart';
+import '../../../../Widgets/info_bottom_sheet_content.dart';
+import '../../../../Widgets/item_details_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class ItemDetailsView extends StatefulWidget {
-  const ItemDetailsView({super.key});
+  final StoreItemModel args;
+  const ItemDetailsView({super.key, required this.args});
 
   static String id = 'Item Details';
 
@@ -35,7 +36,6 @@ class _ItemDetailsViewState extends State<ItemDetailsView> {
 
   @override
   Widget build(BuildContext context) {
-    final args = ModalRoute.of(context)!.settings.arguments as StoreItemModel;
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.only(top: 60.h),
@@ -56,16 +56,16 @@ class _ItemDetailsViewState extends State<ItemDetailsView> {
                   });
                 },
                 controller: pc,
-                itemCount: args.images.length,
+                itemCount: widget.args.images.length,
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16.w),
                     child: ItemDetailsImage(
-                      imagePath: args.images[index],
-                      itemFav: args.isFavourite,
+                      imagePath: widget.args.images[index],
+                      itemFav: widget.args.isFavourite,
                       onTap: () {
                         setState(() {
-                          args.isFavourite = !args.isFavourite;
+                          widget.args.isFavourite = !widget.args.isFavourite;
                         });
                       },
                     ),
@@ -76,7 +76,7 @@ class _ItemDetailsViewState extends State<ItemDetailsView> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(
-                args.images.length,
+                widget.args.images.length,
                 (index) => Padding(
                   padding: EdgeInsets.only(right: 6.w),
                   child: GestureDetector(
@@ -102,7 +102,7 @@ class _ItemDetailsViewState extends State<ItemDetailsView> {
                   physics: const BouncingScrollPhysics(),
                   children: [
                     AppText(
-                      text: "${args.title}\n${args.price}",
+                      text: "${widget.args.title}\n${widget.args.price}",
                       size: 24.sp,
                       weight: FontWeight.w700,
                       textAlign: TextAlign.start,
@@ -114,7 +114,7 @@ class _ItemDetailsViewState extends State<ItemDetailsView> {
                           showDragHandle: true,
                           context: context,
                           builder: (context) {
-                            return InfoBottomSheetContent(args: args);
+                            return InfoBottomSheetContent(args: widget.args);
                           },
                         );
                       },
@@ -153,7 +153,7 @@ class _ItemDetailsViewState extends State<ItemDetailsView> {
                             size: 18.sp,
                           ),
                           const Spacer(),
-                          ...List.generate(args.colors.length, (index) {
+                          ...List.generate(widget.args.colors.length, (index) {
                             return GestureDetector(
                               onTap: () {
                                 setState(() {
@@ -195,7 +195,7 @@ class _ItemDetailsViewState extends State<ItemDetailsView> {
                             size: 18.sp,
                           ),
                           const Spacer(),
-                          ...List.generate(args.sizes.length, (index) {
+                          ...List.generate(widget.args.sizes.length, (index) {
                             return GestureDetector(
                               onTap: () {
                                 setState(() {
@@ -214,7 +214,7 @@ class _ItemDetailsViewState extends State<ItemDetailsView> {
                                 constraints: BoxConstraints(
                                     minHeight: 33.h, minWidth: 26.w),
                                 child: AppText(
-                                  text: args.sizes[index],
+                                  text: widget.args.sizes[index],
                                   size: 16.sp,
                                 ),
                               ),

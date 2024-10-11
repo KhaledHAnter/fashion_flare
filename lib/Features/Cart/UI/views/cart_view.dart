@@ -1,11 +1,12 @@
-import 'package:fashion_flare/Core/Helper/constants.dart';
-import 'package:fashion_flare/Features/Payment/UI/views/payment_methods_view.dart';
-import 'package:fashion_flare/Models/cart_model.dart';
-import 'package:fashion_flare/Models/item_model.dart';
-import 'package:fashion_flare/Widgets/app_button.dart';
-import 'package:fashion_flare/Widgets/app_text.dart';
-import 'package:fashion_flare/Widgets/cart_image.dart';
-import 'package:fashion_flare/Widgets/custom_floating_app_bar.dart';
+import '../../../../Core/Helper/constants.dart';
+import '../../../../Core/Helper/extentions.dart';
+import '../../../../Core/routing/routes.dart';
+import '../../../../Models/cart_model.dart';
+import '../../../../Models/item_model.dart';
+import '../../../../Core/widgets/app_button.dart';
+import '../../../../Core/widgets/app_text.dart';
+import '../../../../Widgets/cart_image.dart';
+import '../../../../Widgets/custom_floating_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
@@ -176,7 +177,7 @@ class _CartViewState extends State<CartView> {
             AppButton(
               text: "CHECK OUT",
               onTap: () {
-                Navigator.pushNamed(context, PaymenMethods.id);
+                context.pushNamed(Routes.paymentMethodsView);
               },
             )
           ],

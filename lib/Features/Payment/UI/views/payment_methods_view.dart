@@ -1,10 +1,11 @@
-import 'package:fashion_flare/Core/Helper/constants.dart';
-import 'package:fashion_flare/Features/Payment/UI/views/checkout_view.dart';
-import 'package:fashion_flare/Models/payment_model.dart';
-import 'package:fashion_flare/Services/FireBase%20Services/firebase_services.dart';
-import 'package:fashion_flare/Widgets/app_button.dart';
-import 'package:fashion_flare/Widgets/app_text.dart';
-import 'package:fashion_flare/Widgets/custom_floating_app_bar.dart';
+import '../../../../Core/Helper/constants.dart';
+import '../../../../Core/Helper/extentions.dart';
+import '../../../../Core/routing/routes.dart';
+import '../../../../Models/payment_model.dart';
+import '../../../../Services/FireBase%20Services/firebase_services.dart';
+import '../../../../Core/widgets/app_button.dart';
+import '../../../../Core/widgets/app_text.dart';
+import '../../../../Widgets/custom_floating_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
@@ -309,7 +310,8 @@ class _PaymenMethodsState extends State<PaymenMethods> {
                                             CVV: CVV!,
                                             expMonth: expMounth!,
                                             expYear: expYear!);
-                                        Navigator.pop(context);
+
+                                        context.pop();
                                       } else {
                                         setState(() {
                                           autovalidate = true;
@@ -465,7 +467,7 @@ class _PaymenMethodsState extends State<PaymenMethods> {
             AppButton(
               text: "CONFIRM PAYMENT",
               onTap: () {
-                Navigator.pushNamed(context, Checkoutview.id);
+                context.pushNamed(Routes.checkoutView);
               },
             )
           ],

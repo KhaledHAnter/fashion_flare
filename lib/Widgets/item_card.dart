@@ -1,5 +1,5 @@
-import 'package:fashion_flare/Widgets/app_text.dart';
-import 'package:fashion_flare/Widgets/product_image.dart';
+import '../Core/widgets/app_text.dart';
+import 'product_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
@@ -26,12 +26,14 @@ class ItemCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ProductImage(
-          index: index,
-          imagePath: imagePath,
-          onTap: onTap,
-          itemFav: itemFav,
-          wishlist: wishlist,
+        Expanded(
+          child: ProductImage(
+            index: index,
+            imagePath: imagePath,
+            onTap: onTap,
+            itemFav: itemFav,
+            wishlist: wishlist,
+          ),
         ),
         Gap(8.h),
         AppText(

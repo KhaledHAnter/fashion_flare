@@ -1,6 +1,6 @@
-import 'package:fashion_flare/Core/routing/app_router.dart';
-import 'package:fashion_flare/fashion_flare.dart';
-import 'package:fashion_flare/firebase_options.dart';
+import 'Core/routing/app_router.dart';
+import 'fashion_flare.dart';
+import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

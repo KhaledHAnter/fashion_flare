@@ -1,15 +1,14 @@
-import 'package:fashion_flare/Features/Auth/UI/views/user_credentials_view.dart';
-import 'package:fashion_flare/Models/onboard.dart';
-import 'package:fashion_flare/Widgets/app_button.dart';
-import 'package:fashion_flare/Widgets/dot_indicator.dart';
-import 'package:fashion_flare/Widgets/onboarding_content.dart';
+import '../../../../Core/Helper/extentions.dart';
+import '../../../../Core/routing/routes.dart';
+import '../../Data/Models/onboard.dart';
+import '../../../../Core/widgets/app_button.dart';
+import '../widgets/dot_indicator.dart';
+import '../widgets/onboarding_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OnBoardingView extends StatefulWidget {
   const OnBoardingView({super.key});
-
-  static const String id = 'Onboarding';
 
   @override
   State<OnBoardingView> createState() => _OnBoardingViewState();
@@ -40,7 +39,6 @@ class _OnBoardingViewState extends State<OnBoardingView> {
         child: Column(
           children: <Widget>[
             Expanded(
-              flex: 21,
               child: PageView.builder(
                 physics: const BouncingScrollPhysics(),
                 itemCount: OnBoardData.length,
@@ -57,16 +55,14 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                     description: OnBoardData[index].description,
                     screenNum: index + 1,
                     onTap: () {
-                      _pageController.jumpToPage(
-                        2,
-                      );
+                      context.pushReplacementNamed(Routes.userCredentialsView);
                     },
                   );
                 },
               ),
             ),
-            Expanded(
-              flex: 1,
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: List.generate(
@@ -89,21 +85,18 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                 ),
               ),
             ),
-            Expanded(
-              flex: 2,
-              child: AppButton(
-                onTap: () {
-                  if (_pageIndex == 2) {
-                    Navigator.pushNamed(context, UserCredentialsView.id);
-                  } else {
-                    _pageController.nextPage(
-                      duration: const Duration(milliseconds: 250),
-                      curve: Curves.easeIn,
-                    );
-                  }
-                },
-                text: _pageIndex == 2 ? "Start" : "Next",
-              ),
+            AppButton(
+              onTap: () {
+                if (_pageIndex == 2) {
+                  context.pushReplacementNamed(Routes.userCredentialsView);
+                } else {
+                  _pageController.nextPage(
+                    duration: const Duration(milliseconds: 250),
+                    curve: Curves.easeIn,
+                  );
+                }
+              },
+              text: _pageIndex == 2 ? "Start" : "Next",
             ),
           ],
         ),

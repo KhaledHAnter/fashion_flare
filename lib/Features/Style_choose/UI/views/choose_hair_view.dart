@@ -1,9 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fashion_flare/Features/3D_model/UI/views/your_3d_model.dart';
-import 'package:fashion_flare/Widgets/app_button.dart';
-import 'package:fashion_flare/Widgets/app_text.dart';
-import 'package:fashion_flare/Widgets/dot_indicator.dart';
+import '../../../../Core/Helper/extentions.dart';
+import '../../../../Core/routing/routes.dart';
+import '../../../../Core/widgets/app_button.dart';
+import '../../../../Core/widgets/app_text.dart';
+import '../../../Onboarding/UI/widgets/dot_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
@@ -144,11 +145,7 @@ class _ChooseHairViewState extends State<ChooseHairView> {
             AppButton(
               text: "Continue",
               onTap: () {
-                Navigator.pushNamed(
-                  context,
-                  Your3DModel.id,
-                  arguments: _pageIndex,
-                );
+                context.pushNamed(Routes.your3DModel, arguments: _pageIndex);
               },
             )
           ],

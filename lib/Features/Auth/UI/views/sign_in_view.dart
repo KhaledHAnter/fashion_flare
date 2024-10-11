@@ -1,16 +1,16 @@
 // ignore_for_file: use_build_context_synchronously
 import 'dart:developer';
+
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:fashion_flare/Core/Helper/constants.dart';
-import 'package:fashion_flare/Features/Auth/UI/views/Register_view.dart';
-import 'package:fashion_flare/Features/Auth/UI/views/forgot_password_view.dart';
-import 'package:fashion_flare/Features/NavBar/UI/views/nav_home_view.dart';
-import 'package:fashion_flare/core/Helper/show_awsome_snakbar.dart';
+import 'package:fashion_flare/Core/Helper/extentions.dart';
+import 'package:fashion_flare/Core/routing/routes.dart';
+import 'package:fashion_flare/Core/widgets/app_text.dart';
+import 'package:fashion_flare/Core/widgets/app_text_form_field.dart';
+import 'package:fashion_flare/Core/widgets/custom_button.dart';
 import 'package:fashion_flare/Services/FireBase%20Services/auth_service.dart';
-import 'package:fashion_flare/Widgets/app_text.dart';
-import 'package:fashion_flare/Widgets/app_text_form_field.dart';
-import 'package:fashion_flare/Widgets/custom_button.dart';
 import 'package:fashion_flare/Widgets/social_media_icons.dart';
+import 'package:fashion_flare/core/Helper/show_awsome_snakbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -21,8 +21,6 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class SignInView extends StatefulWidget {
   const SignInView({super.key});
-
-  static const String id = 'Sign In';
 
   @override
   State<SignInView> createState() => _SignInViewState();
@@ -127,7 +125,7 @@ class _SignInViewState extends State<SignInView> {
                       Gap(8.h),
                       GestureDetector(
                         onTap: () {
-                          Navigator.pushNamed(context, ForgotPassword.id);
+                          context.pushNamed(Routes.forgotPassword);
                         },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
@@ -151,7 +149,7 @@ class _SignInViewState extends State<SignInView> {
                             });
                             try {
                               await loginUser(email: email, password: password);
-                              Navigator.pushNamed(context, NavHomeView.id);
+                              context.pushNamed(Routes.navHomeView);
                             } on FirebaseAuthException catch (e) {
                               if (e.code == 'wrong-password') {
                                 showAwsomeSnakBar(
@@ -230,7 +228,7 @@ class _SignInViewState extends State<SignInView> {
                             TextSpan(
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
-                                  Navigator.pushNamed(context, RegisterView.id);
+                                  context.pushNamed(Routes.registerView);
                                 },
                               text: "Sign Up",
                               style: TextStyle(

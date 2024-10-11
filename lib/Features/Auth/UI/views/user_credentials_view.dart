@@ -1,16 +1,14 @@
-import 'package:fashion_flare/Core/Helper/constants.dart';
-import 'package:fashion_flare/Features/Auth/UI/views/Register_view.dart';
-import 'package:fashion_flare/Features/Auth/UI/views/sign_in_view.dart';
-import 'package:fashion_flare/Widgets/app_text.dart';
-import 'package:fashion_flare/Widgets/custom_button.dart';
+import '../../../../Core/Helper/constants.dart';
+import '../../../../Core/Helper/extentions.dart';
+import '../../../../Core/routing/routes.dart';
+import '../../../../Core/widgets/app_text.dart';
+import '../../../../Core/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class UserCredentialsView extends StatelessWidget {
   const UserCredentialsView({super.key});
-
-  static const String id = 'User Credentials';
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +46,7 @@ class UserCredentialsView extends StatelessWidget {
                       CustomButton(
                         text: "Register",
                         onTap: () {
-                          Navigator.pushNamed(context, RegisterView.id);
+                          context.pushNamed(Routes.registerView);
                         },
                       ),
                       Gap(12.h),
@@ -57,7 +55,7 @@ class UserCredentialsView extends StatelessWidget {
                         color: Colors.black,
                         textColor: kPrimaryColor,
                         onTap: () {
-                          Navigator.pushNamed(context, SignInView.id);
+                          context.pushNamed(Routes.signInView);
                         },
                       ),
                     ],

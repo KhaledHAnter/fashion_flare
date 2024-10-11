@@ -1,7 +1,8 @@
-import 'package:fashion_flare/Core/Helper/constants.dart';
-import 'package:fashion_flare/Features/Onboarding/UI/views/onboarding_view.dart';
-import 'package:fashion_flare/Widgets/app_button.dart';
-import 'package:fashion_flare/Widgets/app_text.dart';
+import '../../../../Core/Helper/constants.dart';
+import '../../../../Core/Helper/extentions.dart';
+import '../../../../Core/routing/routes.dart';
+import '../../../../Core/widgets/app_button.dart';
+import '../../../../Core/widgets/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
@@ -16,7 +17,6 @@ class WelcomeView extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Expanded(
-              flex: 11,
               child: Container(
                 decoration: const BoxDecoration(
                   image: DecorationImage(
@@ -53,14 +53,11 @@ class WelcomeView extends StatelessWidget {
                 ),
               ),
             ),
-            Expanded(
-              flex: 1,
-              child: AppButton(
-                text: "Get Started",
-                onTap: () {
-                  Navigator.pushNamed(context, OnBoardingView.id);
-                },
-              ),
+            AppButton(
+              text: "Get Started",
+              onTap: () {
+                context.pushReplacementNamed(Routes.onBoardingView);
+              },
             ),
           ],
         ),

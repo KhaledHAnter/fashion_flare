@@ -1,8 +1,9 @@
-import 'package:fashion_flare/Core/Helper/constants.dart';
-import 'package:fashion_flare/Features/Auth/UI/views/otp_verfication_view.dart';
-import 'package:fashion_flare/Widgets/app_text.dart';
-import 'package:fashion_flare/Widgets/app_text_form_field.dart';
-import 'package:fashion_flare/Widgets/custom_button.dart';
+import '../../../../Core/Helper/constants.dart';
+import '../../../../Core/Helper/extentions.dart';
+import '../../../../Core/routing/routes.dart';
+import '../../../../Core/widgets/app_text.dart';
+import '../../../../Core/widgets/app_text_form_field.dart';
+import '../../../../Core/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -79,7 +80,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 onTap: () {
                   if (!(phoneNumber == null || phoneNumber!.isEmpty) &&
                       formKey.currentState!.validate()) {
-                    Navigator.pushNamed(context, OTPverficationView.id,
+                    context.pushNamed(Routes.otpverficationView,
                         arguments: phoneNumber);
                   } else {
                     setState(() {
