@@ -1,5 +1,5 @@
+import 'package:fashion_flare/Core/Helper/constants.dart';
 import 'package:fashion_flare/Widgets/app_text.dart';
-import 'package:fashion_flare/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';

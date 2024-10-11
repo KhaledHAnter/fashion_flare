@@ -1,0 +1,29 @@
+class Routes {
+  static const String welcomeView = '/';
+  static const String onBoardingView = '/onBoardingView';
+  static const String userCredentialsView = '/userCredentialsView';
+  static const String signInView = '/signInView';
+  static const String registerView = '/registerView';
+  static const String forgotPassword = '/forgotPassword';
+  static const String otpverficationView = '/OTPverficationView';
+  static const String userDetails = '/userDetails';
+  static const String chooseStyleView = '/chooseStyleView';
+  static const String chooseHairView = '/chooseHairView';
+  static const String your3DModel = '/your3DModel';
+  static const String navHomeView = '/navHomeView';
+  static const String homeView = '/homeView';
+  static const String todayOutfitView = '/todayOutfitView';
+  static const String nearbyShops = '/nearbyShops';
+  static const String offersView = '/offersView';
+  static const String filterView = '/filterView';
+  static const String itemDetailsView = '/itemDetailsView';
+  static const String wishListView = '/wishListView';
+  static const String cartView = '/cartView';
+  static const String paymentMethodsView = '/paymentMethodsView';
+  static const String checkoutView = '/checkoutView';
+  static const String paymentDoneView = '/paymentDoneView';
+  static const String receptView = '/receptView';
+  static const String wardrobeView = '/wardrobeView';
+  static const String generatedOutfitView = '/generatedOutfitView';
+  static const String profileView = '/profileView';
+}

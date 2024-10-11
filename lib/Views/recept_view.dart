@@ -1,10 +1,8 @@
+import 'package:fashion_flare/Core/Helper/constants.dart';
+import 'package:fashion_flare/Features/NavBar/UI/views/nav_home_view.dart';
 import 'package:fashion_flare/Models/shipping_model.dart';
-import 'package:fashion_flare/Services/FireBase%20Services/firebase_services.dart';
-import 'package:fashion_flare/Views/nav_home_view.dart';
 import 'package:fashion_flare/Widgets/app_button.dart';
 import 'package:fashion_flare/Widgets/app_text.dart';
-import 'package:fashion_flare/constants.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
@@ -16,10 +14,10 @@ class ReceptView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Map<String, dynamic> Data =
+    final Map<String, dynamic> data =
         ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
-    ShippingModel address = Data['address'] as ShippingModel;
-    int orderId = Data['orederId'] as int;
+    ShippingModel address = data['address'] as ShippingModel;
+    int orderId = data['orederId'] as int;
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.only(top: 50.h),

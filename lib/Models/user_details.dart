@@ -1,4 +1,4 @@
-import 'package:fashion_flare/Helper/governorates.dart';
+import 'package:fashion_flare/core/Helper/governorates.dart';
 
 class UserDetailsModel {
   String? dropDownValue;

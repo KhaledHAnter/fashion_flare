@@ -1,4 +1,3 @@
-import 'package:fashion_flare/Models/item_model.dart';
 import 'package:fashion_flare/Models/store_item_model.dart';
 import 'package:fashion_flare/Widgets/app_text.dart';
 import 'package:fashion_flare/Widgets/info_row.dart';

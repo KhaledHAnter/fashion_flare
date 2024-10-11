@@ -1,4 +1,4 @@
-import 'package:fashion_flare/constants.dart';
+import 'package:fashion_flare/Core/Helper/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -33,7 +33,6 @@ class AppTextFormField extends StatelessWidget {
           ? AutovalidateMode.onUserInteraction
           : AutovalidateMode.disabled,
       onChanged: onChanged,
-      
       validator: validator,
       keyboardType: keyboardType ?? TextInputType.text,
       obscureText: obscureText,
