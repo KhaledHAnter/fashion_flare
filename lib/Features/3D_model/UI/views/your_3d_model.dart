@@ -98,7 +98,8 @@ class _Your3DModelState extends State<Your3DModel> {
               child: AppButton(
                 text: "Continue",
                 onTap: () {
-                  context.pushNamed(Routes.navHomeView);
+                  context.pushNamedAndRemoveUntil(Routes.navHomeView,
+                      predicate: (Route<dynamic> route) => false);
                 },
               ),
             )

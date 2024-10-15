@@ -1,3 +1,6 @@
+import 'package:fashion_flare/Core/routing/routes.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 import '../../../../Core/Helper/extentions.dart';
 import '../../../../Core/widgets/app_text.dart';
 import '../../../../Core/widgets/custom_button.dart';
@@ -51,7 +54,12 @@ class ProfileView extends StatelessWidget {
                               Expanded(
                                 child: CustomButton(
                                   text: "Log Out",
-                                  onTap: () {},
+                                  onTap: () async {
+                                    await FirebaseAuth.instance.signOut();
+                                    context.pushNamedAndRemoveUntil(
+                                        Routes.welcomeView,
+                                        predicate: (context) => false);
+                                  },
                                 ),
                               ),
                             ],

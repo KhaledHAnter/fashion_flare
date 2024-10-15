@@ -251,9 +251,8 @@ class _RegisterViewState extends State<RegisterView> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
-                            SocialMediaIcon(image: "assets/Icons/Facebook.png"),
-                            SocialMediaIcon(image: "assets/Icons/Apple.png"),
                             SocialMediaIcon(image: "assets/Icons/Google.png"),
+                            SocialMediaIcon(image: "assets/Icons/Facebook.png"),
                           ],
                         ),
                       ),

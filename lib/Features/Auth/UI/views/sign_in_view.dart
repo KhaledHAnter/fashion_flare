@@ -149,7 +149,9 @@ class _SignInViewState extends State<SignInView> {
                             });
                             try {
                               await loginUser(email: email, password: password);
-                              context.pushNamed(Routes.navHomeView);
+                              context.pushNamedAndRemoveUntil(
+                                  Routes.navHomeView,
+                                  predicate: (Route<dynamic> route) => false);
                             } on FirebaseAuthException catch (e) {
                               if (e.code == 'wrong-password') {
                                 showAwsomeSnakBar(
@@ -207,9 +209,8 @@ class _SignInViewState extends State<SignInView> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
-                            SocialMediaIcon(image: "assets/Icons/Facebook.png"),
-                            SocialMediaIcon(image: "assets/Icons/Apple.png"),
                             SocialMediaIcon(image: "assets/Icons/Google.png"),
+                            SocialMediaIcon(image: "assets/Icons/Facebook.png"),
                           ],
                         ),
                       ),

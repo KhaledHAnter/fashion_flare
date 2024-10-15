@@ -30,13 +30,15 @@ class _HomeViewState extends State<HomeView> {
         .collection("StoreItems")
         .orderBy('orderId')
         .get();
-    setState(() {
-      // products.addAll();
-      for (int i = 0; i < querySnapshot.docs.length; i++) {
-        storeProducts
-            .add(StoreItemModel.fromJson(querySnapshot.docs[i].data()));
-      }
-    });
+    if (mounted) {
+      setState(() {
+        // products.addAll();
+        for (int i = 0; i < querySnapshot.docs.length; i++) {
+          storeProducts
+              .add(StoreItemModel.fromJson(querySnapshot.docs[i].data()));
+        }
+      });
+    }
   }
 
   @override

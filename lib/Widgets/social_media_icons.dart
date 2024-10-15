@@ -12,12 +12,13 @@ class SocialMediaIcon extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: 36.h,
-        width: 36.w,
+        height: 40.h,
+        width: 40.w,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           image: DecorationImage(
             image: AssetImage(image),
+            fit: BoxFit.contain,
           ),
         ),
       ),

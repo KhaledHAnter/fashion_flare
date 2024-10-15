@@ -1,3 +1,7 @@
+import 'dart:developer';
+
+import 'package:firebase_auth/firebase_auth.dart';
+
 import '../../../../Core/Helper/constants.dart';
 import '../../../../Core/Helper/extentions.dart';
 import '../../../../Core/routing/routes.dart';
@@ -14,6 +18,7 @@ class WelcomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
+        bottom: false,
         child: Column(
           children: <Widget>[
             Expanded(
@@ -56,7 +61,13 @@ class WelcomeView extends StatelessWidget {
             AppButton(
               text: "Get Started",
               onTap: () {
-                context.pushReplacementNamed(Routes.onBoardingView);
+                FirebaseAuth auth = FirebaseAuth.instance;
+
+                if (auth.currentUser != null) {
+                  context.pushReplacementNamed(Routes.navHomeView);
+                } else {
+                  context.pushReplacementNamed(Routes.onBoardingView);
+                }
               },
             ),
           ],
