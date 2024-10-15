@@ -17,6 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class SignInView extends StatefulWidget {
@@ -202,15 +203,19 @@ class _SignInViewState extends State<SignInView> {
                         color: kSecondaryFontColor,
                       ),
                       Gap(24.h),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
                           horizontal: 50,
                         ),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            SocialMediaIcon(image: "assets/Icons/Google.png"),
-                            SocialMediaIcon(image: "assets/Icons/Facebook.png"),
+                            SocialMediaIcon(
+                              image: "assets/Icons/Google.png",
+                              onTap: () {
+                                signInWithGoogle(context);
+                              },
+                            ),
                           ],
                         ),
                       ),
@@ -252,5 +257,30 @@ class _SignInViewState extends State<SignInView> {
               ),
             ),
     );
+  }
+
+  Future signInWithGoogle(BuildContext context) async {
+    // Trigger the authentication flow
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    if (googleUser == null) {
+      return;
+    }
+
+    // Obtain the auth details from the request
+    final GoogleSignInAuthentication googleAuth =
+        await googleUser.authentication;
+
+    // Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
+
+    // Once signed in, return the UserCredential
+    await FirebaseAuth.instance.signInWithCredential(credential);
+
+    context.pushNamedAndRemoveUntil(Routes.navHomeView,
+        predicate: (Route<dynamic> route) => false);
   }
 }

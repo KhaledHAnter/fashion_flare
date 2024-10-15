@@ -1,5 +1,6 @@
 import 'package:fashion_flare/Core/routing/routes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../../../Core/Helper/extentions.dart';
 import '../../../../Core/widgets/app_text.dart';
@@ -55,7 +56,7 @@ class ProfileView extends StatelessWidget {
                                 child: CustomButton(
                                   text: "Log Out",
                                   onTap: () async {
-                                    await FirebaseAuth.instance.signOut();
+                                    logout();
                                     context.pushNamedAndRemoveUntil(
                                         Routes.welcomeView,
                                         predicate: (context) => false);
@@ -83,5 +84,11 @@ class ProfileView extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<void> logout() async {
+    GoogleSignIn googleSignIn = GoogleSignIn();
+    if (await googleSignIn.isSignedIn()) await googleSignIn.signOut();
+    await FirebaseAuth.instance.signOut();
   }
 }
