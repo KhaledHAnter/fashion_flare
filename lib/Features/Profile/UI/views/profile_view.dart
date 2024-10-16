@@ -17,9 +17,9 @@ class ProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Expanded(
-        child: GestureDetector(
-          onTap: () {
+      body: Center(
+        child: IconButton(
+          onPressed: () {
             showModalBottomSheet(
                 context: context,
                 builder: (context) {
@@ -71,15 +71,9 @@ class ProfileView extends StatelessWidget {
                   );
                 });
           },
-          child: Container(
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(
-                  "assets/Images/prof2.png",
-                ),
-                fit: BoxFit.fill,
-              ),
-            ),
+          icon: const Icon(
+            Icons.logout,
+            size: 48,
           ),
         ),
       ),
