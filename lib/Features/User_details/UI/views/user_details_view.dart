@@ -1,3 +1,9 @@
+import 'dart:developer';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fashion_flare/Features/Auth/data/models/user_profile_model.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 import '../../../../Core/Helper/constants.dart';
 import '../../../../Core/Helper/extentions.dart';
 import '../../../../Core/routing/routes.dart';
@@ -168,10 +174,12 @@ class _UserDetailsState extends State<UserDetails> {
               Gap(40.h),
               CustomButton(
                 text: "Continue",
-                onTap: () {
+                onTap: () async {
                   if (formKey.currentState!.validate()) {
-                    print(
-                        "$name  ${userDetailsData[0].dropDownValue}  ${userDetailsData[1].dropDownValue}  ${userDetailsData[2].dropDownValue}  ${userDetailsData[3].dropDownValue}  ${userDetailsData[4].dropDownValue}");
+                    UserProfileModel userProfile = getUserProfile();
+                    await registerUser(userProfile);
+                    // print(
+                    //     "$name  ${userDetailsData[0].dropDownValue}  ${userDetailsData[1].dropDownValue}  ${userDetailsData[2].dropDownValue}  ${userDetailsData[3].dropDownValue}  ${userDetailsData[4].dropDownValue}");
                     context.pushNamed(Routes.chooseStyleView);
                   }
                 },
@@ -181,5 +189,33 @@ class _UserDetailsState extends State<UserDetails> {
         ),
       ),
     ));
+  }
+
+  UserProfileModel getUserProfile() {
+    return UserProfileModel(
+      name: name!,
+      email: FirebaseAuth.instance.currentUser!.email!,
+      gender: userDetailsData[0].dropDownValue ?? "Male",
+      age: userDetailsData[1].dropDownValue ?? "22",
+      city: userDetailsData[2].dropDownValue ?? "Cairo",
+      height: userDetailsData[3].dropDownValue ?? "170 Cm",
+      weight: userDetailsData[4].dropDownValue ?? "67 Kg",
+    );
+  }
+
+  Future<void> registerUser(UserProfileModel userProfile) async {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(userProfile.email)
+        .set({
+      'name': userProfile.name,
+      'email': userProfile.email,
+      'createdAt': FieldValue.serverTimestamp(),
+      'gender': userProfile.gender,
+      'city': userProfile.city,
+      'age': userProfile.age,
+      'height': userProfile.height,
+      'weight': userProfile.weight
+    });
   }
 }

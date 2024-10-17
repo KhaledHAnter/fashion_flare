@@ -1,5 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fashion_flare/Core/Helper/auth_services/auth_services.dart';
 import 'package:fashion_flare/Core/Helper/constants.dart';
 import 'package:fashion_flare/Core/Helper/extentions.dart';
 import 'package:fashion_flare/Core/routing/routes.dart';
@@ -255,7 +257,7 @@ class _RegisterViewState extends State<RegisterView> {
                             SocialMediaIcon(
                               image: "assets/Icons/Google.png",
                               onTap: () {
-                                signInWithGoogle(context);
+                                handleRegister(context);
                               },
                             ),
                           ],
@@ -301,28 +303,26 @@ class _RegisterViewState extends State<RegisterView> {
     );
   }
 
-  Future signInWithGoogle(BuildContext context) async {
-    // Trigger the authentication flow
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-
-    if (googleUser == null) {
-      return;
+  Future handleRegister(BuildContext context) async {
+    AuthServices authServices = AuthServices();
+    User? user = await authServices.signInWithGoogle();
+    if (user != null) {
+      bool isRegistered = await isUserRegistered(user.email!);
+      if (!isRegistered) {
+        context.pushNamedAndRemoveUntil(Routes.userDetails,
+            predicate: (Route<dynamic> route) => false);
+      } else {
+        context.pushNamedAndRemoveUntil(Routes.navHomeView,
+            predicate: (Route<dynamic> route) => false);
+      }
     }
+  }
 
-    // Obtain the auth details from the request
-    final GoogleSignInAuthentication googleAuth =
-        await googleUser.authentication;
+  Future<bool> isUserRegistered(String email) async {
+    final DocumentSnapshot userSnapshot =
+        await FirebaseFirestore.instance.collection('users').doc(email).get();
 
-    // Create a new credential
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth.accessToken,
-      idToken: googleAuth.idToken,
-    );
-
-    // Once signed in, return the UserCredential
-    await FirebaseAuth.instance.signInWithCredential(credential);
-
-    context.pushNamedAndRemoveUntil(Routes.userDetails,
-        predicate: (Route<dynamic> route) => false);
+    // Check if user document exists in Firestore
+    return userSnapshot.exists;
   }
 }
