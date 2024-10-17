@@ -1,3 +1,5 @@
+import 'package:fashion_flare/Widgets/custom_app_bar.dart';
+
 import '../../../../Core/Helper/extentions.dart';
 import '../../../../Core/routing/routes.dart';
 import '../../../../Models/item_model.dart';
@@ -23,9 +25,8 @@ class _WishListViewState extends State<WishListView> {
         padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 50.h),
         child: Column(
           children: [
-            CustomFloatingAppBarIcon(
+            CustomAppBar(
               title: "Wishlist",
-              icon: Icons.arrow_back_ios_new_rounded,
               image: "assets/Icons/Shopping bag.png",
               onTap: () {
                 context.pushNamed(Routes.cartView);

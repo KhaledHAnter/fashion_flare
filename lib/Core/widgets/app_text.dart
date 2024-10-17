@@ -13,6 +13,7 @@ class AppText extends StatelessWidget {
     this.decoretions,
     this.wordSpacing,
     this.letterSpacing,
+    this.height,
   });
 
   final String text;
@@ -23,6 +24,7 @@ class AppText extends StatelessWidget {
   final TextDecoration? decoretions;
   final double? wordSpacing;
   final double? letterSpacing;
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +38,7 @@ class AppText extends StatelessWidget {
         fontSize: size ?? 20.sp,
         fontWeight: weight ?? FontWeight.w500,
         decoration: decoretions,
+        height: height,
       ),
       textAlign: textAlign ?? TextAlign.center,
     );

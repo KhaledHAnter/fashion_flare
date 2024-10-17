@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import '../../../../Core/Helper/constants.dart';
 import '../../../../Core/Helper/extentions.dart';
 import '../../../../Core/routing/routes.dart';
@@ -24,8 +25,9 @@ class _HomeViewState extends State<HomeView> {
   int currentCategoryIndex = 0;
 
   List<StoreItemModel> storeProducts = [];
+  String userName = '';
 
-  getData() async {
+  getItemsData() async {
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
         .collection("StoreItems")
         .orderBy('orderId')
@@ -41,9 +43,22 @@ class _HomeViewState extends State<HomeView> {
     }
   }
 
+  getUserData() async {
+    DocumentSnapshot docSnapshot = await FirebaseFirestore.instance
+        .collection("users")
+        .doc(FirebaseAuth.instance.currentUser!.email)
+        .get();
+    if (mounted) {
+      setState(() {
+        userName = docSnapshot.get('name');
+      });
+    }
+  }
+
   @override
   void initState() {
-    getData();
+    getItemsData();
+    getUserData();
 
     super.initState();
   }
@@ -71,7 +86,7 @@ class _HomeViewState extends State<HomeView> {
                         ),
                       ),
                       TextSpan(
-                        text: "Khaled H. Anter",
+                        text: userName,
                         style: TextStyle(
                           wordSpacing: 2,
                           fontFamily: kFontFamily,
