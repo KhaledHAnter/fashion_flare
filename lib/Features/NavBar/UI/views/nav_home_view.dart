@@ -19,9 +19,9 @@ class NavHomeView extends StatefulWidget {
 class _NavHomeViewState extends State<NavHomeView> {
   int _selectedIndex = 0;
   static final List<Widget> _widgetOptions = [
+    const WardrobeView(),
     const HomeView(),
     const WishListView(),
-    const WardrobeView(),
     const ProfileView(),
   ];
   @override
@@ -46,19 +46,19 @@ class _NavHomeViewState extends State<NavHomeView> {
         haptic: true,
         tabs: [
           GButton(
-            icon: Icons.home,
+            icon: FontAwesomeIcons.shirt,
+            iconSize: 20.r,
+            text: "Wardrobe",
+          ),
+          GButton(
+            icon: Icons.shopping_bag,
             iconSize: 25.r,
-            text: "Home",
+            text: "Market",
           ),
           GButton(
             icon: Icons.favorite,
             iconSize: 25.r,
             text: "Wishlist",
-          ),
-          GButton(
-            icon: FontAwesomeIcons.shirt,
-            iconSize: 20.r,
-            text: "Wardrobe",
           ),
           GButton(
             icon: Icons.person,
