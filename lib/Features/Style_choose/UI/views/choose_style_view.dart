@@ -1,10 +1,10 @@
 import '../../../../Core/Helper/constants.dart';
 import '../../../../Core/Helper/extentions.dart';
 import '../../../../Core/routing/routes.dart';
-import '../../../../Models/style.dart';
+import '../../data/models/style.dart';
 import '../../../../Core/widgets/app_text.dart';
 import '../../../../Core/widgets/custom_button.dart';
-import '../../../../Widgets/style_choose_card.dart';
+import '../widgets/style_choose_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';

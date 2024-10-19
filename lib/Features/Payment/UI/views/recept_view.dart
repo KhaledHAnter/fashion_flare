@@ -1,7 +1,7 @@
 import '../../../../Core/Helper/constants.dart';
 import '../../../../Core/Helper/extentions.dart';
 import '../../../../Core/routing/routes.dart';
-import '../../../../Models/shipping_model.dart';
+import '../../data/models/shipping_model.dart';
 import '../../../../Core/widgets/app_button.dart';
 import '../../../../Core/widgets/app_text.dart';
 import 'package:flutter/material.dart';

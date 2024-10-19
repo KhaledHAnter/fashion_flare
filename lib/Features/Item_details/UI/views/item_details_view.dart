@@ -1,13 +1,13 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import '../../../../Core/Helper/constants.dart';
 import '../../../../core/Helper/show_awsome_snakbar.dart';
-import '../../../../Models/store_item_model.dart';
+import '../../../Home/data/models/store_item_model.dart';
 import '../../../../Core/widgets/app_button.dart';
 import '../../../../Core/widgets/app_text.dart';
-import '../../../../Widgets/custom_floating_app_bar.dart';
+import '../../../../Core/widgets/custom_floating_app_bar.dart';
 import '../../../Onboarding/UI/widgets/dot_indicator.dart';
-import '../../../../Widgets/info_bottom_sheet_content.dart';
-import '../../../../Widgets/item_details_image.dart';
+import '../widgets/info_bottom_sheet_content.dart';
+import '../widgets/item_details_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';

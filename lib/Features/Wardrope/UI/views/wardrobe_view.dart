@@ -1,12 +1,12 @@
 import 'package:dio/dio.dart';
 import '../../../../Core/Helper/extentions.dart';
 import '../../../../Core/routing/routes.dart';
-import '../../../../Models/weather_model.dart';
-import '../../../../Services/weather_services.dart';
+import '../../../Home/data/models/weather_model.dart';
+import '../../../../Core/Services/weather_services.dart';
 import '../../../../Core/widgets/app_button.dart';
 import '../../../../Core/widgets/app_text.dart';
 import '../../../../Core/widgets/custom_button.dart';
-import '../../../../Widgets/custom_floating_app_bar.dart';
+import '../../../../Core/widgets/custom_floating_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

@@ -1,5 +1,5 @@
-import '../Models/store_item_model.dart';
-import '../Core/widgets/app_text.dart';
+import '../../../Home/data/models/store_item_model.dart';
+import '../../../../Core/widgets/app_text.dart';
 import 'info_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

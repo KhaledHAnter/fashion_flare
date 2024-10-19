@@ -4,7 +4,7 @@ import '../../../../Core/Helper/constants.dart';
 import '../../../../Core/Helper/extentions.dart';
 import '../../../../Core/routing/routes.dart';
 import '../../../../Core/widgets/app_button.dart';
-import '../../../../Widgets/custom_floating_app_bar.dart';
+import '../../../../Core/widgets/custom_floating_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:model_viewer_plus/model_viewer_plus.dart';

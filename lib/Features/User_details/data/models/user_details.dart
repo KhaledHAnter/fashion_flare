@@ -1,4 +1,4 @@
-import '../core/Helper/governorates.dart';
+import '../../../../core/Helper/governorates.dart';
 
 class UserDetailsModel {
   String? dropDownValue;

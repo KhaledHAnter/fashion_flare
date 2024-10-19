@@ -26,7 +26,7 @@ import '../../Features/Wardrope/UI/views/generated_outfit_view.dart';
 import '../../Features/Wardrope/UI/views/wardrobe_view.dart';
 import '../../Features/Welcome/UI/views/welcome_view.dart';
 import '../../Features/Wishlist/UI/views/wishlist_view.dart';
-import '../../Models/store_item_model.dart';
+import '../../Features/Home/data/models/store_item_model.dart';
 import 'package:flutter/material.dart';
 
 class AppRouter {

@@ -1,9 +1,9 @@
-import '../../../../Widgets/custom_app_bar.dart';
+import '../../../../Core/widgets/custom_app_bar.dart';
 
 import '../../../../Core/Helper/extentions.dart';
 import '../../../../Core/routing/routes.dart';
-import '../../../../Models/item_model.dart';
-import '../../../../Widgets/item_card.dart';
+import '../../../Home/data/models/item_model.dart';
+import '../../../Home/UI/widgets/item_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

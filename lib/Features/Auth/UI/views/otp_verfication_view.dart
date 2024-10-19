@@ -2,7 +2,7 @@ import 'dart:async';
 import '../../../../Core/Helper/constants.dart';
 import '../../../../Core/widgets/app_text.dart';
 import '../../../../Core/widgets/custom_button.dart';
-import '../../../../Widgets/otp_square.dart';
+import '../widgets/otp_square.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';

@@ -1,7 +1,7 @@
 import '../../../../Core/Helper/constants.dart';
 import '../../../../Core/widgets/app_button.dart';
 import '../../../../Core/widgets/app_text.dart';
-import '../../../../Widgets/custom_floating_app_bar.dart';
+import '../../../../Core/widgets/custom_floating_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';

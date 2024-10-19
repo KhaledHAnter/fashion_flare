@@ -1,8 +1,8 @@
 import '../../../../Core/Helper/constants.dart';
-import '../../../../Models/filter_model.dart';
+import '../../data/models/filter_model.dart';
 import '../../../../Core/widgets/app_text.dart';
-import '../../../../Widgets/custom_floating_app_bar.dart';
-import '../../../../Widgets/style_choose_card.dart';
+import '../../../../Core/widgets/custom_floating_app_bar.dart';
+import '../../../Style_choose/UI/widgets/style_choose_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';

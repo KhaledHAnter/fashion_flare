@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../../Models/payment_model.dart';
-import '../../Models/shipping_model.dart';
+import '../../../Features/Payment/data/models/payment_model.dart';
+import '../../../Features/Payment/data/models/shipping_model.dart';
 
 // add payment
 CollectionReference payment = FirebaseFirestore.instance.collection('payment');

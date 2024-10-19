@@ -1,6 +1,6 @@
-import '../../../../Models/item_model.dart';
-import '../../../../Widgets/custom_floating_app_bar.dart';
-import '../../../../Widgets/discont_item_card.dart';
+import '../../../Home/data/models/item_model.dart';
+import '../../../../Core/widgets/custom_floating_app_bar.dart';
+import '../widgets/discont_item_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

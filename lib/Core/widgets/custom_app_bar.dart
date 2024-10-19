@@ -1,5 +1,5 @@
-import '../Core/Helper/constants.dart';
-import '../Core/widgets/app_text.dart';
+import '../Helper/constants.dart';
+import 'app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

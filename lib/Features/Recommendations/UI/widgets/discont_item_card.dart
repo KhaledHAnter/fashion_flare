@@ -1,5 +1,5 @@
-import '../Core/Helper/constants.dart';
-import '../Core/widgets/app_text.dart';
+import '../../../../Core/Helper/constants.dart';
+import '../../../../Core/widgets/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
