@@ -9,8 +9,6 @@ import 'package:gap/gap.dart';
 class NearbyShops extends StatelessWidget {
   const NearbyShops({super.key});
 
-  static String id = "Nearby Shops";
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

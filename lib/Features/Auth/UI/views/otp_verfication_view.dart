@@ -11,8 +11,6 @@ class OTPverficationView extends StatefulWidget {
   final String phoneNumber;
   const OTPverficationView({super.key, required this.phoneNumber});
 
-  static String id = "OTP Verfication";
-
   @override
   State<OTPverficationView> createState() => _OTPverficationViewState();
 }

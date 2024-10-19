@@ -15,8 +15,6 @@ import 'package:gap/gap.dart';
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
 
-  static String id = 'Home';
-
   @override
   State<HomeView> createState() => _HomeViewState();
 }

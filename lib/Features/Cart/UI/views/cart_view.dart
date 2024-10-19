@@ -14,8 +14,6 @@ import 'package:gap/gap.dart';
 class CartView extends StatefulWidget {
   const CartView({super.key});
 
-  static String id = 'Cart';
-
   @override
   State<CartView> createState() => _CartViewState();
 }

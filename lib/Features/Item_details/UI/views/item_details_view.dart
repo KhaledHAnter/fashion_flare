@@ -16,8 +16,6 @@ class ItemDetailsView extends StatefulWidget {
   final StoreItemModel args;
   const ItemDetailsView({super.key, required this.args});
 
-  static String id = 'Item Details';
-
   @override
   State<ItemDetailsView> createState() => _ItemDetailsViewState();
 }

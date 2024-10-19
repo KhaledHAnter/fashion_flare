@@ -12,8 +12,6 @@ class ReceptView extends StatelessWidget {
   final Map<String, dynamic> data;
   const ReceptView({super.key, required this.data});
 
-  static String id = "Recept";
-
   @override
   Widget build(BuildContext context) {
     ShippingModel address = data['address'] as ShippingModel;

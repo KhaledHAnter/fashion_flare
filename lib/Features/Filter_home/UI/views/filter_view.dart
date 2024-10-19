@@ -10,8 +10,6 @@ import 'package:gap/gap.dart';
 class FilterView extends StatefulWidget {
   const FilterView({super.key});
 
-  static String id = 'Filter';
-
   @override
   State<FilterView> createState() => _FilterViewState();
 }

@@ -12,8 +12,6 @@ import 'package:gap/gap.dart';
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({super.key});
 
-  static String id = 'Forgot Password';
-
   @override
   State<ForgotPassword> createState() => _ForgotPasswordState();
 }

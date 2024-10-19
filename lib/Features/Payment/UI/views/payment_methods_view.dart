@@ -13,8 +13,6 @@ import 'package:gap/gap.dart';
 class PaymenMethods extends StatefulWidget {
   const PaymenMethods({super.key});
 
-  static String id = " Payment Methods";
-
   @override
   State<PaymenMethods> createState() => _PaymenMethodsState();
 }

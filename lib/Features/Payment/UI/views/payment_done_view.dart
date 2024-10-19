@@ -11,8 +11,6 @@ class PaymentDoneView extends StatelessWidget {
   final Map<String, dynamic> data;
   const PaymentDoneView({super.key, required this.data});
 
-  static String id = 'Payment Done';
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

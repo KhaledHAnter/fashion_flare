@@ -12,8 +12,6 @@ import 'package:gap/gap.dart';
 class ChooseStyleView extends StatefulWidget {
   const ChooseStyleView({super.key});
 
-  static String id = 'Choose Style';
-
   @override
   State<ChooseStyleView> createState() => _ChooseStyleViewState();
 }

@@ -1,9 +1,6 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fashion_flare/Features/Auth/data/models/user_profile_model.dart';
+import '../../../Auth/data/models/user_profile_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 import '../../../../Core/Helper/constants.dart';
 import '../../../../Core/Helper/extentions.dart';
 import '../../../../Core/routing/routes.dart';
@@ -18,8 +15,6 @@ import 'package:gap/gap.dart';
 
 class UserDetails extends StatefulWidget {
   const UserDetails({super.key});
-
-  static String id = 'Home Page';
 
   @override
   State<UserDetails> createState() => _UserDetailsState();

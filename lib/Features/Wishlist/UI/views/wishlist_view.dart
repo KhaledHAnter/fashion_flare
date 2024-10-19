@@ -1,17 +1,14 @@
-import 'package:fashion_flare/Widgets/custom_app_bar.dart';
+import '../../../../Widgets/custom_app_bar.dart';
 
 import '../../../../Core/Helper/extentions.dart';
 import '../../../../Core/routing/routes.dart';
 import '../../../../Models/item_model.dart';
-import '../../../../Widgets/custom_floating_app_bar_icon.dart';
 import '../../../../Widgets/item_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class WishListView extends StatefulWidget {
   const WishListView({super.key});
-
-  static String id = 'WishList';
 
   @override
   State<WishListView> createState() => _WishListViewState();

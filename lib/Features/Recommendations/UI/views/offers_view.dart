@@ -7,8 +7,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class OffersView extends StatefulWidget {
   const OffersView({super.key});
 
-  static String id = 'Offers';
-
   @override
   State<OffersView> createState() => _OffersViewState();
 }

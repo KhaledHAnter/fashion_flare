@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fashion_flare/Core/Helper/extentions.dart';
-import 'package:fashion_flare/Core/routing/routes.dart';
-import 'package:fashion_flare/Core/widgets/app_text.dart';
-import 'package:fashion_flare/Core/widgets/custom_button.dart';
+import '../../../../Core/Helper/extentions.dart';
+import '../../../../Core/routing/routes.dart';
+import '../../../../Core/widgets/app_text.dart';
+import '../../../../Core/widgets/custom_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -13,8 +13,6 @@ import 'package:flutter/material.dart';
 
 class ProfileView extends StatefulWidget {
   const ProfileView({super.key});
-
-  static String id = "Profile";
 
   @override
   State<ProfileView> createState() => _ProfileViewState();

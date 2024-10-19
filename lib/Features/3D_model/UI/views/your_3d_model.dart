@@ -14,8 +14,6 @@ class Your3DModel extends StatefulWidget {
   final int args;
   const Your3DModel({super.key, required this.args});
 
-  static String id = 'Your 3d Model';
-
   @override
   State<Your3DModel> createState() => _Your3DModelState();
 }

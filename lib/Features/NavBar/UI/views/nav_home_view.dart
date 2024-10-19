@@ -10,7 +10,6 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 class NavHomeView extends StatefulWidget {
   const NavHomeView({super.key});
 
-  static String id = "Nav Home";
 
   @override
   State<NavHomeView> createState() => _NavHomeViewState();

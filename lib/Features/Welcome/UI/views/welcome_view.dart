@@ -1,7 +1,4 @@
-import 'dart:developer';
-
 import 'package:firebase_auth/firebase_auth.dart';
-
 import '../../../../Core/Helper/constants.dart';
 import '../../../../Core/Helper/extentions.dart';
 import '../../../../Core/routing/routes.dart';

@@ -13,8 +13,6 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 class ChooseHairView extends StatefulWidget {
   const ChooseHairView({super.key});
 
-  static String id = 'Choose Hair';
-
   @override
   State<ChooseHairView> createState() => _ChooseHairViewState();
 }

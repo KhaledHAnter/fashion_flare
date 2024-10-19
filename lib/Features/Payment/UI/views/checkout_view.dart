@@ -17,8 +17,6 @@ import 'package:gap/gap.dart';
 class Checkoutview extends StatefulWidget {
   const Checkoutview({super.key});
 
-  static String id = "checkout";
-
   @override
   State<Checkoutview> createState() => _CheckoutviewState();
 }

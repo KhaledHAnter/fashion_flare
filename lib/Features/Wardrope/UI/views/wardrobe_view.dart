@@ -15,8 +15,6 @@ import 'package:image_picker/image_picker.dart';
 class WardrobeView extends StatefulWidget {
   const WardrobeView({super.key});
 
-  static String id = "Wardrobe";
-
   @override
   State<WardrobeView> createState() => _WardrobeViewState();
 }

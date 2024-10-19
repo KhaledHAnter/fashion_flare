@@ -13,8 +13,6 @@ class GeneratedOutfitView extends StatelessWidget {
   final List<String> data;
   const GeneratedOutfitView({super.key, required this.data});
 
-  static String id = "Generated Outfit";
-
   @override
   Widget build(BuildContext context) {
     log("assets/GLBs/${data[0]}${data[1]}${data[2]}${data[3]}.glb");
