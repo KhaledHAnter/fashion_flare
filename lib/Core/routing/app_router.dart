@@ -1,3 +1,7 @@
+import '../../Features/Wardrope/UI/views/real_wardrope_view.dart';
+import '../../Features/Wardrope/UI/views/wardrobe_item_details_view.dart';
+import '../../Features/Wardrope/data/models/wardrope_item_model.dart';
+
 import 'routes.dart';
 import '../../Features/3D_model/UI/views/your_3d_model.dart';
 import '../../Features/Auth/UI/views/Register_view.dart';
@@ -175,6 +179,21 @@ class AppRouter {
           builder: (_) => GeneratedOutfitView(
             data: arrguments as List<String>,
           ),
+        );
+
+      case Routes.realWardrobeView:
+        return MaterialPageRoute(
+          builder: (_) => const RealWardropeView(),
+        );
+
+      case Routes.wardrobeItemDetailsView:
+        return MaterialPageRoute(
+          builder: (_) {
+            arrguments as WardrobeItemModel;
+            return WardrobeItemDetailsView(
+              wardrobeItemModel: arrguments,
+            );
+          },
         );
 
       case Routes.profileView:

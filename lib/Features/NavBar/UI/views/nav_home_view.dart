@@ -1,3 +1,5 @@
+import '../../../Wardrope/UI/views/real_wardrope_view.dart';
+
 import '../../../Home/UI/views/home_view.dart';
 import '../../../Profile/UI/views/profile_view.dart';
 import '../../../Wardrope/UI/views/wardrobe_view.dart';
@@ -19,7 +21,7 @@ class _NavHomeViewState extends State<NavHomeView> {
   static final List<Widget> _widgetOptions = [
     const HomeView(),
     const WishListView(),
-    const WardrobeView(),
+    const RealWardropeView(),
     const ProfileView(),
   ];
   @override
