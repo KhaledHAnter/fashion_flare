@@ -718,7 +718,7 @@ Future<File?> _removeBackground(File imageFile) async {
       return null;
     }
   } catch (e) {
-    print('Exception occurred during RemoveBG API call: $e');
+  print('Exception occurred during RemoveBG API call: $e');
     return null;
   }
 }
