@@ -1,6 +1,8 @@
 import 'dart:developer';
 import 'dart:io';
+import 'package:fashion_flare/Core/Helper/constants.dart';
 import 'package:tflite_v2/tflite_v2.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../../../Core/Helper/extentions.dart';
 import '../../../../Core/routing/routes.dart';
@@ -14,6 +16,7 @@ import 'package:gap/gap.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as path;
+import 'package:http/http.dart' as http;
 
 class RealWardropeView extends StatefulWidget {
   const RealWardropeView({super.key});
@@ -26,7 +29,6 @@ class _RealWardropeViewState extends State<RealWardropeView> {
   late PageController pc1;
   late PageController pc2;
   late PageController pc3;
-  File? _imageFile;
 
   var _recognitions;
   var v = "";
@@ -91,6 +93,7 @@ class _RealWardropeViewState extends State<RealWardropeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
+        backgroundColor: kPrimaryColor,
         onPressed: () {
           showModalBottomSheet(
               context: context,
@@ -296,7 +299,21 @@ class _RealWardropeViewState extends State<RealWardropeView> {
         bool? mlCategoryTrue =
             await _showCategoryConfirmDialog(context, mlCategory);
         if (mlCategoryTrue!) {
-          File? savedImage = await _saveImageLocally(pickedImage);
+          File? processedImage;
+
+          try {
+            // Try to remove the background using the RemoveBG API
+            processedImage = await _removeBackground(pickedImage);
+          } catch (e) {
+            print("Background removal failed: $e");
+          }
+
+          // If background removal fails, use the original image
+          processedImage ??= pickedImage;
+
+          // Save the image (whether it's processed or the original)
+          File? savedImage = await _saveImageLocally(processedImage);
+
           if (savedImage != null) {
             WardrobeItemModel newItem = WardrobeItemModel(
               image: savedImage,
@@ -305,10 +322,6 @@ class _RealWardropeViewState extends State<RealWardropeView> {
 
             // Add the item to the corresponding category list in SharedPreferences
             await WardrobeItemModel.addItemToPreferences(newItem);
-
-            setState(() {
-              _imageFile = savedImage;
-            });
 
             print("Image and category saved: ${newItem.toMap()}");
           }
@@ -324,10 +337,6 @@ class _RealWardropeViewState extends State<RealWardropeView> {
 
               // Add the item to the corresponding category list in SharedPreferences
               await WardrobeItemModel.addItemToPreferences(newItem);
-
-              setState(() {
-                _imageFile = savedImage;
-              });
 
               print("Image and category saved: ${newItem.toMap()}");
             }
@@ -346,10 +355,6 @@ class _RealWardropeViewState extends State<RealWardropeView> {
             // Add the item to the corresponding category list in SharedPreferences
             await WardrobeItemModel.addItemToPreferences(newItem);
 
-            setState(() {
-              _imageFile = savedImage;
-            });
-
             print("Image and category saved: ${newItem.toMap()}");
           }
         }
@@ -362,23 +367,56 @@ class _RealWardropeViewState extends State<RealWardropeView> {
   Future<void> _pickAndSaveImageFromCamera(BuildContext context) async {
     File? pickedImage = await _pickImageFromCamera();
     if (pickedImage != null) {
-      String? category = await _showCategoryDialog(context);
-      if (category != null) {
-        File? savedImage = await _saveImageLocally(pickedImage);
-        if (savedImage != null) {
-          WardrobeItemModel newItem = WardrobeItemModel(
-            image: savedImage,
-            category: category,
-          );
+      String? mlCategory = await detectimage(pickedImage);
+      log(v);
+      if (mlCategory != null) {
+        bool? mlCategoryTrue =
+            await _showCategoryConfirmDialog(context, mlCategory);
+        if (mlCategoryTrue!) {
+          File? savedImage = await _saveImageLocally(pickedImage);
+          if (savedImage != null) {
+            WardrobeItemModel newItem = WardrobeItemModel(
+              image: savedImage,
+              category: mlCategory,
+            );
 
-          // Add the item to the corresponding category list in SharedPreferences
-          await WardrobeItemModel.addItemToPreferences(newItem);
+            // Add the item to the corresponding category list in SharedPreferences
+            await WardrobeItemModel.addItemToPreferences(newItem);
 
-          setState(() {
-            _imageFile = savedImage;
-          });
+            print("Image and category saved: ${newItem.toMap()}");
+          }
+        } else {
+          String? category = await _showCategoryDialog(context);
+          if (category != null) {
+            File? savedImage = await _saveImageLocally(pickedImage);
+            if (savedImage != null) {
+              WardrobeItemModel newItem = WardrobeItemModel(
+                image: savedImage,
+                category: category,
+              );
 
-          print("Image and category saved: ${newItem.toMap()}");
+              // Add the item to the corresponding category list in SharedPreferences
+              await WardrobeItemModel.addItemToPreferences(newItem);
+
+              print("Image and category saved: ${newItem.toMap()}");
+            }
+          }
+        }
+      } else {
+        String? category = await _showCategoryDialog(context);
+        if (category != null) {
+          File? savedImage = await _saveImageLocally(pickedImage);
+          if (savedImage != null) {
+            WardrobeItemModel newItem = WardrobeItemModel(
+              image: savedImage,
+              category: category,
+            );
+
+            // Add the item to the corresponding category list in SharedPreferences
+            await WardrobeItemModel.addItemToPreferences(newItem);
+
+            print("Image and category saved: ${newItem.toMap()}");
+          }
         }
       }
     }
@@ -546,4 +584,49 @@ Future<bool?> _showCategoryConfirmDialog(
       );
     },
   );
+}
+
+Future<File?> _removeBackground(File imageFile) async {
+  const apiKey =
+      'Hb16iAq24bG7gJA44vMiHW4m'; // Replace with your RemoveBG API key
+  final url = Uri.parse('https://api.remove.bg/v1.0/removebg');
+
+  try {
+    // Prepare the request
+    var request = http.MultipartRequest('POST', url);
+    request.headers['X-Api-Key'] = apiKey;
+
+    // Add the image file to the request
+    request.files.add(
+      await http.MultipartFile.fromPath('image_file', imageFile.path),
+    );
+
+    // Send the request to RemoveBG API
+    var response = await request.send();
+
+    // Check if the response is successful
+    if (response.statusCode == 200) {
+      // Get the bytes from the response
+      var bytes = await response.stream.toBytes();
+
+      // Generate a unique file name using a UUID
+      String uniqueFileName = const Uuid().v4(); // Generates a unique ID
+      String tempDir =
+          Directory.systemTemp.path; // Using the system's temporary directory
+      String filePath =
+          '$tempDir/no_bg_image_$uniqueFileName.png'; // Unique file path
+
+      // Write the bytes to the file
+      File file = File(filePath);
+      await file.writeAsBytes(bytes);
+
+      return file; // Return the file with background removed
+    } else {
+      print('Error: ${response.statusCode}');
+      return null;
+    }
+  } catch (e) {
+    print('Exception occurred during RemoveBG API call: $e');
+    return null;
+  }
 }

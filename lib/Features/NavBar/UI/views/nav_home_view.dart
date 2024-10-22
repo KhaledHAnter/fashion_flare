@@ -18,9 +18,9 @@ class NavHomeView extends StatefulWidget {
 class _NavHomeViewState extends State<NavHomeView> {
   int _selectedIndex = 0;
   static final List<Widget> _widgetOptions = [
+    const RealWardropeView(),
     const HomeView(),
     const WishListView(),
-    const RealWardropeView(),
     const ProfileView(),
   ];
   @override
@@ -50,14 +50,14 @@ class _NavHomeViewState extends State<NavHomeView> {
             text: "Home",
           ),
           GButton(
+            icon: FontAwesomeIcons.shirt,
+            iconSize: 20.r,
+            text: "Market",
+          ),
+          GButton(
             icon: Icons.favorite,
             iconSize: 25.r,
             text: "Wishlist",
-          ),
-          GButton(
-            icon: FontAwesomeIcons.shirt,
-            iconSize: 20.r,
-            text: "Wardrobe",
           ),
           GButton(
             icon: Icons.person,
