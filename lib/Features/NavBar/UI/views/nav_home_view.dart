@@ -2,7 +2,6 @@ import '../../../Wardrope/UI/views/real_wardrope_view.dart';
 
 import '../../../Home/UI/views/home_view.dart';
 import '../../../Profile/UI/views/profile_view.dart';
-import '../../../Wardrope/UI/views/wardrobe_view.dart';
 import '../../../Wishlist/UI/views/wishlist_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

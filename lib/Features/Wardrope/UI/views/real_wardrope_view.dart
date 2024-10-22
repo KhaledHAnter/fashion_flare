@@ -1,4 +1,7 @@
+import 'dart:developer';
 import 'dart:io';
+import 'package:tflite_v2/tflite_v2.dart';
+
 import '../../../../Core/Helper/extentions.dart';
 import '../../../../Core/routing/routes.dart';
 import '../../../../Core/widgets/app_text.dart';
@@ -25,13 +28,43 @@ class _RealWardropeViewState extends State<RealWardropeView> {
   late PageController pc3;
   File? _imageFile;
 
+  var _recognitions;
+  var v = "";
+
   @override
   void initState() {
     pc1 = PageController(initialPage: 1, viewportFraction: .5);
     pc2 = PageController(initialPage: 1, viewportFraction: .5);
     pc3 = PageController(initialPage: 1, viewportFraction: .5);
     _loadAllItems();
+    loadmodel().then((value) {
+      setState(() {});
+    });
     super.initState();
+  }
+
+  loadmodel() async {
+    await Tflite.loadModel(
+      model: "assets/ML/model_unquant.tflite",
+      labels: "assets/ML/labels.txt",
+    );
+  }
+
+  Future<String?> detectimage(File image) async {
+    var recognitions = await Tflite.runModelOnImage(
+      path: image.path,
+      numResults: 6,
+      threshold: 0.05,
+      imageMean: 127.5,
+      imageStd: 127.5,
+    );
+    setState(() {
+      _recognitions = recognitions;
+      v = recognitions![0]['label'].toString();
+      // dataList = List<Map<String, dynamic>>.from(jsonDecode(v));
+    });
+    print(_recognitions);
+    return v;
   }
 
   List<WardrobeItemModel> _tShirtItems = [];
@@ -257,23 +290,68 @@ class _RealWardropeViewState extends State<RealWardropeView> {
   Future<void> _pickAndSaveImageFromGallery(BuildContext context) async {
     File? pickedImage = await _pickImageFromGallery();
     if (pickedImage != null) {
-      String? category = await _showCategoryDialog(context);
-      if (category != null) {
-        File? savedImage = await _saveImageLocally(pickedImage);
-        if (savedImage != null) {
-          WardrobeItemModel newItem = WardrobeItemModel(
-            image: savedImage,
-            category: category,
-          );
+      String? mlCategory = await detectimage(pickedImage);
+      log(v);
+      if (mlCategory != null) {
+        bool? mlCategoryTrue =
+            await _showCategoryConfirmDialog(context, mlCategory);
+        if (mlCategoryTrue!) {
+          File? savedImage = await _saveImageLocally(pickedImage);
+          if (savedImage != null) {
+            WardrobeItemModel newItem = WardrobeItemModel(
+              image: savedImage,
+              category: mlCategory,
+            );
 
-          // Add the item to the corresponding category list in SharedPreferences
-          await WardrobeItemModel.addItemToPreferences(newItem);
+            // Add the item to the corresponding category list in SharedPreferences
+            await WardrobeItemModel.addItemToPreferences(newItem);
 
-          setState(() {
-            _imageFile = savedImage;
-          });
+            setState(() {
+              _imageFile = savedImage;
+            });
 
-          print("Image and category saved: ${newItem.toMap()}");
+            print("Image and category saved: ${newItem.toMap()}");
+          }
+        } else {
+          String? category = await _showCategoryDialog(context);
+          if (category != null) {
+            File? savedImage = await _saveImageLocally(pickedImage);
+            if (savedImage != null) {
+              WardrobeItemModel newItem = WardrobeItemModel(
+                image: savedImage,
+                category: category,
+              );
+
+              // Add the item to the corresponding category list in SharedPreferences
+              await WardrobeItemModel.addItemToPreferences(newItem);
+
+              setState(() {
+                _imageFile = savedImage;
+              });
+
+              print("Image and category saved: ${newItem.toMap()}");
+            }
+          }
+        }
+      } else {
+        String? category = await _showCategoryDialog(context);
+        if (category != null) {
+          File? savedImage = await _saveImageLocally(pickedImage);
+          if (savedImage != null) {
+            WardrobeItemModel newItem = WardrobeItemModel(
+              image: savedImage,
+              category: category,
+            );
+
+            // Add the item to the corresponding category list in SharedPreferences
+            await WardrobeItemModel.addItemToPreferences(newItem);
+
+            setState(() {
+              _imageFile = savedImage;
+            });
+
+            print("Image and category saved: ${newItem.toMap()}");
+          }
         }
       }
     }
@@ -412,6 +490,59 @@ Future<String?> _showCategoryDialog(BuildContext context) async {
             ),
           ],
         ),
+      );
+    },
+  );
+}
+
+Future<bool?> _showCategoryConfirmDialog(
+    BuildContext context, String category) async {
+  return showDialog<bool>(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text(
+          'The selected category is',
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        ),
+        content: SizedBox(
+          height: 100,
+          child: Center(
+            child: Text(
+              category,
+              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+            ),
+          ),
+        ),
+        actions: [
+          TextButton(
+            style: TextButton.styleFrom(
+              textStyle: Theme.of(context).textTheme.labelLarge,
+              foregroundColor: Colors.black,
+            ),
+            onPressed: () {
+              Navigator.of(context).pop(false);
+            },
+            child: const Text(
+              'No',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+            ),
+          ),
+          TextButton(
+            style: TextButton.styleFrom(
+              textStyle: Theme.of(context).textTheme.labelLarge,
+              foregroundColor: Colors.black,
+              backgroundColor: Colors.green.shade300,
+            ),
+            onPressed: () {
+              Navigator.of(context).pop(true);
+            },
+            child: const Text(
+              'Yes',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+            ),
+          ),
+        ],
       );
     },
   );
