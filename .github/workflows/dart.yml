@@ -37,6 +37,6 @@ jobs:
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: build/ios/iphoneos/FlutterIpaExport.ipa
-          tag: v1.4
+          tag: v1.5
           overwrite: true
-          body: "Now you have a real wardrobe"
+          body: "Now the app using AI models for Classification & Background Removal" 

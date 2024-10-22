@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:fashion_flare/Core/Helper/constants.dart';
 import 'package:tflite_v2/tflite_v2.dart';
 import 'package:uuid/uuid.dart';
@@ -298,7 +299,7 @@ class _RealWardropeViewState extends State<RealWardropeView> {
       if (mlCategory != null) {
         bool? mlCategoryTrue =
             await _showCategoryConfirmDialog(context, mlCategory);
-        if (mlCategoryTrue!) {
+        if (mlCategoryTrue != null && mlCategoryTrue) {
           File? processedImage;
 
           try {
@@ -328,7 +329,21 @@ class _RealWardropeViewState extends State<RealWardropeView> {
         } else {
           String? category = await _showCategoryDialog(context);
           if (category != null) {
-            File? savedImage = await _saveImageLocally(pickedImage);
+            File? processedImage;
+
+            try {
+              // Try to remove the background using the RemoveBG API
+              processedImage = await _removeBackground(pickedImage);
+            } catch (e) {
+              print("Background removal failed: $e");
+            }
+
+            // If background removal fails, use the original image
+            processedImage ??= pickedImage;
+
+            // Save the image (whether it's processed or the original)
+            File? savedImage = await _saveImageLocally(processedImage);
+
             if (savedImage != null) {
               WardrobeItemModel newItem = WardrobeItemModel(
                 image: savedImage,
@@ -345,7 +360,21 @@ class _RealWardropeViewState extends State<RealWardropeView> {
       } else {
         String? category = await _showCategoryDialog(context);
         if (category != null) {
-          File? savedImage = await _saveImageLocally(pickedImage);
+          File? processedImage;
+
+          try {
+            // Try to remove the background using the RemoveBG API
+            processedImage = await _removeBackground(pickedImage);
+          } catch (e) {
+            print("Background removal failed: $e");
+          }
+
+          // If background removal fails, use the original image
+          processedImage ??= pickedImage;
+
+          // Save the image (whether it's processed or the original)
+          File? savedImage = await _saveImageLocally(processedImage);
+
           if (savedImage != null) {
             WardrobeItemModel newItem = WardrobeItemModel(
               image: savedImage,
@@ -361,7 +390,9 @@ class _RealWardropeViewState extends State<RealWardropeView> {
       }
     }
     _loadAllItems();
-    context.pop();
+    if (context.mounted) {
+      context.pop();
+    }
   }
 
   Future<void> _pickAndSaveImageFromCamera(BuildContext context) async {
@@ -372,8 +403,22 @@ class _RealWardropeViewState extends State<RealWardropeView> {
       if (mlCategory != null) {
         bool? mlCategoryTrue =
             await _showCategoryConfirmDialog(context, mlCategory);
-        if (mlCategoryTrue!) {
-          File? savedImage = await _saveImageLocally(pickedImage);
+        if (mlCategoryTrue != null && mlCategoryTrue) {
+          File? processedImage;
+
+          try {
+            // Try to remove the background using the RemoveBG API
+            processedImage = await _removeBackground(pickedImage);
+          } catch (e) {
+            print("Background removal failed: $e");
+          }
+
+          // If background removal fails, use the original image
+          processedImage ??= pickedImage;
+
+          // Save the image (whether it's processed or the original)
+          File? savedImage = await _saveImageLocally(processedImage);
+
           if (savedImage != null) {
             WardrobeItemModel newItem = WardrobeItemModel(
               image: savedImage,
@@ -388,7 +433,21 @@ class _RealWardropeViewState extends State<RealWardropeView> {
         } else {
           String? category = await _showCategoryDialog(context);
           if (category != null) {
-            File? savedImage = await _saveImageLocally(pickedImage);
+            File? processedImage;
+
+            try {
+              // Try to remove the background using the RemoveBG API
+              processedImage = await _removeBackground(pickedImage);
+            } catch (e) {
+              print("Background removal failed: $e");
+            }
+
+            // If background removal fails, use the original image
+            processedImage ??= pickedImage;
+
+            // Save the image (whether it's processed or the original)
+            File? savedImage = await _saveImageLocally(processedImage);
+
             if (savedImage != null) {
               WardrobeItemModel newItem = WardrobeItemModel(
                 image: savedImage,
@@ -405,7 +464,21 @@ class _RealWardropeViewState extends State<RealWardropeView> {
       } else {
         String? category = await _showCategoryDialog(context);
         if (category != null) {
-          File? savedImage = await _saveImageLocally(pickedImage);
+          File? processedImage;
+
+          try {
+            // Try to remove the background using the RemoveBG API
+            processedImage = await _removeBackground(pickedImage);
+          } catch (e) {
+            print("Background removal failed: $e");
+          }
+
+          // If background removal fails, use the original image
+          processedImage ??= pickedImage;
+
+          // Save the image (whether it's processed or the original)
+          File? savedImage = await _saveImageLocally(processedImage);
+
           if (savedImage != null) {
             WardrobeItemModel newItem = WardrobeItemModel(
               image: savedImage,
@@ -421,7 +494,9 @@ class _RealWardropeViewState extends State<RealWardropeView> {
       }
     }
     _loadAllItems();
-    context.pop();
+    if (context.mounted) {
+      context.pop();
+    }
   }
 
   Future<bool?> _showDeleteConfirmationDialog(BuildContext context) async {
@@ -586,9 +661,26 @@ Future<bool?> _showCategoryConfirmDialog(
   );
 }
 
+Future<bool> _checkInternetConnection() async {
+  var connectivityResult = await Connectivity().checkConnectivity();
+
+  // Check if the device is connected to either Wi-Fi or mobile data
+  if (connectivityResult.contains(ConnectivityResult.mobile) ||
+      connectivityResult.contains(ConnectivityResult.wifi)) {
+    return true; // Device is connected to the internet
+  } else {
+    return false; // No internet connection
+  }
+}
+
 Future<File?> _removeBackground(File imageFile) async {
+  bool isConnected = await _checkInternetConnection();
+  log(isConnected.toString());
+  if (!isConnected) {
+    return null;
+  }
   const apiKey =
-      'Hb16iAq24bG7gJA44vMiHW4m'; // Replace with your RemoveBG API key
+      'ApZ9RRq5PcU7D9z22VWtx5M5'; // Replace with your RemoveBG API key
   final url = Uri.parse('https://api.remove.bg/v1.0/removebg');
 
   try {
