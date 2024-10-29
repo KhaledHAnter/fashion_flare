@@ -1,3 +1,5 @@
+import 'package:fashion_flare/Core/di/dependency_injection.dart';
+
 import 'Core/routing/app_router.dart';
 import 'fashion_flare.dart';
 import 'firebase_options.dart';
@@ -14,6 +16,7 @@ void main() async {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
   ));
+  await setupGetIt(); // Initialize dependencies
   runApp(
     // DevicePreview(
     //   enabled: !kReleaseMode,

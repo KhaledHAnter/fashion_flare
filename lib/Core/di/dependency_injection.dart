@@ -1,23 +1,18 @@
-// import 'package:dio/dio.dart';
-// import 'package:get_it/get_it.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fashion_flare/Core/Helper/auth_services/auth_services.dart';
+import 'package:fashion_flare/Features/Auth/UI/manager/cubit/signin_cubit.dart';
+import 'package:fashion_flare/Features/Auth/data/repos/sign_in_repo.dart';
+import 'package:get_it/get_it.dart';
 
+final getIt = GetIt.instance;
 
-// final getIt = GetIt.instance;
+Future<void> setupGetIt() async {
+  // AuthServices
+  AuthServices authServices = AuthServices();
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-// Future<void> setupGetIt() async {
-//   // Dio & ApiService
-//   Dio dio = DioFactory.getDio();
-//   getIt.registerLazySingleton<ApiService>(() => ApiService(dio));
-
-//   // Login
-//   getIt.registerLazySingleton<LoginRepo>(() => LoginRepo(getIt()));
-//   getIt.registerFactory<LoginCubit>(() => LoginCubit(getIt()));
-
-//   // signup
-//   getIt.registerLazySingleton<SignupRepo>(() => SignupRepo(getIt()));
-//   getIt.registerFactory<SignupCubit>(() => SignupCubit(getIt()));
-
-//   // Home
-//   getIt.registerLazySingleton<HomeApiService>(() => HomeApiService(dio));
-//   getIt.registerLazySingleton<HomeRepo>(() => HomeRepo(getIt()));
-// }
+  // Signin
+  getIt.registerLazySingleton<SignInRepo>(() => SignInRepo(authServices));
+  getIt.registerFactory<SigninCubit>(
+      () => SigninCubit(getIt<SignInRepo>(), firestore));
+}

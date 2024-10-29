@@ -14,6 +14,7 @@ class AppTextFormField extends StatelessWidget {
     this.onChanged,
     this.keyboardType,
     this.autoValidate = false,
+    this.controller,
   });
 
   final String labelText;
@@ -25,10 +26,12 @@ class AppTextFormField extends StatelessWidget {
   final void Function(String)? onChanged;
   final TextInputType? keyboardType;
   final bool autoValidate;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       autovalidateMode: autoValidate
           ? AutovalidateMode.onUserInteraction
           : AutovalidateMode.disabled,
