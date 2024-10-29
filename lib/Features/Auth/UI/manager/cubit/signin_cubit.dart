@@ -15,17 +15,10 @@ class SigninCubit extends Cubit<SigninState> {
   final GlobalKey<FormState> formKey = GlobalKey();
 
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
-  bool isPasswordObscured = true;
 
   /// Method to enable validation once the user interacts after clicking the button
   void enableAutoValidation() {
     autovalidateMode = AutovalidateMode.onUserInteraction;
-    emit(const SigninState.initial()); // Re-emit to update the UI
-  }
-
-  /// Method to toggle the password visibility
-  void togglePasswordVisibility() {
-    isPasswordObscured = !isPasswordObscured;
     emit(const SigninState.initial()); // Re-emit to update the UI
   }
 

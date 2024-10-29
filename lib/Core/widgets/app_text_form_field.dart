@@ -7,7 +7,7 @@ class AppTextFormField extends StatelessWidget {
     super.key,
     required this.labelText,
     this.prefixIcon,
-    required this.obscureText,
+    this.obscureText,
     this.suffixIcon,
     this.validator,
     this.onChanged,
@@ -19,7 +19,7 @@ class AppTextFormField extends StatelessWidget {
   final String labelText;
   final IconData? prefixIcon;
   final Widget? suffixIcon;
-  final bool obscureText;
+  final bool? obscureText;
   final String? Function(String?)? validator;
   final void Function(String)? onChanged;
   final TextInputType? keyboardType;
@@ -36,7 +36,7 @@ class AppTextFormField extends StatelessWidget {
       onChanged: onChanged,
       validator: validator,
       keyboardType: keyboardType ?? TextInputType.text,
-      obscureText: obscureText,
+      obscureText: obscureText ?? false,
       style: TextStyle(
         color: Colors.black,
         fontSize: 18.sp,
