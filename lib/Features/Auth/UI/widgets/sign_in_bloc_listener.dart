@@ -1,4 +1,6 @@
+import 'package:fashion_flare/Core/Helper/constants.dart';
 import 'package:fashion_flare/Core/Helper/extentions.dart';
+import 'package:fashion_flare/Core/Helper/show_snackbar.dart';
 import 'package:fashion_flare/Core/routing/routes.dart';
 import 'package:fashion_flare/Features/Auth/UI/manager/cubit/signin_cubit.dart';
 import 'package:fashion_flare/Features/Auth/UI/manager/cubit/signin_state.dart';
@@ -26,7 +28,7 @@ class SignInBlocListener extends StatelessWidget {
               context: context,
               builder: (context) => Center(
                 child: LoadingAnimationWidget.threeArchedCircle(
-                    color: Colors.redAccent, size: 100),
+                    color: kPrimaryColor, size: 100),
               ),
             );
           },
@@ -45,11 +47,12 @@ class SignInBlocListener extends StatelessWidget {
           },
           emailSuccess: () {
             context.pop();
-            print("email success");
+            context.pushNamedAndRemoveUntil(Routes.navHomeView,
+                predicate: (Route<dynamic> route) => false);
           },
           emailError: (errMsg) {
             context.pop();
-            print("email error $errMsg");
+            showSnackbar(context, errMsg, Colors.red);
           },
         );
       },

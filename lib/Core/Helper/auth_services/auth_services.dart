@@ -9,8 +9,7 @@ class AuthServices {
     return _auth.currentUser;
   }
 
-  Future<UserCredential> loginUser(
-      {required String? email, required String? password}) async {
+  Future<UserCredential> loginUser(String? email, String? password) async {
     return await _auth.signInWithEmailAndPassword(
         email: email!, password: password!);
   }

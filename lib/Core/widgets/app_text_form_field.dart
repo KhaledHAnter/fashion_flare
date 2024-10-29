@@ -9,7 +9,6 @@ class AppTextFormField extends StatelessWidget {
     this.prefixIcon,
     required this.obscureText,
     this.suffixIcon,
-    this.onSuffixTap,
     this.validator,
     this.onChanged,
     this.keyboardType,
@@ -19,9 +18,8 @@ class AppTextFormField extends StatelessWidget {
 
   final String labelText;
   final IconData? prefixIcon;
-  final IconData? suffixIcon;
+  final Widget? suffixIcon;
   final bool obscureText;
-  final void Function()? onSuffixTap;
   final String? Function(String?)? validator;
   final void Function(String)? onChanged;
   final TextInputType? keyboardType;
@@ -47,12 +45,7 @@ class AppTextFormField extends StatelessWidget {
       decoration: InputDecoration(
         errorStyle: TextStyle(fontSize: 16.sp),
         prefixIcon: Icon(prefixIcon),
-        suffixIcon: suffixIcon == null
-            ? null
-            : GestureDetector(
-                onTap: onSuffixTap,
-                child: Icon(suffixIcon),
-              ),
+        suffixIcon: suffixIcon,
         contentPadding: const EdgeInsets.all(18),
         labelText: labelText,
         labelStyle: const TextStyle(

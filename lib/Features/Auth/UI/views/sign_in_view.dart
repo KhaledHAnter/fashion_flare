@@ -13,6 +13,7 @@ import 'package:fashion_flare/Core/widgets/app_text.dart';
 import 'package:fashion_flare/Core/widgets/app_text_form_field.dart';
 import 'package:fashion_flare/Core/widgets/custom_button.dart';
 import 'package:fashion_flare/Features/Auth/UI/manager/cubit/signin_cubit.dart';
+import 'package:fashion_flare/Features/Auth/UI/manager/cubit/signin_state.dart';
 import 'package:fashion_flare/Features/Auth/UI/widgets/sign_in_bloc_listener.dart';
 import 'package:fashion_flare/Features/Auth/UI/widgets/social_media_icons.dart';
 import 'package:fashion_flare/core/Helper/show_awsome_snakbar.dart';
@@ -34,14 +35,12 @@ class SignInView extends StatefulWidget {
 
 class _SignInViewState extends State<SignInView> {
   // String? email, password;
-  bool obscureText = true;
+  // bool obscureText = true;
   // GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  bool autoValidate = false, isLoading = false;
+  // bool autoValidate = false, isLoading = false;
 
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read<SigninCubit>();
-    GlobalKey<FormState> formKey = cubit.formKey;
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(
@@ -71,38 +70,46 @@ class _SignInViewState extends State<SignInView> {
                   ),
                 ),
                 Gap(40.h),
-                Form(
-                  key: formKey,
-                  child: Column(
-                    children: [
-                      AppTextFormField(
-                        autoValidate: autoValidate,
-                        labelText: "Email",
-                        controller: cubit.emailController,
-                        validator: ValidatorUtils.validateEmail,
-                        keyboardType: TextInputType.emailAddress,
-                        prefixIcon: FontAwesomeIcons.solidEnvelope,
-                        obscureText: false,
+                BlocBuilder<SigninCubit, SigninState>(
+                  builder: (context, state) {
+                    final cubit = context.read<SigninCubit>();
+                    GlobalKey<FormState> formKey = cubit.formKey;
+                    bool obscureText = cubit.isPasswordObscured;
+                    return Form(
+                      key: formKey,
+                      autovalidateMode: cubit.autovalidateMode,
+                      child: Column(
+                        children: [
+                          AppTextFormField(
+                            labelText: "Email",
+                            controller: cubit.emailController,
+                            validator: ValidatorUtils.validateEmail,
+                            keyboardType: TextInputType.emailAddress,
+                            prefixIcon: FontAwesomeIcons.solidEnvelope,
+                            obscureText: false,
+                          ),
+                          Gap(24.h),
+                          AppTextFormField(
+                            labelText: "Password",
+                            controller: cubit.passwordController,
+                            validator: ValidatorUtils.validatePassword,
+                            prefixIcon: FontAwesomeIcons.lock,
+                            obscureText: obscureText,
+                            suffixIcon: IconButton(
+                              onPressed: () {
+                                cubit.togglePasswordVisibility();
+                              },
+                              icon: Icon(
+                                obscureText
+                                    ? FontAwesomeIcons.eye
+                                    : FontAwesomeIcons.eyeSlash,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                      Gap(24.h),
-                      AppTextFormField(
-                        autoValidate: autoValidate,
-                        labelText: "Password",
-                        controller: cubit.passwordController,
-                        validator: ValidatorUtils.validatePassword,
-                        prefixIcon: FontAwesomeIcons.lock,
-                        obscureText: obscureText,
-                        suffixIcon: obscureText
-                            ? FontAwesomeIcons.eye
-                            : FontAwesomeIcons.eyeSlash,
-                        onSuffixTap: () {
-                          setState(() {
-                            obscureText = !obscureText;
-                          });
-                        },
-                      ),
-                    ],
-                  ),
+                    );
+                  },
                 ),
                 Gap(8.h),
                 GestureDetector(
@@ -126,6 +133,7 @@ class _SignInViewState extends State<SignInView> {
                   text: "Sign In",
                   onTap: () async {
                     print("Shgal");
+                    context.read<SigninCubit>().signInWithEmail();
                     // if (formKey.currentState!.validate()) {
                     //   setState(() {
                     //     isLoading = true;
@@ -139,12 +147,12 @@ class _SignInViewState extends State<SignInView> {
                     //         predicate: (Route<dynamic> route) => false);
                     //   } on FirebaseAuthException catch (e) {
                     //     if (e.code == 'wrong-password') {
-                    //       showAwsomeSnakBar(
-                    //         context,
-                    //         message: "",
-                    //         title: "Wrong Password",
-                    //         type: ContentType.failure,
-                    //       );
+                    // showAwsomeSnakBar(
+                    //   context,
+                    //   message: "",
+                    //   title: "Wrong Password",
+                    //   type: ContentType.failure,
+                    // );
                     //     } else if (e.code == 'user-not-found') {
                     //       showAwsomeSnakBar(
                     //         context,
@@ -197,7 +205,7 @@ class _SignInViewState extends State<SignInView> {
                       SocialMediaIcon(
                         image: "assets/Icons/Google.png",
                         onTap: () {
-                          cubit.signInWithGoogle();
+                          context.read<SigninCubit>().signInWithGoogle();
                         },
                       ),
                     ],

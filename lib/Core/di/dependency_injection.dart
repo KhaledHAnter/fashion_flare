@@ -12,7 +12,7 @@ Future<void> setupGetIt() async {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   // Signin
-  getIt.registerLazySingleton<SignInRepo>(() => SignInRepo(authServices));
-  getIt.registerFactory<SigninCubit>(
-      () => SigninCubit(getIt<SignInRepo>(), firestore));
+  getIt.registerLazySingleton<SignInRepo>(
+      () => SignInRepo(authServices, firestore));
+  getIt.registerFactory<SigninCubit>(() => SigninCubit(getIt<SignInRepo>()));
 }
