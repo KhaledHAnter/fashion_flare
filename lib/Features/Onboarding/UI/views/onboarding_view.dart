@@ -87,14 +87,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
             ),
             AppButton(
               onTap: () {
-                if (_pageIndex == 2) {
-                  context.pushReplacementNamed(Routes.userCredentialsView);
-                } else {
-                  _pageController.nextPage(
-                    duration: const Duration(milliseconds: 250),
-                    curve: Curves.easeIn,
-                  );
-                }
+                _onBoardingButtonAction();
               },
               text: _pageIndex == 2 ? "Start" : "Next",
             ),
@@ -102,5 +95,16 @@ class _OnBoardingViewState extends State<OnBoardingView> {
         ),
       ),
     );
+  }
+
+  _onBoardingButtonAction() {
+    if (_pageIndex == 2) {
+      context.pushReplacementNamed(Routes.userCredentialsView);
+    } else {
+      _pageController.nextPage(
+        duration: const Duration(milliseconds: 250),
+        curve: Curves.easeIn,
+      );
+    }
   }
 }
