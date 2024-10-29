@@ -1,16 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../../../../Core/Helper/constants.dart';
-import '../../../../Core/Helper/extentions.dart';
-import '../../../../Core/routing/routes.dart';
-import '../../data/models/category_model.dart';
-import '../../data/models/search_delegate_model.dart';
-import '../../data/models/store_item_model.dart';
-import '../../../../Core/widgets/app_text.dart';
-import '../widgets/item_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+
+import '../../../../Core/Helper/constants.dart';
+import '../../../../Core/Helper/extentions.dart';
+import '../../../../Core/routing/routes.dart';
+import '../../../../Core/widgets/app_text.dart';
+import '../../data/models/category_model.dart';
+import '../../data/models/search_delegate_model.dart';
+import '../../data/models/store_item_model.dart';
+import '../widgets/item_card.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});

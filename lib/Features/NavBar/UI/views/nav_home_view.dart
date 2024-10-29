@@ -57,7 +57,7 @@ class _NavHomeViewState extends State<NavHomeView> {
           GButton(
             icon: Icons.favorite,
             iconSize: 25.r,
-            text: "Wishlist",
+            text: "Donations",
           ),
           GButton(
             icon: Icons.person,

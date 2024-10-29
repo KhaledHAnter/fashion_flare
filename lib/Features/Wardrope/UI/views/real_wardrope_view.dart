@@ -1,7 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:fashion_flare/Core/Helper/constants.dart';
+import '../../../../Core/Helper/constants.dart';
 import 'package:tflite_v2/tflite_v2.dart';
 import 'package:uuid/uuid.dart';
 
@@ -135,20 +135,13 @@ class _RealWardropeViewState extends State<RealWardropeView> {
           children: <Widget>[
             Row(
               children: [
-                const Spacer(
-                  flex: 3,
-                ),
+                const Spacer(),
                 AppText(
                   text: "Wardrobe".toUpperCase(),
                   size: 26.sp,
                   weight: FontWeight.w700,
                 ),
                 const Spacer(),
-                TextButton(
-                    onPressed: () {
-                      context.pushNamed(Routes.wardrobeView);
-                    },
-                    child: const Text("Test mode"))
               ],
             ),
             Gap(8.h),
@@ -718,7 +711,7 @@ Future<File?> _removeBackground(File imageFile) async {
       return null;
     }
   } catch (e) {
-  print('Exception occurred during RemoveBG API call: $e');
+    print('Exception occurred during RemoveBG API call: $e');
     return null;
   }
 }

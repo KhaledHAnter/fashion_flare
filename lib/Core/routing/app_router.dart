@@ -26,8 +26,6 @@ import '../../Features/Recommendations/UI/views/today_outfit_view.dart';
 import '../../Features/Style_choose/UI/views/choose_hair_view.dart';
 import '../../Features/Style_choose/UI/views/choose_style_view.dart';
 import '../../Features/User_details/UI/views/user_details_view.dart';
-import '../../Features/Wardrope/UI/views/generated_outfit_view.dart';
-import '../../Features/Wardrope/UI/views/wardrobe_view.dart';
 import '../../Features/Welcome/UI/views/welcome_view.dart';
 import '../../Features/Wishlist/UI/views/wishlist_view.dart';
 import '../../Features/Home/data/models/store_item_model.dart';
@@ -169,17 +167,17 @@ class AppRouter {
           ),
         );
 
-      case Routes.wardrobeView:
-        return MaterialPageRoute(
-          builder: (_) => const WardrobeView(),
-        );
+      // case Routes.wardrobeView:
+      //   return MaterialPageRoute(
+      //     builder: (_) => const WardrobeView(),
+      //   );
 
-      case Routes.generatedOutfitView:
-        return MaterialPageRoute(
-          builder: (_) => GeneratedOutfitView(
-            data: arrguments as List<String>,
-          ),
-        );
+      // case Routes.generatedOutfitView:
+      //   return MaterialPageRoute(
+      //     builder: (_) => GeneratedOutfitView(
+      //       data: arrguments as List<String>,
+      //     ),
+      //   );
 
       case Routes.realWardrobeView:
         return MaterialPageRoute(

@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fashion_flare/Core/Helper/auth_services/auth_services.dart';
 import 'package:fashion_flare/Core/Helper/constants.dart';
 import 'package:fashion_flare/Core/Helper/extentions.dart';
+import 'package:fashion_flare/Core/Helper/validator_utils/validator_utils.dart';
 import 'package:fashion_flare/Core/routing/routes.dart';
 import 'package:fashion_flare/core/Helper/show_snackbar.dart';
 import 'package:fashion_flare/Core/Services/FireBase%20Services/auth_service.dart';
@@ -84,16 +85,7 @@ class _RegisterViewState extends State<RegisterView> {
                               onChanged: (p0) {
                                 email = p0;
                               },
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Please enter your email';
-                                }
-                                if (!(value.contains('.com') &&
-                                    value.contains('@'))) {
-                                  return 'Invalid Email';
-                                }
-                                return null;
-                              },
+                              validator: ValidatorUtils.validateEmail,
                               keyboardType: TextInputType.emailAddress,
                               prefixIcon: FontAwesomeIcons.solidEnvelope,
                               obscureText: false,
@@ -105,15 +97,7 @@ class _RegisterViewState extends State<RegisterView> {
                               onChanged: (p0) {
                                 password = p0;
                               },
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Please enter your password';
-                                }
-                                if (value.length < 8) {
-                                  return 'password must be at least 8 characters';
-                                }
-                                return null;
-                              },
+                              validator: ValidatorUtils.validatePassword,
                               prefixIcon: FontAwesomeIcons.lock,
                               obscureText: obscureText,
                               suffixIcon: obscureText
@@ -132,16 +116,9 @@ class _RegisterViewState extends State<RegisterView> {
                               onChanged: (p0) {
                                 rPassword = p0;
                               },
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Please enter your password';
-                                }
-                                if (value.length < 8 || !(value == password)) {
-                                  return 'Passwords do not match';
-                                }
-
-                                return null;
-                              },
+                              validator: (value) =>
+                                  ValidatorUtils.validatePasswordConfirmation(
+                                      value, password),
                               prefixIcon: FontAwesomeIcons.lock,
                               obscureText: rObscureText,
                               suffixIcon: rObscureText

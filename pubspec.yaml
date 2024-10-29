@@ -27,7 +27,7 @@ dependencies:
   http: ^1.2.2
   image_picker: ^1.1.2
   loading_animation_widget: ^1.2.1
-  model_viewer_plus: ^1.8.0
+  # model_viewer_plus: ^1.8.0
   path_provider: ^2.1.4
   shared_preferences: ^2.3.2
   tflite_v2: ^1.0.0
@@ -50,8 +50,6 @@ flutter:
   assets:
     - assets/Images/
     - assets/Icons/
-    - assets/Videos/
-    - assets/GLBs/
     - assets/ML/
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
