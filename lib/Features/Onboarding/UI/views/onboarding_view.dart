@@ -1,11 +1,12 @@
-import '../../../../Core/Helper/extentions.dart';
-import '../../../../Core/routing/routes.dart';
-import '../../Data/Models/onboard.dart';
+import 'package:fashion_flare/Core/Helper/extentions.dart';
+import 'package:fashion_flare/Core/routing/routes.dart';
+import 'package:fashion_flare/Features/Onboarding/UI/manager/onboarding_controller.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../Core/widgets/app_button.dart';
 import '../widgets/dot_indicator.dart';
 import '../widgets/onboarding_content.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../Data/Models/onboard.dart';
 
 class OnBoardingView extends StatefulWidget {
   const OnBoardingView({super.key});
@@ -15,19 +16,17 @@ class OnBoardingView extends StatefulWidget {
 }
 
 class _OnBoardingViewState extends State<OnBoardingView> {
-  bool notLastScreen = true;
-  late PageController _pageController;
-  int _pageIndex = 0;
+  late OnBoardingController _controller;
 
   @override
   void initState() {
-    _pageController = PageController(initialPage: 0);
     super.initState();
+    _controller = OnBoardingController();
   }
 
   @override
   void dispose() {
-    _pageController.dispose();
+    _controller.dispose();
     super.dispose();
   }
 
@@ -38,73 +37,67 @@ class _OnBoardingViewState extends State<OnBoardingView> {
         padding: const EdgeInsets.only(top: 40),
         child: Column(
           children: <Widget>[
-            Expanded(
-              child: PageView.builder(
-                physics: const BouncingScrollPhysics(),
-                itemCount: OnBoardData.length,
-                onPageChanged: (value) {
-                  setState(() {
-                    _pageIndex = value;
-                  });
-                },
-                controller: _pageController,
-                itemBuilder: (context, index) {
-                  return OnBoardingContent(
-                    image: OnBoardData[index].image,
-                    title: OnBoardData[index].title,
-                    description: OnBoardData[index].description,
-                    screenNum: index + 1,
-                    onTap: () {
-                      context.pushReplacementNamed(Routes.userCredentialsView);
-                    },
-                  );
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: List.generate(
-                  OnBoardData.length,
-                  (index) => Padding(
-                    padding: EdgeInsets.only(right: 6.w),
-                    child: GestureDetector(
-                      onTap: () {
-                        _pageController.animateToPage(
-                          index,
-                          duration: const Duration(milliseconds: 250),
-                          curve: Curves.easeIn,
-                        );
-                      },
-                      child: DotIndicator(
-                        isActive: index == _pageIndex,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            AppButton(
-              onTap: () {
-                _onBoardingButtonAction();
-              },
-              text: _pageIndex == 2 ? "Start" : "Next",
-            ),
+            _buildPageView(),
+            _buildDotIndicators(),
+            _buildActionButton(),
           ],
         ),
       ),
     );
   }
 
-  _onBoardingButtonAction() {
-    if (_pageIndex == 2) {
-      context.pushReplacementNamed(Routes.userCredentialsView);
-    } else {
-      _pageController.nextPage(
-        duration: const Duration(milliseconds: 250),
-        curve: Curves.easeIn,
-      );
-    }
+  /// Builds the PageView that shows the onboarding content.
+  Widget _buildPageView() {
+    return Expanded(
+      child: PageView.builder(
+        physics: const BouncingScrollPhysics(),
+        itemCount: OnBoardData.length,
+        controller: _controller.pageController,
+        onPageChanged: (value) => setState(() {
+          _controller.onPageChanged(
+            value,
+          );
+        }),
+        itemBuilder: (context, index) {
+          return OnBoardingContent(
+            image: OnBoardData[index].image,
+            title: OnBoardData[index].title,
+            description: OnBoardData[index].description,
+            screenNum: index + 1,
+            onTap: () {
+              context.pushReplacementNamed(Routes.userCredentialsView);
+            },
+          );
+        },
+      ),
+    );
+  }
+
+  /// Builds the dot indicators to indicate current page.
+  Widget _buildDotIndicators() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 20),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: List.generate(
+          OnBoardData.length,
+          (index) => Padding(
+            padding: EdgeInsets.only(right: 6.w),
+            child: GestureDetector(
+              onTap: () => _controller.onDotIndicatorTap(index),
+              child: DotIndicator(isActive: index == _controller.pageIndex),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  /// Builds the action button (Next/Start).
+  Widget _buildActionButton() {
+    return AppButton(
+      onTap: () => _controller.onBoardingButtonAction(context),
+      text: _controller.pageIndex == OnBoardData.length - 1 ? "Start" : "Next",
+    );
   }
 }
