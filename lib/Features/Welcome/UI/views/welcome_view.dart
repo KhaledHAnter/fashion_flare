@@ -1,3 +1,4 @@
+import 'package:fashion_flare/Core/Helper/auth_services/auth_services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../../../../Core/Helper/constants.dart';
 import '../../../../Core/Helper/extentions.dart';
@@ -57,13 +58,11 @@ class WelcomeView extends StatelessWidget {
             ),
             AppButton(
               text: "Get Started",
-              onTap: () {
-                FirebaseAuth auth = FirebaseAuth.instance;
-
-                if (auth.currentUser != null) {
-                  context.pushReplacementNamed(Routes.navHomeView);
-                } else {
-                  context.pushReplacementNamed(Routes.onBoardingView);
+              onTap: () async {
+                AuthServices auth = AuthServices();
+                User? user = await auth.isLoggedIn();
+                if (context.mounted) {
+                  _welcomeNavigationOptions(context, user);
                 }
               },
             ),
@@ -71,5 +70,13 @@ class WelcomeView extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  _welcomeNavigationOptions(BuildContext context, User? user) {
+    if (user != null) {
+      context.pushReplacementNamed(Routes.navHomeView);
+    } else {
+      context.pushReplacementNamed(Routes.onBoardingView);
+    }
   }
 }

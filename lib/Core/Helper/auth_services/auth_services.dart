@@ -5,6 +5,10 @@ class AuthServices {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 
+  Future<User?> isLoggedIn() async {
+    return _auth.currentUser;
+  }
+
   Future signInWithGoogle() async {
     // Trigger the authentication flow
     final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
