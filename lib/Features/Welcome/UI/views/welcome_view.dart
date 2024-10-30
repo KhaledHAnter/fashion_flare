@@ -23,7 +23,7 @@ class WelcomeView extends StatelessWidget {
               child: Container(
                 decoration: const BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage("assets/Images/1.1.png"),
+                    image: AssetImage("assets/Images/111.1.png"),
                   ),
                 ),
                 child: Center(
