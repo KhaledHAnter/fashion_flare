@@ -1,13 +1,8 @@
-import 'dart:math';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fashion_flare/Core/Helper/auth_services/auth_services.dart';
-import 'package:fashion_flare/Core/Helper/show_snackbar.dart';
 import 'package:fashion_flare/Core/Helper/validator_utils/validator_utils.dart';
-
+import 'package:fashion_flare/Features/Auth/UI/manager/forgot_pass_cubit/forgot_pass_cubit.dart';
+import 'package:fashion_flare/Features/Auth/UI/widgets/forgot_pass_bloc_listener.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../Core/Helper/constants.dart';
-import '../../../../Core/Helper/extentions.dart';
-import '../../../../Core/routing/routes.dart';
 import '../../../../Core/widgets/app_text.dart';
 import '../../../../Core/widgets/app_text_form_field.dart';
 import '../../../../Core/widgets/custom_button.dart';
@@ -16,33 +11,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 
-class ForgotPassword extends StatefulWidget {
+class ForgotPassword extends StatelessWidget {
   const ForgotPassword({super.key});
 
   @override
-  State<ForgotPassword> createState() => _ForgotPasswordState();
-}
-
-class _ForgotPasswordState extends State<ForgotPassword> {
-  String? email;
-
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
-  bool autoValidate = false;
-  final AuthServices _auth = AuthServices();
-
-  Future<bool> getUserData(String email) async {
-    DocumentSnapshot docSnapshot =
-        await FirebaseFirestore.instance.collection("users").doc(email).get();
-    if (docSnapshot.exists) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final cubit = context.read<ForgotPassCubit>();
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -65,14 +39,11 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               ),
               Gap(40.h),
               Form(
-                key: formKey,
+                key: cubit.formKey,
+                autovalidateMode: cubit.autovalidateMode,
                 child: AppTextFormField(
-                  autoValidate: autoValidate,
                   validator: ValidatorUtils.validateEmail,
-                  onChanged: (value) {
-                    setState(() {});
-                    email = value;
-                  },
+                  controller: cubit.emailController,
                   keyboardType: TextInputType.emailAddress,
                   labelText: "Email Address",
                   prefixIcon: FontAwesomeIcons.solidEnvelope,
@@ -82,36 +53,11 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               Gap(45.h),
               CustomButton(
                 text: "Continue",
-                color: email == null
-                    ? kSecondaryFontColor.withOpacity(0.5)
-                    : kPrimaryColor,
                 onTap: () async {
-                  if (!(email == null || email!.isEmpty) &&
-                      formKey.currentState!.validate()) {
-                    bool isRegistered = await getUserData(email!);
-                    if (isRegistered) {
-                      try {
-                        await _auth.resetPassword(email!);
-                        showSnackbar(
-                            context,
-                            "Password reset email sent, check your inbox",
-                            Colors.green);
-                        context.pushNamedAndRemoveUntil(Routes.signInView,
-                            predicate: (Route<dynamic> route) => false);
-                      } catch (e) {
-                        showSnackbar(context, e.toString(), Colors.red);
-                      }
-                    } else {
-                      showSnackbar(context, "Email not found, try to register",
-                          Colors.red);
-                    }
-                  } else {
-                    setState(() {
-                      autoValidate = true;
-                    });
-                  }
+                  cubit.sendPasswordResetEmail();
                 },
-              )
+              ),
+              const ForgotPassBlocListener(),
             ],
           ),
         ),

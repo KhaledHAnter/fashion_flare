@@ -1,4 +1,5 @@
 import 'package:fashion_flare/Core/di/dependency_injection.dart';
+import 'package:fashion_flare/Features/Auth/UI/manager/forgot_pass_cubit/forgot_pass_cubit.dart';
 import 'package:fashion_flare/Features/Auth/UI/manager/register_cubit/register_cubit.dart';
 import 'package:fashion_flare/Features/Auth/UI/manager/sigin_in_cubit/signin_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -75,7 +76,10 @@ class AppRouter {
 
       case Routes.forgotPassword:
         return MaterialPageRoute(
-          builder: (_) => const ForgotPassword(),
+          builder: (_) => BlocProvider(
+            create: (context) => getIt<ForgotPassCubit>(),
+            child: const ForgotPassword(),
+          ),
         );
 
       case Routes.otpverficationView:

@@ -1,6 +1,3 @@
-// ignore_for_file: use_build_context_synchronously
-import 'dart:developer';
-
 import 'package:fashion_flare/Core/Helper/constants.dart';
 import 'package:fashion_flare/Core/Helper/extentions.dart';
 import 'package:fashion_flare/Core/Helper/validator_utils/validator_utils.dart';
@@ -62,9 +59,7 @@ class _SignInViewState extends State<SignInView> {
                 Gap(40.h),
                 BlocBuilder<SigninCubit, SigninState>(
                   builder: (context, state) {
-                    log("object");
                     GlobalKey<FormState> formKey = cubit.formKey;
-
                     return Builder(builder: (context) {
                       return Form(
                         key: formKey,
@@ -127,7 +122,6 @@ class _SignInViewState extends State<SignInView> {
                 CustomButton(
                   text: "Sign In",
                   onTap: () async {
-                    print("Shgal");
                     cubit.signInWithEmail();
                   },
                 ),
