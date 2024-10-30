@@ -36,7 +36,10 @@ class _WishListViewState extends State<WishListView> {
                 child: Column(
                   children: [
                     const Spacer(),
-                    Image.asset("assets/Images/soon.png"),
+                    Image.asset(
+                      "assets/Images/soon.png",
+                      fit: BoxFit.contain,
+                    ),
                     Gap(24.h),
                     const AppText(text: "Donations will be here soon"),
                     const Spacer(),

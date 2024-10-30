@@ -1,3 +1,7 @@
+import 'package:fashion_flare/Core/Helper/auth_services/auth_services.dart';
+import 'package:fashion_flare/Core/Helper/show_snackbar.dart';
+import 'package:fashion_flare/Core/Helper/validator_utils/validator_utils.dart';
+
 import '../../../../Core/Helper/constants.dart';
 import '../../../../Core/Helper/extentions.dart';
 import '../../../../Core/routing/routes.dart';
@@ -17,11 +21,12 @@ class ForgotPassword extends StatefulWidget {
 }
 
 class _ForgotPasswordState extends State<ForgotPassword> {
-  String? phoneNumber;
+  String? email;
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   bool autoValidate = false;
+  final AuthServices _auth = AuthServices();
 
   @override
   Widget build(BuildContext context) {
@@ -34,52 +39,53 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             children: <Widget>[
               AppText(
                 text: "Forgot Password?",
-                size: 40.sp,
+                size: 30.sp,
                 weight: FontWeight.w700,
               ),
               Gap(8.h),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: AppText(
-                  text:
-                      "Don't worry ! It happens. Please enter the phone number we will send the OTP in this phone number.?",
-                  size: 16.sp,
-                  weight: FontWeight.w500,
-                  color: kSecondaryFontColor,
-                ),
+              AppText(
+                text:
+                    "Don't worry ! It happens. Please enter the email address we will send reset email to reset your password?",
+                size: 16.sp,
+                weight: FontWeight.w500,
+                color: kSecondaryFontColor,
               ),
               Gap(40.h),
               Form(
                 key: formKey,
                 child: AppTextFormField(
                   autoValidate: autoValidate,
-                  validator: (value) {
-                    if (!(value!.length == 11)) {
-                      return "Invalid Phone Number";
-                    }
-                    return null;
-                  },
+                  validator: ValidatorUtils.validateEmail,
                   onChanged: (value) {
                     setState(() {});
-                    phoneNumber = value;
+                    email = value;
                   },
-                  keyboardType: TextInputType.phone,
-                  labelText: "Phone Number",
-                  prefixIcon: FontAwesomeIcons.phone,
+                  keyboardType: TextInputType.emailAddress,
+                  labelText: "Email Address",
+                  prefixIcon: FontAwesomeIcons.solidEnvelope,
                   obscureText: false,
                 ),
               ),
               Gap(45.h),
               CustomButton(
                 text: "Continue",
-                color: phoneNumber == null
+                color: email == null
                     ? kSecondaryFontColor.withOpacity(0.5)
                     : kPrimaryColor,
-                onTap: () {
-                  if (!(phoneNumber == null || phoneNumber!.isEmpty) &&
+                onTap: () async {
+                  if (!(email == null || email!.isEmpty) &&
                       formKey.currentState!.validate()) {
-                    context.pushNamed(Routes.otpverficationView,
-                        arguments: phoneNumber);
+                    try {
+                      await _auth.resetPassword(email!);
+                      showSnackbar(
+                          context,
+                          "Password reset email sent, check your inbox",
+                          Colors.green);
+                      context.pushNamedAndRemoveUntil(Routes.signInView,
+                          predicate: (Route<dynamic> route) => false);
+                    } on Exception catch (e) {
+                      showSnackbar(context, e.toString(), Colors.red);
+                    }
                   } else {
                     setState(() {
                       autoValidate = true;
