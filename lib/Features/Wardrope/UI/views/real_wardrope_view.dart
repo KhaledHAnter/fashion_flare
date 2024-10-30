@@ -35,6 +35,15 @@ class _RealWardropeViewState extends State<RealWardropeView> {
   var v = "";
 
   @override
+  void dispose() {
+    pc1.dispose();
+    pc2.dispose();
+    pc3.dispose();
+    Tflite.close();
+    super.dispose();
+  }
+
+  @override
   void initState() {
     pc1 = PageController(initialPage: 1, viewportFraction: .5);
     pc2 = PageController(initialPage: 1, viewportFraction: .5);
@@ -187,7 +196,7 @@ class _RealWardropeViewState extends State<RealWardropeView> {
                                       ? const SizedBox.shrink()
                                       : Image.file(
                                           _tShirtItems[index].image,
-                                          fit: BoxFit.cover,
+                                          fit: BoxFit.contain,
                                         ),
                                 ),
                               ),
@@ -227,7 +236,7 @@ class _RealWardropeViewState extends State<RealWardropeView> {
                                       ? const SizedBox.shrink()
                                       : Image.file(
                                           _trousersItems[index].image,
-                                          fit: BoxFit.cover,
+                                          fit: BoxFit.contain,
                                         ),
                                 ),
                               ),
@@ -267,7 +276,7 @@ class _RealWardropeViewState extends State<RealWardropeView> {
                                       ? const SizedBox.shrink()
                                       : Image.file(
                                           _shoesItems[index].image,
-                                          fit: BoxFit.cover,
+                                          fit: BoxFit.contain,
                                         ),
                                 ),
                               ),

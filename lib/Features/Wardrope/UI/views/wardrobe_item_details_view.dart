@@ -78,7 +78,7 @@ class WardrobeItemDetailsImage extends StatelessWidget {
           borderRadius: BorderRadius.circular(50),
           image: DecorationImage(
             image: Image.file(imagePath).image,
-            fit: BoxFit.cover,
+            fit: BoxFit.contain,
           ),
         ),
       ),

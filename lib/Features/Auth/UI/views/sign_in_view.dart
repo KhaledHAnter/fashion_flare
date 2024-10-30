@@ -178,7 +178,6 @@ class _SignInViewState extends State<SignInView> {
                           decoration: TextDecoration.underline,
                           decorationColor: const Color(0xff4A4A68),
                           decorationThickness: 2.0,
-                          decorationStyle: TextDecorationStyle.dashed,
                         ),
                       ),
                     ],
