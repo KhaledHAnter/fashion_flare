@@ -1,3 +1,5 @@
+import 'package:gap/gap.dart';
+
 import '../../../../Core/widgets/app_text.dart';
 
 import '../../../../Core/widgets/custom_app_bar.dart';
@@ -29,9 +31,17 @@ class _WishListViewState extends State<WishListView> {
                 context.pushNamed(Routes.cartView);
               },
             ),
-            const Expanded(
+            Expanded(
               child: Center(
-                child: AppText(text: "Donations, will be here soon"),
+                child: Column(
+                  children: [
+                    const Spacer(),
+                    Image.asset("assets/Images/soon.png"),
+                    Gap(24.h),
+                    const AppText(text: "Donations will be here soon"),
+                    const Spacer(),
+                  ],
+                ),
               ),
             ),
           ],

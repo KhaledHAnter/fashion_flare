@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fashion_flare/Core/Helper/auth_services/auth_services.dart';
 import '../../../../Core/Helper/extentions.dart';
 import '../../../../Core/routing/routes.dart';
 import '../../../../Core/widgets/app_text.dart';
@@ -35,6 +36,8 @@ class _ProfileViewState extends State<ProfileView> {
       });
     }
   }
+
+  final AuthServices _authServices = AuthServices();
 
   @override
   void initState() {
@@ -165,10 +168,13 @@ class _ProfileViewState extends State<ProfileView> {
                                       child: CustomButton(
                                         text: "Log Out",
                                         onTap: () async {
-                                          logout();
-                                          context.pushNamedAndRemoveUntil(
-                                              Routes.welcomeView,
-                                              predicate: (context) => false);
+                                          // logout();
+                                          await _authServices.logout();
+                                          if (context.mounted) {
+                                            context.pushNamedAndRemoveUntil(
+                                                Routes.welcomeView,
+                                                predicate: (context) => false);
+                                          }
                                         },
                                       ),
                                     ),
@@ -211,11 +217,5 @@ class _ProfileViewState extends State<ProfileView> {
         ),
       ),
     );
-  }
-
-  Future<void> logout() async {
-    GoogleSignIn googleSignIn = GoogleSignIn();
-    if (await googleSignIn.isSignedIn()) await googleSignIn.signOut();
-    await FirebaseAuth.instance.signOut();
   }
 }

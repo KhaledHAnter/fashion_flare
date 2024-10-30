@@ -26,40 +26,38 @@ class UserCredentialsView extends StatelessWidget {
               child: Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                child: Padding(
-                  padding: EdgeInsets.only(top: 350.h),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      AppText(
-                        text: "Hello there!",
-                        size: 40.sp,
-                        weight: FontWeight.w700,
-                      ),
-                      Gap(12.h),
-                      AppText(
-                        text: "Let's find your perfect look together!",
-                        size: 16.sp,
-                      ),
-                      const Spacer(),
-                      CustomButton(
-                        text: "Register",
-                        onTap: () {
-                          context.pushReplacementNamed(Routes.registerView);
-                        },
-                      ),
-                      Gap(12.h),
-                      CustomButton(
-                        text: "Sign In",
-                        color: Colors.black,
-                        textColor: kPrimaryColor,
-                        onTap: () {
-                          context.pushReplacementNamed(Routes.signInView);
-                        },
-                      ),
-                    ],
-                  ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    const Spacer(),
+                    AppText(
+                      text: "Hello there!",
+                      size: 40.sp,
+                      weight: FontWeight.w700,
+                    ),
+                    Gap(12.h),
+                    AppText(
+                      text: "Let's find your perfect look together!",
+                      size: 16.sp,
+                    ),
+                    const Spacer(),
+                    CustomButton(
+                      text: "Register",
+                      onTap: () {
+                        context.pushReplacementNamed(Routes.registerView);
+                      },
+                    ),
+                    Gap(12.h),
+                    CustomButton(
+                      text: "Sign In",
+                      color: Colors.black,
+                      textColor: kPrimaryColor,
+                      onTap: () {
+                        context.pushReplacementNamed(Routes.signInView);
+                      },
+                    ),
+                  ],
                 ),
               ),
             ),
