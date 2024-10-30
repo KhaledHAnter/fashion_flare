@@ -1,8 +1,5 @@
-import 'dart:developer';
-
 import 'package:fashion_flare/Features/Auth/UI/manager/cubit/signin_state.dart';
 import 'package:fashion_flare/Features/Auth/data/repos/sign_in_repo.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -22,7 +19,7 @@ class SigninCubit extends Cubit<SigninState> {
     emit(const SigninState.initial()); // Re-emit to update the UI
   }
 
-  Future<void> signInWithEmail() async {
+  void signInWithEmail() async {
     final email = emailController.text;
     final password = passwordController.text;
 
@@ -30,32 +27,19 @@ class SigninCubit extends Cubit<SigninState> {
       enableAutoValidation();
       return;
     }
+    emit(const SigninState.loading());
+    final response = await _signInRepo.signInWithEmail(email, password);
 
-    try {
-      emit(const SigninState.loading());
-      User? user = await _signInRepo.signInWithEmail(email, password);
-      if (user != null) {
-        emit(const SigninState.emailSuccess());
-      }
-    } on FirebaseAuthException catch (e) {
-      log(e.code);
-      if (e.code == 'user-not-found') {
-        emit(const SigninState.emailError('No user found for that email.'));
-      } else if (e.code == 'wrong-password') {
-        emit(const SigninState.emailError('Wrong password provided.'));
-      } else if (e.code == 'invalid-email') {
-        emit(const SigninState.emailError(
-            'The email address is badly formatted.'));
-      } else if (e.code == 'invalid-credential') {
-        emit(const SigninState.emailError(
-            'Email and password do not match. Please try again.'));
-      } else {
-        emit(SigninState.emailError(
-            e.message ?? 'An unexpected error occurred.'));
-      }
-    } catch (e) {
-      emit(const SigninState.emailError('An unknown error occurred.'));
-    }
+    response.when(
+      success: (data) {
+        if (data != null) {
+          emit(const SigninState.emailSuccess());
+        }
+      },
+      error: (errMessage) {
+        emit(SigninState.emailError(errMessage));
+      },
+    );
   }
 
   Future<void> signInWithGoogle() async {
