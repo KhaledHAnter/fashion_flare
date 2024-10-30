@@ -81,6 +81,9 @@ class _SignInViewState extends State<SignInView> {
                               validator: ValidatorUtils.validatePassword,
                               prefixIcon: FontAwesomeIcons.lock,
                               obscureText: isObscured,
+                              textInputAction: TextInputAction.done,
+                              onFieldSubmitted: (data) =>
+                                  cubit.signInWithEmail(),
                               suffixIcon: IconButton(
                                 onPressed: () {
                                   setState(() {

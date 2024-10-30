@@ -54,12 +54,15 @@ class ProductImage extends StatelessWidget {
             child: Container(
               width: 40.w,
               height: 40.h,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: kPrimaryColor,
+                color: kPrimaryColor.withOpacity(0.3),
               ),
               child: wishlist
-                  ? const Icon(Icons.close)
+                  ? const Icon(
+                      Icons.close,
+                      size: 24,
+                    )
                   : itemFav
                       ? Image.asset("assets/Icons/Solidheart.png")
                       : Image.asset("assets/Icons/heart.png"),

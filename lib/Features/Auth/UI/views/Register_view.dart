@@ -1,4 +1,4 @@
-// ignore_for_file: use_build_context_synchronously
+// ignore_for_file: file_names
 
 import 'package:fashion_flare/Core/Helper/constants.dart';
 import 'package:fashion_flare/Core/Helper/extentions.dart';
@@ -26,14 +26,7 @@ class RegisterView extends StatefulWidget {
 }
 
 class _RegisterViewState extends State<RegisterView> {
-  // String? email, password, rPassword;
   bool obscureText = true, rObscureText = true;
-  // autoValidate = false,
-  // termsAgreed = false,
-  // argumentError = false,
-  // isLoading = false;
-
-  // GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<RegisterCubit>();
@@ -110,6 +103,8 @@ class _RegisterViewState extends State<RegisterView> {
                                     value, cubit.passwordController.text),
                             prefixIcon: FontAwesomeIcons.lock,
                             obscureText: rObscureText,
+                            textInputAction: TextInputAction.done,
+                            onFieldSubmitted: (p0) => cubit.registerWithEmail(),
                             suffixIcon: IconButton(
                               onPressed: () {
                                 setState(() {
@@ -129,88 +124,11 @@ class _RegisterViewState extends State<RegisterView> {
                     );
                   },
                 ),
-                // Gap(8.h),
-                // GestureDetector(
-                //   onTap: () {
-                //     setState(() {
-                //       termsAgreed = !termsAgreed;
-                //       argumentError ? argumentError = false : null;
-                //     });
-                //   },
-                //   child: Row(
-                //     children: <Widget>[
-                //       Icon(
-                //         termsAgreed
-                //             ? FontAwesomeIcons.squareCheck
-                //             : FontAwesomeIcons.square,
-                //         // size: 25,
-                //       ),
-                //       Gap(4.w),
-                //       AppText(
-                //         text: "Agree with ",
-                //         size: 16.sp,
-                //         weight: FontWeight.w700,
-                //       ),
-                //       AppText(
-                //         text: "Terms & Conditions",
-                //         size: 18.sp,
-                //         weight: FontWeight.w700,
-                //         decoretions: TextDecoration.underline,
-                //       ),
-                //     ],
-                //   ),
-                // ),
-                // Gap(8.h),
-                // Visibility(
-                //   visible: argumentError,
-                //   child: AppText(
-                //     text: "you must accept terms and conditions",
-                //     color: Colors.red,
-                //     size: 18.sp,
-                //   ),
-                // ),
                 Gap(24.h),
                 CustomButton(
                   text: "Register",
                   onTap: () async {
-                    print("Shagal");
                     cubit.registerWithEmail();
-                    // if (termsAgreed == false) {
-                    //   setState(() {
-                    //     argumentError = true;
-                    //   });
-                    // } else if (formKey.currentState!.validate()) {
-                    //   setState(() {
-                    //     isLoading = true;
-                    //   });
-                    //   try {
-                    //     await registerUser(
-                    //         email: email, password: password);
-
-                    //     context.pushNamed(Routes.userDetails);
-
-                    //     showSnackbar(
-                    //       context,
-                    //       "Successful Registration",
-                    //       Colors.green,
-                    //     );
-                    //   } on FirebaseAuthException catch (e) {
-                    //     if (e.code == 'email-already-in-use') {
-                    //       showSnackbar(
-                    //         context,
-                    //         "Email already exist",
-                    //         Colors.redAccent,
-                    //       );
-                    //     }
-                    //   }
-                    //   setState(() {
-                    //     isLoading = false;
-                    //   });
-                    // } else {
-                    //   setState(() {
-                    //     autoValidate = true;
-                    //   });
-                    // }
                   },
                 ),
                 Gap(40.h),
@@ -278,27 +196,4 @@ class _RegisterViewState extends State<RegisterView> {
       ),
     );
   }
-
-  // Future handleRegister(BuildContext context) async {
-  //   AuthServices authServices = AuthServices();
-  //   User? user = await authServices.signInWithGoogle();
-  //   if (user != null) {
-  //     bool isRegistered = await isUserRegistered(user.email!);
-  //     if (!isRegistered) {
-  //       context.pushNamedAndRemoveUntil(Routes.userDetails,
-  //           predicate: (Route<dynamic> route) => false);
-  //     } else {
-  //       context.pushNamedAndRemoveUntil(Routes.navHomeView,
-  //           predicate: (Route<dynamic> route) => false);
-  //     }
-  //   }
-  // }
-
-  // Future<bool> isUserRegistered(String email) async {
-  //   final DocumentSnapshot userSnapshot =
-  //       await FirebaseFirestore.instance.collection('users').doc(email).get();
-
-  //   // Check if user document exists in Firestore
-  //   return userSnapshot.exists;
-  // }
 }

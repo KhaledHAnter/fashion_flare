@@ -3,18 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppTextFormField extends StatelessWidget {
-  const AppTextFormField({
-    super.key,
-    required this.labelText,
-    this.prefixIcon,
-    this.obscureText,
-    this.suffixIcon,
-    this.validator,
-    this.onChanged,
-    this.keyboardType,
-    this.autoValidate = false,
-    this.controller,
-  });
+  const AppTextFormField(
+      {super.key,
+      required this.labelText,
+      this.prefixIcon,
+      this.obscureText,
+      this.suffixIcon,
+      this.validator,
+      this.onChanged,
+      this.keyboardType,
+      this.autoValidate = false,
+      this.controller,
+      this.textInputAction,
+      this.onFieldSubmitted});
 
   final String labelText;
   final IconData? prefixIcon;
@@ -25,10 +26,14 @@ class AppTextFormField extends StatelessWidget {
   final TextInputType? keyboardType;
   final bool autoValidate;
   final TextEditingController? controller;
+  final TextInputAction? textInputAction;
+  final void Function(String)? onFieldSubmitted;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onFieldSubmitted: onFieldSubmitted,
+      textInputAction: textInputAction ?? TextInputAction.next,
       controller: controller,
       autovalidateMode: autoValidate
           ? AutovalidateMode.onUserInteraction
