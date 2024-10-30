@@ -14,10 +14,9 @@ class AuthServices {
         email: email!, password: password!);
   }
 
-  Future<UserCredential> registerUser(
-      {required String? email, required String? password}) async {
+  Future<UserCredential> registerUser(String email, String password) async {
     return await _auth.createUserWithEmailAndPassword(
-        email: email!, password: password!);
+        email: email, password: password);
   }
 
   Future signInWithGoogle() async {

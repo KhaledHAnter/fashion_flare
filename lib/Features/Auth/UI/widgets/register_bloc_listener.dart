@@ -2,18 +2,18 @@ import 'package:fashion_flare/Core/Helper/constants.dart';
 import 'package:fashion_flare/Core/Helper/extentions.dart';
 import 'package:fashion_flare/Core/Helper/show_snackbar.dart';
 import 'package:fashion_flare/Core/routing/routes.dart';
-import 'package:fashion_flare/Features/Auth/UI/manager/sigin_in_cubit/signin_cubit.dart';
-import 'package:fashion_flare/Features/Auth/UI/manager/sigin_in_cubit/signin_state.dart';
+import 'package:fashion_flare/Features/Auth/UI/manager/register_cubit/register_cubit.dart';
+import 'package:fashion_flare/Features/Auth/UI/manager/register_cubit/register_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
-class SignInBlocListener extends StatelessWidget {
-  const SignInBlocListener({super.key});
+class RegisterBlocListener extends StatelessWidget {
+  const RegisterBlocListener({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<SigninCubit, SigninState>(
+    return BlocListener<RegisterCubit, RegisterState>(
       listenWhen: (previous, current) =>
           current is Loading ||
           current is EmailSuccess ||
@@ -48,7 +48,7 @@ class SignInBlocListener extends StatelessWidget {
           },
           emailSuccess: () {
             context.pop();
-            context.pushNamedAndRemoveUntil(Routes.navHomeView,
+            context.pushNamedAndRemoveUntil(Routes.userDetails,
                 predicate: (Route<dynamic> route) => false);
           },
           emailError: (errMsg) {

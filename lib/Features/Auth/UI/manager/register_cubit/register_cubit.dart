@@ -1,11 +1,11 @@
-import 'package:fashion_flare/Features/Auth/UI/manager/cubit/signin_state.dart';
-import 'package:fashion_flare/Features/Auth/data/repos/sign_in_repo.dart';
+import 'package:fashion_flare/Features/Auth/UI/manager/register_cubit/register_state.dart';
+import 'package:fashion_flare/Features/Auth/data/repos/register_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SigninCubit extends Cubit<SigninState> {
-  final SignInRepo _signInRepo;
-  SigninCubit(this._signInRepo) : super(const SigninState.initial());
+class RegisterCubit extends Cubit<RegisterState> {
+  final RegisterRepo _registerRepo;
+  RegisterCubit(this._registerRepo) : super(const RegisterState.initial());
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -16,10 +16,10 @@ class SigninCubit extends Cubit<SigninState> {
   /// Method to enable validation once the user interacts after clicking the button
   void enableAutoValidation() {
     autovalidateMode = AutovalidateMode.onUserInteraction;
-    emit(const SigninState.initial()); // Re-emit to update the UI
+    emit(const RegisterState.initial()); // Re-emit to update the UI
   }
 
-  void signInWithEmail() async {
+  void registerWithEmail() async {
     final email = emailController.text;
     final password = passwordController.text;
 
@@ -27,32 +27,32 @@ class SigninCubit extends Cubit<SigninState> {
       enableAutoValidation();
       return;
     }
-    emit(const SigninState.loading());
-    final response = await _signInRepo.signInWithEmail(email, password);
+    emit(const RegisterState.loading());
+    final response = await _registerRepo.registerWithEmail(email, password);
 
     response.when(
       success: (data) {
         if (data != null) {
-          emit(const SigninState.emailSuccess());
+          emit(const RegisterState.emailSuccess());
         }
       },
       error: (errMessage) {
-        emit(SigninState.emailError(errMessage));
+        emit(RegisterState.emailError(errMessage));
       },
     );
   }
 
   Future<void> signInWithGoogle() async {
-    emit(const SigninState.loading());
-    bool? isGoogleRegistered = await _signInRepo.handleGoogleSignIn();
+    emit(const RegisterState.loading());
+    bool? isGoogleRegistered = await _registerRepo.handleGoogleSignIn();
     if (isGoogleRegistered != null) {
       if (isGoogleRegistered) {
-        emit(const SigninState.googleSuccess());
+        emit(const RegisterState.googleSuccess());
       } else {
-        emit(const SigninState.googleNotRegistered());
+        emit(const RegisterState.googleNotRegistered());
       }
     } else {
-      emit(const SigninState.googleError());
+      emit(const RegisterState.googleError());
     }
   }
 }

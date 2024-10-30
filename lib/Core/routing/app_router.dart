@@ -1,5 +1,6 @@
 import 'package:fashion_flare/Core/di/dependency_injection.dart';
-import 'package:fashion_flare/Features/Auth/UI/manager/cubit/signin_cubit.dart';
+import 'package:fashion_flare/Features/Auth/UI/manager/register_cubit/register_cubit.dart';
+import 'package:fashion_flare/Features/Auth/UI/manager/sigin_in_cubit/signin_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../Features/Wardrope/UI/views/real_wardrope_view.dart';
@@ -64,10 +65,13 @@ class AppRouter {
           ),
         );
 
-      // case Routes.registerView:
-      //   return MaterialPageRoute(
-      //     builder: (_) => const RegisterView(),
-      //   );
+      case Routes.registerView:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => getIt<RegisterCubit>(),
+            child: const RegisterView(),
+          ),
+        );
 
       case Routes.forgotPassword:
         return MaterialPageRoute(

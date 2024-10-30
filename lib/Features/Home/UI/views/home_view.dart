@@ -49,7 +49,11 @@ class _HomeViewState extends State<HomeView> {
         .get();
     if (mounted) {
       setState(() {
-        userName = docSnapshot.get('name');
+        if (docSnapshot.exists) {
+          userName = docSnapshot.get('name');
+        } else {
+          userName = 'User';
+        }
       });
     }
   }

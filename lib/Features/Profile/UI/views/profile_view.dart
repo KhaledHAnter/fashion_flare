@@ -28,8 +28,10 @@ class _ProfileViewState extends State<ProfileView> {
         .get();
     if (mounted) {
       setState(() {
-        userName = docSnapshot.get('name');
-        userEmail = docSnapshot.get('email');
+        if (docSnapshot.exists) {
+          userName = docSnapshot.get('name');
+          userEmail = docSnapshot.get('email');
+        }
       });
     }
   }
