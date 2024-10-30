@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fashion_flare/Core/Helper/auth_services/auth_services.dart';
 import 'package:fashion_flare/Core/Helper/show_snackbar.dart';
 import 'package:fashion_flare/Core/Helper/validator_utils/validator_utils.dart';
@@ -27,6 +30,16 @@ class _ForgotPasswordState extends State<ForgotPassword> {
 
   bool autoValidate = false;
   final AuthServices _auth = AuthServices();
+
+  Future<bool> getUserData(String email) async {
+    DocumentSnapshot docSnapshot =
+        await FirebaseFirestore.instance.collection("users").doc(email).get();
+    if (docSnapshot.exists) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,16 +88,22 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 onTap: () async {
                   if (!(email == null || email!.isEmpty) &&
                       formKey.currentState!.validate()) {
-                    try {
-                      await _auth.resetPassword(email!);
-                      showSnackbar(
-                          context,
-                          "Password reset email sent, check your inbox",
-                          Colors.green);
-                      context.pushNamedAndRemoveUntil(Routes.signInView,
-                          predicate: (Route<dynamic> route) => false);
-                    } on Exception catch (e) {
-                      showSnackbar(context, e.toString(), Colors.red);
+                    bool isRegistered = await getUserData(email!);
+                    if (isRegistered) {
+                      try {
+                        await _auth.resetPassword(email!);
+                        showSnackbar(
+                            context,
+                            "Password reset email sent, check your inbox",
+                            Colors.green);
+                        context.pushNamedAndRemoveUntil(Routes.signInView,
+                            predicate: (Route<dynamic> route) => false);
+                      } catch (e) {
+                        showSnackbar(context, e.toString(), Colors.red);
+                      }
+                    } else {
+                      showSnackbar(context, "Email not found, try to register",
+                          Colors.red);
                     }
                   } else {
                     setState(() {

@@ -45,7 +45,7 @@ class UserCredentialsView extends StatelessWidget {
                     CustomButton(
                       text: "Register",
                       onTap: () {
-                        context.pushReplacementNamed(Routes.registerView);
+                        context.pushNamed(Routes.registerView);
                       },
                     ),
                     Gap(12.h),
@@ -54,7 +54,7 @@ class UserCredentialsView extends StatelessWidget {
                       color: Colors.black,
                       textColor: kPrimaryColor,
                       onTap: () {
-                        context.pushReplacementNamed(Routes.signInView);
+                        context.pushNamed(Routes.signInView);
                       },
                     ),
                   ],
