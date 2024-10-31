@@ -211,6 +211,11 @@ class _ProfileViewState extends State<ProfileView> {
                   ]),
                 ),
               ),
+              AppText(
+                text: "v 1.0.0",
+                size: 12.sp,
+                weight: FontWeight.w500,
+              ),
             ],
           ),
         ),
