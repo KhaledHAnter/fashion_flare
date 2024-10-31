@@ -1,6 +1,8 @@
 import 'dart:developer';
 import 'dart:io';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:fashion_flare/Core/Helper/random_utils.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import '../../../../Core/Helper/constants.dart';
 import 'package:tflite_v2/tflite_v2.dart';
 import 'package:uuid/uuid.dart';
@@ -304,7 +306,27 @@ class _RealWardropeViewState extends State<RealWardropeView> {
                 decoration: const BoxDecoration(
                     shape: BoxShape.circle, color: kPrimaryColor),
                 child: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    List<int> randomOutfit = getRandomOutfit();
+                    log(randomOutfit.toString());
+                    showDialog(
+                      context: context,
+                      builder: (context) => Center(
+                        child: LoadingAnimationWidget.threeArchedCircle(
+                            color: kPrimaryColor, size: 100),
+                      ),
+                    );
+                    Future.delayed(const Duration(seconds: 1), () {
+                      if (context.mounted) {
+                        context.pop();
+                        context.pushNamed(Routes.randonOutfitView, arguments: [
+                          _tShirtItems[randomOutfit[0]].image,
+                          _trousersItems[randomOutfit[1]].image,
+                          _shoesItems[randomOutfit[2]].image,
+                        ]);
+                      }
+                    });
+                  },
                   icon: const Icon(
                     FontAwesomeIcons.dice,
                   ),
@@ -315,6 +337,15 @@ class _RealWardropeViewState extends State<RealWardropeView> {
         ),
       ),
     );
+  }
+
+  List<int> getRandomOutfit() {
+    RandomUtils randomUtils = RandomUtils();
+    List<int> randomOutfit = [];
+    randomOutfit.add(randomUtils.getRandomNumber(0, _tShirtItems.length - 1));
+    randomOutfit.add(randomUtils.getRandomNumber(0, _trousersItems.length - 1));
+    randomOutfit.add(randomUtils.getRandomNumber(0, _shoesItems.length - 1));
+    return randomOutfit;
   }
 
   Future<void> _pickAndSaveImageFromGallery(BuildContext context) async {

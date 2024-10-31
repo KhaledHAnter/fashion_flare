@@ -27,13 +27,17 @@ class CustomFloatingAppBar extends StatelessWidget {
                 icon: icon,
               )
             : const SizedBox(),
-        const Spacer(),
+        const Spacer(
+          flex: 2,
+        ),
         AppText(
           text: title,
           size: 26.sp,
           weight: FontWeight.w700,
         ),
-        const Spacer(),
+        const Spacer(
+          flex: 3,
+        ),
       ],
     );
   }

@@ -25,6 +25,7 @@ class Routes {
   static const String receptView = '/receptView';
   static const String wardrobeView = '/wardrobeView';
   static const String realWardrobeView = '/realWardrobeView';
+  static const String randonOutfitView = '/randonOutfitView';
   static const String wardrobeItemDetailsView = '/wardrobeItemDetailsView';
   static const String generatedOutfitView = '/generatedOutfitView';
   static const String profileView = '/profileView';
