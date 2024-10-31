@@ -31,7 +31,7 @@ class _RealWardropeViewState extends State<RealWardropeView> {
   late PageController pc2;
   late PageController pc3;
 
-  var _recognitions;
+  // var _recognitions;
   var v = "";
 
   @override
@@ -71,11 +71,11 @@ class _RealWardropeViewState extends State<RealWardropeView> {
       imageStd: 127.5,
     );
     setState(() {
-      _recognitions = recognitions;
+      // _recognitions = recognitions;
       v = recognitions![0]['label'].toString();
       // dataList = List<Map<String, dynamic>>.from(jsonDecode(v));
     });
-    print(_recognitions);
+    // print(_recognitions);
     return v;
   }
 
@@ -140,153 +140,177 @@ class _RealWardropeViewState extends State<RealWardropeView> {
       ),
       body: Padding(
         padding: EdgeInsets.only(top: 50.h),
-        child: Column(
-          children: <Widget>[
-            Row(
-              children: [
-                const Spacer(),
-                AppText(
-                  text: "Wardrobe".toUpperCase(),
-                  size: 26.sp,
-                  weight: FontWeight.w700,
+        child: Stack(
+          children: [
+            Column(
+              children: <Widget>[
+                Row(
+                  children: [
+                    const Spacer(),
+                    AppText(
+                      text: "Wardrobe".toUpperCase(),
+                      size: 26.sp,
+                      weight: FontWeight.w700,
+                    ),
+                    const Spacer(),
+                  ],
                 ),
+                Gap(8.h),
+                AppText(text: "Long press on item to remove", size: 16.sp),
+                const Spacer(),
+                _tShirtItems.isEmpty &&
+                        _trousersItems.isEmpty &&
+                        _shoesItems.isEmpty
+                    ? Center(
+                        child: AppText(
+                        text: "No items found",
+                        size: 18.sp,
+                        weight: FontWeight.w600,
+                      ))
+                    : Column(children: [
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * .22,
+                          width: double.infinity,
+                          child: PageView.builder(
+                            physics: const BouncingScrollPhysics(),
+                            controller: pc1,
+                            itemCount: _tShirtItems.length,
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 16.w),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    context.pushNamed(
+                                        Routes.wardrobeItemDetailsView,
+                                        arguments: _tShirtItems[index]);
+                                  },
+                                  onLongPress: () =>
+                                      _removeItem(context, _tShirtItems[index]),
+                                  child: Container(
+                                    constraints:
+                                        BoxConstraints(minHeight: 250.h),
+                                    decoration: BoxDecoration(
+                                      color: Colors.transparent,
+                                      borderRadius: BorderRadius.circular(50),
+                                    ),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(50),
+                                      child: _tShirtItems.isEmpty
+                                          ? const SizedBox.shrink()
+                                          : Image.file(
+                                              _tShirtItems[index].image,
+                                              fit: BoxFit.cover,
+                                            ),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                        Gap(8.h),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * .22,
+                          width: double.infinity,
+                          child: PageView.builder(
+                            physics: const BouncingScrollPhysics(),
+                            controller: pc2,
+                            itemCount: _trousersItems.length,
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 16.w),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    context.pushNamed(
+                                        Routes.wardrobeItemDetailsView,
+                                        arguments: _trousersItems[index]);
+                                  },
+                                  onLongPress: () => _removeItem(
+                                      context, _trousersItems[index]),
+                                  child: Container(
+                                    constraints:
+                                        BoxConstraints(minHeight: 250.h),
+                                    decoration: BoxDecoration(
+                                      color: Colors.transparent,
+                                      borderRadius: BorderRadius.circular(50),
+                                    ),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(50),
+                                      child: _trousersItems.isEmpty
+                                          ? const SizedBox.shrink()
+                                          : Image.file(
+                                              _trousersItems[index].image,
+                                              fit: BoxFit.cover,
+                                            ),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                        Gap(8.h),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * .22,
+                          width: double.infinity,
+                          child: PageView.builder(
+                            physics: const BouncingScrollPhysics(),
+                            controller: pc3,
+                            itemCount: _shoesItems.length,
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 16.w),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    context.pushNamed(
+                                        Routes.wardrobeItemDetailsView,
+                                        arguments: _shoesItems[index]);
+                                  },
+                                  onLongPress: () =>
+                                      _removeItem(context, _shoesItems[index]),
+                                  child: Container(
+                                    constraints:
+                                        BoxConstraints(minHeight: 250.h),
+                                    decoration: BoxDecoration(
+                                      color: Colors.transparent,
+                                      borderRadius: BorderRadius.circular(50),
+                                    ),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(50),
+                                      child: _shoesItems.isEmpty
+                                          ? const SizedBox.shrink()
+                                          : Image.file(
+                                              _shoesItems[index].image,
+                                              fit: BoxFit.cover,
+                                            ),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        )
+                      ]),
                 const Spacer(),
               ],
             ),
-            Gap(8.h),
-            AppText(text: "Long press on item to remove", size: 16.sp),
-            const Spacer(),
-            _tShirtItems.isEmpty &&
-                    _trousersItems.isEmpty &&
-                    _shoesItems.isEmpty
-                ? Center(
-                    child: AppText(
-                    text: "No items found",
-                    size: 18.sp,
-                    weight: FontWeight.w600,
-                  ))
-                : Column(children: [
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * .22,
-                      width: double.infinity,
-                      child: PageView.builder(
-                        physics: const BouncingScrollPhysics(),
-                        controller: pc1,
-                        itemCount: _tShirtItems.length,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 16.w),
-                            child: GestureDetector(
-                              onTap: () {
-                                context.pushNamed(
-                                    Routes.wardrobeItemDetailsView,
-                                    arguments: _tShirtItems[index]);
-                              },
-                              onLongPress: () =>
-                                  _removeItem(context, _tShirtItems[index]),
-                              child: Container(
-                                constraints: BoxConstraints(minHeight: 250.h),
-                                decoration: BoxDecoration(
-                                  color: Colors.transparent,
-                                  borderRadius: BorderRadius.circular(50),
-                                ),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(50),
-                                  child: _tShirtItems.isEmpty
-                                      ? const SizedBox.shrink()
-                                      : Image.file(
-                                          _tShirtItems[index].image,
-                                          fit: BoxFit.contain,
-                                        ),
-                                ),
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                    Gap(8.h),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * .22,
-                      width: double.infinity,
-                      child: PageView.builder(
-                        physics: const BouncingScrollPhysics(),
-                        controller: pc2,
-                        itemCount: _trousersItems.length,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 16.w),
-                            child: GestureDetector(
-                              onTap: () {
-                                context.pushNamed(
-                                    Routes.wardrobeItemDetailsView,
-                                    arguments: _trousersItems[index]);
-                              },
-                              onLongPress: () =>
-                                  _removeItem(context, _trousersItems[index]),
-                              child: Container(
-                                constraints: BoxConstraints(minHeight: 250.h),
-                                decoration: BoxDecoration(
-                                  color: Colors.transparent,
-                                  borderRadius: BorderRadius.circular(50),
-                                ),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(50),
-                                  child: _trousersItems.isEmpty
-                                      ? const SizedBox.shrink()
-                                      : Image.file(
-                                          _trousersItems[index].image,
-                                          fit: BoxFit.contain,
-                                        ),
-                                ),
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                    Gap(8.h),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * .22,
-                      width: double.infinity,
-                      child: PageView.builder(
-                        physics: const BouncingScrollPhysics(),
-                        controller: pc3,
-                        itemCount: _shoesItems.length,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 16.w),
-                            child: GestureDetector(
-                              onTap: () {
-                                context.pushNamed(
-                                    Routes.wardrobeItemDetailsView,
-                                    arguments: _shoesItems[index]);
-                              },
-                              onLongPress: () =>
-                                  _removeItem(context, _shoesItems[index]),
-                              child: Container(
-                                constraints: BoxConstraints(minHeight: 250.h),
-                                decoration: BoxDecoration(
-                                  color: Colors.transparent,
-                                  borderRadius: BorderRadius.circular(50),
-                                ),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(50),
-                                  child: _shoesItems.isEmpty
-                                      ? const SizedBox.shrink()
-                                      : Image.file(
-                                          _shoesItems[index].image,
-                                          fit: BoxFit.contain,
-                                        ),
-                                ),
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    )
-                  ]),
-            const Spacer(),
+            Positioned(
+              top: 0,
+              right: 10,
+              child: Container(
+                padding: EdgeInsets.all(4.r),
+                // width: 60.w,
+                // height: 75.h,
+                decoration: const BoxDecoration(
+                    shape: BoxShape.circle, color: kPrimaryColor),
+                child: IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    FontAwesomeIcons.dice,
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
@@ -677,7 +701,6 @@ Future<bool> _checkInternetConnection() async {
 
 Future<File?> _removeBackground(File imageFile) async {
   bool isConnected = await _checkInternetConnection();
-  log(isConnected.toString());
   if (!isConnected) {
     return null;
   }
