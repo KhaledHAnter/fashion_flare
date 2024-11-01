@@ -12,7 +12,20 @@
           "package_name": "com.example.fashion_flare"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "500770003659-v8gjaqh1nla781551j0oj15c093ifi2p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fashion_flare",
+            "certificate_hash": "f0a6dc2da4c0ade2075822b2fec49ded27f47c14"
+          }
+        },
+        {
+          "client_id": "500770003659-436ltnhue2ud811t8narro3gahpoepc2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBl-tMnsT-hXqHvGH-3T1BSSgckeg2_Vxg"
@@ -20,7 +33,55 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "500770003659-436ltnhue2ud811t8narro3gahpoepc2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "500770003659-4regu26l9hrsgt9kptk9k4jiuarc25ln.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.fashionFlare.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:500770003659:android:f4249a7f746e0dec35d94e",
+        "android_client_info": {
+          "package_name": "com.khaled.fashion_flare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "500770003659-436ltnhue2ud811t8narro3gahpoepc2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBl-tMnsT-hXqHvGH-3T1BSSgckeg2_Vxg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "500770003659-436ltnhue2ud811t8narro3gahpoepc2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "500770003659-4regu26l9hrsgt9kptk9k4jiuarc25ln.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.fashionFlare.RunnerTests"
+              }
+            }
+          ]
         }
       }
     }

@@ -55,7 +55,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyBl-tMnsT-hXqHvGH-3T1BSSgckeg2_Vxg',
-    appId: '1:500770003659:android:bf290ab1ef3ba60635d94e',
+    appId: '1:500770003659:android:f4249a7f746e0dec35d94e',
     messagingSenderId: '500770003659',
     projectId: 'fashion-flare-56391',
     storageBucket: 'fashion-flare-56391.appspot.com',
@@ -67,6 +67,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '500770003659',
     projectId: 'fashion-flare-56391',
     storageBucket: 'fashion-flare-56391.appspot.com',
+    androidClientId: '500770003659-v8gjaqh1nla781551j0oj15c093ifi2p.apps.googleusercontent.com',
+    iosClientId: '500770003659-h11cnkjc8e7oe130vumc9bijatmid2ip.apps.googleusercontent.com',
     iosBundleId: 'com.example.fashionFlare',
   );
 
