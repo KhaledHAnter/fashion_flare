@@ -4,7 +4,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:fashion_flare/Core/Helper/random_utils.dart';
 import 'package:fashion_flare/Core/Helper/show_snackbar.dart';
 import '../../../../Core/Helper/constants.dart';
-import 'package:tflite_v2/tflite_v2.dart';
+// import 'package:tflite_v2/tflite_v2.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../../../Core/Helper/extentions.dart';
@@ -41,7 +41,7 @@ class _RealWardropeViewState extends State<RealWardropeView> {
     pc1.dispose();
     pc2.dispose();
     pc3.dispose();
-    Tflite.close();
+    // Tflite.close();
     super.dispose();
   }
 
@@ -51,35 +51,35 @@ class _RealWardropeViewState extends State<RealWardropeView> {
     pc2 = PageController(initialPage: 1, viewportFraction: .5);
     pc3 = PageController(initialPage: 1, viewportFraction: .5);
     _loadAllItems();
-    loadmodel().then((value) {
-      setState(() {});
-    });
+    // loadmodel().then((value) {
+    //   setState(() {});
+    // });
     super.initState();
   }
 
-  loadmodel() async {
-    await Tflite.loadModel(
-      model: "assets/ML/model_unquant.tflite",
-      labels: "assets/ML/labels.txt",
-    );
-  }
+  // loadmodel() async {
+  //   await Tflite.loadModel(
+  //     model: "assets/ML/model_unquant.tflite",
+  //     labels: "assets/ML/labels.txt",
+  //   );
+  // }
 
-  Future<String?> detectimage(File image) async {
-    var recognitions = await Tflite.runModelOnImage(
-      path: image.path,
-      numResults: 6,
-      threshold: 0.05,
-      imageMean: 127.5,
-      imageStd: 127.5,
-    );
-    setState(() {
-      // _recognitions = recognitions;
-      v = recognitions![0]['label'].toString();
-      // dataList = List<Map<String, dynamic>>.from(jsonDecode(v));
-    });
-    // print(_recognitions);
-    return v;
-  }
+  // Future<String?> detectimage(File image) async {
+  //   var recognitions = await Tflite.runModelOnImage(
+  //     path: image.path,
+  //     numResults: 6,
+  //     threshold: 0.05,
+  //     imageMean: 127.5,
+  //     imageStd: 127.5,
+  //   );
+  //   setState(() {
+  //     // _recognitions = recognitions;
+  //     v = recognitions![0]['label'].toString();
+  //     // dataList = List<Map<String, dynamic>>.from(jsonDecode(v));
+  //   });
+  //   // print(_recognitions);
+  //   return v;
+  // }
 
   List<WardrobeItemModel> _tShirtItems = [];
   List<WardrobeItemModel> _trousersItems = [];
@@ -374,98 +374,36 @@ class _RealWardropeViewState extends State<RealWardropeView> {
   Future<void> _pickAndSaveImageFromGallery(BuildContext context) async {
     File? pickedImage = await _pickImageFromGallery();
     if (pickedImage != null) {
-      String? mlCategory = await detectimage(pickedImage);
+      // String? mlCategory = await detectimage(pickedImage);
+      String? mlCategory;
       log(v);
-      if (mlCategory != null) {
-        bool? mlCategoryTrue =
-            await _showCategoryConfirmDialog(context, mlCategory);
-        if (mlCategoryTrue != null && mlCategoryTrue) {
-          File? processedImage;
+      String? category = await _showCategoryDialog(context);
+      if (category != null) {
+        File? processedImage;
 
-          try {
-            // Try to remove the background using the RemoveBG API
-            processedImage = await _removeBackground(pickedImage);
-          } catch (e) {
-            print("Background removal failed: $e");
-          }
-
-          // If background removal fails, use the original image
-          processedImage ??= pickedImage;
-
-          // Save the image (whether it's processed or the original)
-          File? savedImage = await _saveImageLocally(processedImage);
-
-          if (savedImage != null) {
-            WardrobeItemModel newItem = WardrobeItemModel(
-              image: savedImage,
-              category: mlCategory,
-            );
-
-            // Add the item to the corresponding category list in SharedPreferences
-            await WardrobeItemModel.addItemToPreferences(newItem);
-
-            print("Image and category saved: ${newItem.toMap()}");
-          }
-        } else {
-          String? category = await _showCategoryDialog(context);
-          if (category != null) {
-            File? processedImage;
-
-            try {
-              // Try to remove the background using the RemoveBG API
-              processedImage = await _removeBackground(pickedImage);
-            } catch (e) {
-              print("Background removal failed: $e");
-            }
-
-            // If background removal fails, use the original image
-            processedImage ??= pickedImage;
-
-            // Save the image (whether it's processed or the original)
-            File? savedImage = await _saveImageLocally(processedImage);
-
-            if (savedImage != null) {
-              WardrobeItemModel newItem = WardrobeItemModel(
-                image: savedImage,
-                category: category,
-              );
-
-              // Add the item to the corresponding category list in SharedPreferences
-              await WardrobeItemModel.addItemToPreferences(newItem);
-
-              print("Image and category saved: ${newItem.toMap()}");
-            }
-          }
+        try {
+          // Try to remove the background using the RemoveBG API
+          processedImage = await _removeBackground(pickedImage);
+        } catch (e) {
+          print("Background removal failed: $e");
         }
-      } else {
-        String? category = await _showCategoryDialog(context);
-        if (category != null) {
-          File? processedImage;
 
-          try {
-            // Try to remove the background using the RemoveBG API
-            processedImage = await _removeBackground(pickedImage);
-          } catch (e) {
-            print("Background removal failed: $e");
-          }
+        // If background removal fails, use the original image
+        processedImage ??= pickedImage;
 
-          // If background removal fails, use the original image
-          processedImage ??= pickedImage;
+        // Save the image (whether it's processed or the original)
+        File? savedImage = await _saveImageLocally(processedImage);
 
-          // Save the image (whether it's processed or the original)
-          File? savedImage = await _saveImageLocally(processedImage);
+        if (savedImage != null) {
+          WardrobeItemModel newItem = WardrobeItemModel(
+            image: savedImage,
+            category: category,
+          );
 
-          if (savedImage != null) {
-            WardrobeItemModel newItem = WardrobeItemModel(
-              image: savedImage,
-              category: category,
-            );
+          // Add the item to the corresponding category list in SharedPreferences
+          await WardrobeItemModel.addItemToPreferences(newItem);
 
-            // Add the item to the corresponding category list in SharedPreferences
-            await WardrobeItemModel.addItemToPreferences(newItem);
-
-            print("Image and category saved: ${newItem.toMap()}");
-          }
+          print("Image and category saved: ${newItem.toMap()}");
         }
       }
     }
@@ -478,98 +416,36 @@ class _RealWardropeViewState extends State<RealWardropeView> {
   Future<void> _pickAndSaveImageFromCamera(BuildContext context) async {
     File? pickedImage = await _pickImageFromCamera();
     if (pickedImage != null) {
-      String? mlCategory = await detectimage(pickedImage);
+      // String? mlCategory = await detectimage(pickedImage);
+      String? mlCategory;
       log(v);
-      if (mlCategory != null) {
-        bool? mlCategoryTrue =
-            await _showCategoryConfirmDialog(context, mlCategory);
-        if (mlCategoryTrue != null && mlCategoryTrue) {
-          File? processedImage;
+      String? category = await _showCategoryDialog(context);
+      if (category != null) {
+        File? processedImage;
 
-          try {
-            // Try to remove the background using the RemoveBG API
-            processedImage = await _removeBackground(pickedImage);
-          } catch (e) {
-            print("Background removal failed: $e");
-          }
-
-          // If background removal fails, use the original image
-          processedImage ??= pickedImage;
-
-          // Save the image (whether it's processed or the original)
-          File? savedImage = await _saveImageLocally(processedImage);
-
-          if (savedImage != null) {
-            WardrobeItemModel newItem = WardrobeItemModel(
-              image: savedImage,
-              category: mlCategory,
-            );
-
-            // Add the item to the corresponding category list in SharedPreferences
-            await WardrobeItemModel.addItemToPreferences(newItem);
-
-            print("Image and category saved: ${newItem.toMap()}");
-          }
-        } else {
-          String? category = await _showCategoryDialog(context);
-          if (category != null) {
-            File? processedImage;
-
-            try {
-              // Try to remove the background using the RemoveBG API
-              processedImage = await _removeBackground(pickedImage);
-            } catch (e) {
-              print("Background removal failed: $e");
-            }
-
-            // If background removal fails, use the original image
-            processedImage ??= pickedImage;
-
-            // Save the image (whether it's processed or the original)
-            File? savedImage = await _saveImageLocally(processedImage);
-
-            if (savedImage != null) {
-              WardrobeItemModel newItem = WardrobeItemModel(
-                image: savedImage,
-                category: category,
-              );
-
-              // Add the item to the corresponding category list in SharedPreferences
-              await WardrobeItemModel.addItemToPreferences(newItem);
-
-              print("Image and category saved: ${newItem.toMap()}");
-            }
-          }
+        try {
+          // Try to remove the background using the RemoveBG API
+          processedImage = await _removeBackground(pickedImage);
+        } catch (e) {
+          print("Background removal failed: $e");
         }
-      } else {
-        String? category = await _showCategoryDialog(context);
-        if (category != null) {
-          File? processedImage;
 
-          try {
-            // Try to remove the background using the RemoveBG API
-            processedImage = await _removeBackground(pickedImage);
-          } catch (e) {
-            print("Background removal failed: $e");
-          }
+        // If background removal fails, use the original image
+        processedImage ??= pickedImage;
 
-          // If background removal fails, use the original image
-          processedImage ??= pickedImage;
+        // Save the image (whether it's processed or the original)
+        File? savedImage = await _saveImageLocally(processedImage);
 
-          // Save the image (whether it's processed or the original)
-          File? savedImage = await _saveImageLocally(processedImage);
+        if (savedImage != null) {
+          WardrobeItemModel newItem = WardrobeItemModel(
+            image: savedImage,
+            category: category,
+          );
 
-          if (savedImage != null) {
-            WardrobeItemModel newItem = WardrobeItemModel(
-              image: savedImage,
-              category: category,
-            );
+          // Add the item to the corresponding category list in SharedPreferences
+          await WardrobeItemModel.addItemToPreferences(newItem);
 
-            // Add the item to the corresponding category list in SharedPreferences
-            await WardrobeItemModel.addItemToPreferences(newItem);
-
-            print("Image and category saved: ${newItem.toMap()}");
-          }
+          print("Image and category saved: ${newItem.toMap()}");
         }
       }
     }
@@ -758,7 +634,7 @@ Future<File?> _removeBackground(File imageFile) async {
   if (!isConnected) {
     return null;
   }
-  const apiKey = 'ApZ9RRq5PcU7D9z22VWtx5M5';
+  const apiKey = '7BLD9RMMEyoE9D9uNAg3caLX';
   final url = Uri.parse('https://api.remove.bg/v1.0/removebg');
 
   try {
