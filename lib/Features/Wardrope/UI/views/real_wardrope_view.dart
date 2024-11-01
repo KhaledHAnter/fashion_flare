@@ -758,7 +758,7 @@ Future<File?> _removeBackground(File imageFile) async {
   if (!isConnected) {
     return null;
   }
-  const apiKey = 'BsJzcjtogziAYhusUx8vMCiL';
+  const apiKey = 'ApZ9RRq5PcU7D9z22VWtx5M5';
   final url = Uri.parse('https://api.remove.bg/v1.0/removebg');
 
   try {

@@ -211,10 +211,10 @@ class _ProfileViewState extends State<ProfileView> {
                   ]),
                 ),
               ),
-              Gap(8.h),
+              Gap(4.h),
               AppText(
-                text: "Speacial release",
-                size: 14.sp,
+                text: "V 1.0.5",
+                size: 12.sp,
                 weight: FontWeight.w500,
               ),
             ],
