@@ -27,6 +27,7 @@ class ItemCard extends StatelessWidget {
     return Column(
       children: [
         Expanded(
+          flex: 5,
           child: ProductImage(
             index: index,
             imagePath: imagePath,
@@ -36,16 +37,27 @@ class ItemCard extends StatelessWidget {
           ),
         ),
         Gap(8.h),
-        AppText(
-          text: title,
-          size: 16.sp,
-          weight: FontWeight.w600,
-        ),
-        Gap(8.h),
-        AppText(
-          text: "\$ $price",
-          size: 18.sp,
-          weight: FontWeight.w700,
+        Expanded(
+          flex: 2,
+          child: Column(children: [
+            FittedBox(
+              fit: BoxFit.scaleDown,
+              child: AppText(
+                text: title,
+                size: 16.sp,
+                weight: FontWeight.w600,
+              ),
+            ),
+            Gap(8.h),
+            FittedBox(
+              fit: BoxFit.scaleDown,
+              child: AppText(
+                text: "\$ $price",
+                size: 18.sp,
+                weight: FontWeight.w700,
+              ),
+            ),
+          ]),
         ),
       ],
     );

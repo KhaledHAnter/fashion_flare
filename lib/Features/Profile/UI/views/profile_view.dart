@@ -213,14 +213,9 @@ class _ProfileViewState extends State<ProfileView> {
               ),
               Gap(8.h),
               AppText(
-                text: "Speacial release for ",
+                text: "Speacial release",
                 size: 14.sp,
                 weight: FontWeight.w500,
-              ),
-              AppText(
-                text: "Kareem El.Zabet",
-                size: 16.sp,
-                weight: FontWeight.w700,
               ),
             ],
           ),

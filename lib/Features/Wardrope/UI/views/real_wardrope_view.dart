@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:fashion_flare/Core/Helper/random_utils.dart';
 import 'package:fashion_flare/Core/Helper/show_snackbar.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
 import '../../../../Core/Helper/constants.dart';
 import 'package:tflite_v2/tflite_v2.dart';
 import 'package:uuid/uuid.dart';
