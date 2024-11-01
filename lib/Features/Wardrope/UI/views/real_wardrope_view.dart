@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:io';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:fashion_flare/Core/Helper/random_utils.dart';
+import 'package:fashion_flare/Core/Helper/show_snackbar.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import '../../../../Core/Helper/constants.dart';
 import 'package:tflite_v2/tflite_v2.dart';
@@ -307,25 +308,48 @@ class _RealWardropeViewState extends State<RealWardropeView> {
                     shape: BoxShape.circle, color: kPrimaryColor),
                 child: IconButton(
                   onPressed: () {
-                    List<int> randomOutfit = getRandomOutfit();
-                    log(randomOutfit.toString());
-                    showDialog(
-                      context: context,
-                      builder: (context) => Center(
-                        child: LoadingAnimationWidget.threeArchedCircle(
-                            color: kPrimaryColor, size: 100),
-                      ),
-                    );
-                    Future.delayed(const Duration(seconds: 1), () {
-                      if (context.mounted) {
-                        context.pop();
-                        context.pushNamed(Routes.randonOutfitView, arguments: [
-                          _tShirtItems[randomOutfit[0]].image,
-                          _trousersItems[randomOutfit[1]].image,
-                          _shoesItems[randomOutfit[2]].image,
-                        ]);
-                      }
-                    });
+                    if (_tShirtItems.isNotEmpty &&
+                        _trousersItems.isNotEmpty &&
+                        _shoesItems.isNotEmpty) {
+                      pc1.animateToPage(
+                          RandomUtils()
+                              .getRandomNumber(0, _tShirtItems.length - 1),
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.ease);
+                      pc2.animateToPage(
+                          RandomUtils()
+                              .getRandomNumber(0, _trousersItems.length - 1),
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.ease);
+                      pc3.animateToPage(
+                          RandomUtils()
+                              .getRandomNumber(0, _shoesItems.length - 1),
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.ease);
+                      // List<int> randomOutfit = getRandomOutfit();
+                      // log(randomOutfit.toString());
+                      // showDialog(
+                      //   context: context,
+                      //   builder: (context) => Center(
+                      //     child: LoadingAnimationWidget.threeArchedCircle(
+                      //         color: kPrimaryColor, size: 100),
+                      //   ),
+                      // );
+                      // Future.delayed(const Duration(seconds: 1), () {
+                      //   if (context.mounted) {
+                      //     context.pop();
+                      //     context
+                      //         .pushNamed(Routes.randonOutfitView, arguments: [
+                      //       _tShirtItems[randomOutfit[0]].image,
+                      //       _trousersItems[randomOutfit[1]].image,
+                      //       _shoesItems[randomOutfit[2]].image,
+                      //     ]);
+                      //   }
+                      // });
+                    } else {
+                      showSnackbar(context, "Please fill every category first",
+                          Colors.red);
+                    }
                   },
                   icon: const Icon(
                     FontAwesomeIcons.dice,
@@ -735,8 +759,7 @@ Future<File?> _removeBackground(File imageFile) async {
   if (!isConnected) {
     return null;
   }
-  const apiKey =
-      'ApZ9RRq5PcU7D9z22VWtx5M5'; // Replace with your RemoveBG API key
+  const apiKey = 'BsJzcjtogziAYhusUx8vMCiL';
   final url = Uri.parse('https://api.remove.bg/v1.0/removebg');
 
   try {

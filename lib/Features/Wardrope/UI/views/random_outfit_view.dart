@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RandomOutfitView extends StatelessWidget {
-  final List<File> images;
+  final List<File>? images;
   const RandomOutfitView({
     super.key,
-    required this.images,
+    this.images,
   });
 
   @override
@@ -33,12 +33,12 @@ class RandomOutfitView extends StatelessWidget {
             Expanded(
               child: Column(
                 children: List.generate(
-                  images.length,
+                  images!.length,
                   (index) {
                     return Expanded(
                       child: Container(
                         padding: EdgeInsets.all(16.r),
-                        child: Image.file(images[index]),
+                        child: Image.file(images![index]),
                       ),
                     );
                   },
