@@ -1,5 +1,5 @@
-import 'package:fashion_flare/Features/Auth/UI/manager/register_cubit/register_state.dart';
-import 'package:fashion_flare/Features/Auth/data/repos/register_repo.dart';
+import 'register_state.dart';
+import '../../../data/repos/register_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

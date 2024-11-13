@@ -28,7 +28,7 @@ class TodayOutfitView extends StatelessWidget {
                 ),
               ),
             ),
-            const AppButton(text: "SEE ITEMS")
+            // const AppButton(text: "SEE ITEMS")
           ],
         ),
       ),

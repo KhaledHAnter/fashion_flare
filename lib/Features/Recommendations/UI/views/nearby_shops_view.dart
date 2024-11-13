@@ -110,7 +110,7 @@ class NearbyShops extends StatelessWidget {
                               ),
                             ),
                             Gap(30.h),
-                            const AppButton(text: "DIRECTIONS"),
+                            // const AppButton(text: "DIRECTIONS"),
                           ],
                         ),
                       );

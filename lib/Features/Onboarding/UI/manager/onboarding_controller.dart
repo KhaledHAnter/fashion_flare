@@ -1,4 +1,4 @@
-import 'package:fashion_flare/Core/Helper/extentions.dart';
+import '../../../../Core/Helper/extentions.dart';
 import 'package:flutter/material.dart';
 import '../../../../Core/routing/routes.dart';
 import '../../Data/Models/onboard.dart';

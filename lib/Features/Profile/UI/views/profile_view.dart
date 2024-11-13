@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fashion_flare/Core/Helper/auth_services/auth_services.dart';
+import '../../../../Core/Helper/auth_services/auth_services.dart';
 import '../../../../Core/Helper/extentions.dart';
 import '../../../../Core/routing/routes.dart';
 import '../../../../Core/widgets/app_text.dart';
@@ -98,10 +98,10 @@ class _ProfileViewState extends State<ProfileView> {
                           ],
                         ),
                         const Spacer(),
-                        IconButton(
-                          onPressed: () {},
-                          icon: const Icon(FontAwesomeIcons.penToSquare),
-                        )
+                        // IconButton(
+                        //   onPressed: () {},
+                        //   icon: const Icon(FontAwesomeIcons.penToSquare),
+                        // )
                       ],
                     ),
                     Gap(25.h),
@@ -213,7 +213,7 @@ class _ProfileViewState extends State<ProfileView> {
               ),
               Gap(4.h),
               AppText(
-                text: "V 1.0.5",
+                text: "V 1.0.6",
                 size: 12.sp,
                 weight: FontWeight.w500,
               ),

@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fashion_flare/Core/Helper/auth_services/auth_result.dart';
-import 'package:fashion_flare/Core/Helper/auth_services/auth_services.dart';
+import '../../../../Core/Helper/auth_services/auth_result.dart';
+import '../../../../Core/Helper/auth_services/auth_services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class SignInRepo {

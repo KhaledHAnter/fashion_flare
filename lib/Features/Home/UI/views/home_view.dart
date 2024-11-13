@@ -145,23 +145,23 @@ class _HomeViewState extends State<HomeView> {
                     ),
                   ),
                 ),
-                Gap(20.w),
-                GestureDetector(
-                  onTap: () {
-                    context.pushNamed(Routes.filterView);
-                  },
-                  child: Container(
-                    constraints:
-                        BoxConstraints(minHeight: 49.h, minWidth: 44.w),
-                    padding: EdgeInsets.symmetric(
-                        horizontal: 10.w, vertical: 12.5.h),
-                    decoration: BoxDecoration(
-                      color: kPrimaryColor,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Image.asset("assets/Icons/Settings Slider.png"),
-                  ),
-                ),
+                // Gap(20.w),
+                // GestureDetector(
+                //   onTap: () {
+                //     context.pushNamed(Routes.filterView);
+                //   },
+                //   child: Container(
+                //     constraints:
+                //         BoxConstraints(minHeight: 49.h, minWidth: 44.w),
+                //     padding: EdgeInsets.symmetric(
+                //         horizontal: 10.w, vertical: 12.5.h),
+                //     decoration: BoxDecoration(
+                //       color: kPrimaryColor,
+                //       borderRadius: BorderRadius.circular(12),
+                //     ),
+                //     child: Image.asset("assets/Icons/Settings Slider.png"),
+                //   ),
+                // ),
               ],
             ),
             SizedBox(

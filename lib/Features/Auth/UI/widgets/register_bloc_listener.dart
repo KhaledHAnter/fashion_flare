@@ -1,9 +1,9 @@
-import 'package:fashion_flare/Core/Helper/constants.dart';
-import 'package:fashion_flare/Core/Helper/extentions.dart';
-import 'package:fashion_flare/Core/Helper/show_snackbar.dart';
-import 'package:fashion_flare/Core/routing/routes.dart';
-import 'package:fashion_flare/Features/Auth/UI/manager/register_cubit/register_cubit.dart';
-import 'package:fashion_flare/Features/Auth/UI/manager/register_cubit/register_state.dart';
+import '../../../../Core/Helper/constants.dart';
+import '../../../../Core/Helper/extentions.dart';
+import '../../../../Core/Helper/show_snackbar.dart';
+import '../../../../Core/routing/routes.dart';
+import '../manager/register_cubit/register_cubit.dart';
+import '../manager/register_cubit/register_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';

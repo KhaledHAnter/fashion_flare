@@ -1,6 +1,6 @@
-import 'package:fashion_flare/Core/Helper/validator_utils/validator_utils.dart';
-import 'package:fashion_flare/Features/Auth/UI/manager/forgot_pass_cubit/forgot_pass_cubit.dart';
-import 'package:fashion_flare/Features/Auth/UI/widgets/forgot_pass_bloc_listener.dart';
+import '../../../../Core/Helper/validator_utils/validator_utils.dart';
+import '../manager/forgot_pass_cubit/forgot_pass_cubit.dart';
+import '../widgets/forgot_pass_bloc_listener.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../Core/Helper/constants.dart';
 import '../../../../Core/widgets/app_text.dart';

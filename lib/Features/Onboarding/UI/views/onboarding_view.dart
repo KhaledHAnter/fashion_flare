@@ -1,6 +1,6 @@
-import 'package:fashion_flare/Core/Helper/extentions.dart';
-import 'package:fashion_flare/Core/routing/routes.dart';
-import 'package:fashion_flare/Features/Onboarding/UI/manager/onboarding_controller.dart';
+import '../../../../Core/Helper/extentions.dart';
+import '../../../../Core/routing/routes.dart';
+import '../manager/onboarding_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../Core/widgets/app_button.dart';

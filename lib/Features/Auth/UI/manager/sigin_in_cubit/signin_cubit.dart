@@ -1,5 +1,5 @@
-import 'package:fashion_flare/Features/Auth/UI/manager/sigin_in_cubit/signin_state.dart';
-import 'package:fashion_flare/Features/Auth/data/repos/sign_in_repo.dart';
+import 'signin_state.dart';
+import '../../../data/repos/sign_in_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

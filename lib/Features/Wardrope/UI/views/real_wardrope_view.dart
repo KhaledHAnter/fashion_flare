@@ -1,8 +1,8 @@
 import 'dart:developer';
 import 'dart:io';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:fashion_flare/Core/Helper/random_utils.dart';
-import 'package:fashion_flare/Core/Helper/show_snackbar.dart';
+import '../../../../Core/Helper/random_utils.dart';
+import '../../../../Core/Helper/show_snackbar.dart';
 import '../../../../Core/Helper/constants.dart';
 import 'package:tflite_v2/tflite_v2.dart';
 import 'package:uuid/uuid.dart';
@@ -298,13 +298,14 @@ class _RealWardropeViewState extends State<RealWardropeView> {
             Positioned(
               top: 0,
               right: 10,
-              child: Container(
-                padding: EdgeInsets.all(4.r),
-                // width: 60.w,
-                // height: 75.h,
-                decoration: const BoxDecoration(
-                    shape: BoxShape.circle, color: kPrimaryColor),
+              child: Visibility(
+                visible: _tShirtItems.isNotEmpty &&
+                    _trousersItems.isNotEmpty &&
+                    _shoesItems.isNotEmpty,
                 child: IconButton(
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStateProperty.all(kPrimaryColor),
+                  ),
                   onPressed: () {
                     if (_tShirtItems.isNotEmpty &&
                         _trousersItems.isNotEmpty &&

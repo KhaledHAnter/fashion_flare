@@ -1,17 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../../../Auth/data/models/user_profile_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
+
 import '../../../../Core/Helper/constants.dart';
 import '../../../../Core/Helper/extentions.dart';
 import '../../../../Core/routing/routes.dart';
-import '../../data/models/user_details.dart';
 import '../../../../Core/widgets/app_text.dart';
 import '../../../../Core/widgets/app_text_form_field.dart';
 import '../../../../Core/widgets/custom_button.dart';
 import '../../../../Core/widgets/custom_drop_down_button.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gap/gap.dart';
+import '../../../Auth/data/models/user_profile_model.dart';
+import '../../data/models/user_details.dart';
 
 class UserDetails extends StatefulWidget {
   const UserDetails({super.key});

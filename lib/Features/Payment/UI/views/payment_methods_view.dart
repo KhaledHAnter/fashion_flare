@@ -82,247 +82,247 @@ class _PaymenMethodsState extends State<PaymenMethods> {
                 children: <Widget>[
                   GestureDetector(
                     onTap: () {
-                      showModalBottomSheet(
-                        context: context,
-                        builder: (context) {
-                          return Expanded(
-                            child: Padding(
-                              padding: EdgeInsets.only(
-                                top: 24.h,
-                              ),
-                              child: Column(
-                                children: <Widget>[
-                                  AppText(
-                                    text: "Add New Card".toUpperCase(),
-                                    weight: FontWeight.bold,
-                                    size: 24.sp,
-                                  ),
-                                  Gap(20.h),
-                                  Padding(
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: 8.h),
-                                    child: Form(
-                                      autovalidateMode: autovalidate
-                                          ? AutovalidateMode.onUserInteraction
-                                          : AutovalidateMode.disabled,
-                                      key: formKey,
-                                      child: Column(
-                                        children: <Widget>[
-                                          TextFormField(
-                                            keyboardType: TextInputType.name,
-                                            validator: (value) {
-                                              if (value!.isEmpty) {
-                                                return "Please Enter Name";
-                                              }
-                                              return null;
-                                            },
-                                            onChanged: (value) {
-                                              cardName = value;
-                                            },
-                                            style: TextStyle(
-                                              fontSize: 20.sp,
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                            decoration: InputDecoration(
-                                              labelText:
-                                                  "Name on Card".toUpperCase(),
-                                              labelStyle:
-                                                  TextStyle(fontSize: 18.sp),
-                                              border: OutlineInputBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(18),
-                                              ),
-                                            ),
-                                          ),
-                                          Gap(16.h),
-                                          TextFormField(
-                                            validator: (value) {
-                                              if (value!.isEmpty) {
-                                                return "Please Enter Card Number";
-                                              } else if (value.length != 16) {
-                                                return "Invalid Card Number";
-                                              }
-                                              return null;
-                                            },
-                                            onChanged: (value) {
-                                              cardNum = value;
-                                            },
-                                            style: TextStyle(
-                                              fontSize: 20.sp,
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                            keyboardType: TextInputType.number,
-                                            decoration: InputDecoration(
-                                              labelText:
-                                                  "CARD NUMBER".toUpperCase(),
-                                              labelStyle:
-                                                  TextStyle(fontSize: 18.sp),
-                                              suffix: Image.asset(
-                                                "assets/Icons/Mastercard.png",
-                                                height: 20.h,
-                                              ),
-                                              border: OutlineInputBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(18),
-                                              ),
-                                            ),
-                                          ),
-                                          Gap(16.h),
-                                          Row(
-                                            children: <Widget>[
-                                              Expanded(
-                                                flex: 1,
-                                                child: TextFormField(
-                                                  validator: (value) {
-                                                    if (value!.isEmpty) {
-                                                      return "Please Enter Date";
-                                                    }
-                                                    return null;
-                                                  },
-                                                  onChanged: (value) {
-                                                    expMounth = value;
-                                                  },
-                                                  keyboardType:
-                                                      TextInputType.number,
-                                                  style: TextStyle(
-                                                    fontSize: 20.sp,
-                                                    color: Colors.black,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                  decoration: InputDecoration(
-                                                    labelText: "M",
-                                                    labelStyle: TextStyle(
-                                                        fontSize: 18.sp),
-                                                    border: OutlineInputBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              18),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                              Gap(4.w),
-                                              const AppText(
-                                                text: " / ",
-                                                weight: FontWeight.bold,
-                                              ),
-                                              Gap(4.w),
-                                              Expanded(
-                                                flex: 1,
-                                                child: TextFormField(
-                                                  validator: (value) {
-                                                    if (value!.isEmpty) {
-                                                      return "Please Enter Date";
-                                                    }
-                                                    return null;
-                                                  },
-                                                  onChanged: (value) {
-                                                    expYear = value;
-                                                  },
-                                                  keyboardType:
-                                                      TextInputType.number,
-                                                  style: TextStyle(
-                                                    fontSize: 20.sp,
-                                                    color: Colors.black,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                  decoration: InputDecoration(
-                                                    labelText: "Y",
-                                                    labelStyle: TextStyle(
-                                                        fontSize: 18.sp),
-                                                    border: OutlineInputBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              18),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                              Gap(4.w),
-                                              Expanded(
-                                                flex: 2,
-                                                child: TextFormField(
-                                                  validator: (value) {
-                                                    if (value!.isEmpty) {
-                                                      return "Please Enter CVV";
-                                                    }
-                                                    return null;
-                                                  },
-                                                  onChanged: (value) {
-                                                    CVV = value;
-                                                  },
-                                                  keyboardType:
-                                                      TextInputType.number,
-                                                  style: TextStyle(
-                                                    fontSize: 20.sp,
-                                                    color: Colors.black,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                  decoration: InputDecoration(
-                                                    labelText: "CVV",
-                                                    labelStyle: TextStyle(
-                                                        fontSize: 18.sp),
-                                                    border: OutlineInputBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              18),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          Gap(24.h),
-                                          Row(
-                                            children: <Widget>[
-                                              Checkbox(
-                                                value: isChecked2,
-                                                onChanged: (onChanged) {
-                                                  setState(() {
-                                                    isChecked2 = !isChecked2;
-                                                  });
-                                                },
-                                              ),
-                                              AppText(
-                                                text:
-                                                    "Agree to Terms & Conditions",
-                                                size: 16.sp,
-                                                color: kSecondaryFontColor,
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  const Spacer(),
-                                  AppButton(
-                                    text: "Add Card".toUpperCase(),
-                                    onTap: () {
-                                      if (formKey.currentState!.validate()) {
-                                        addToPayment(
-                                            cardNum: int.parse(cardNum!),
-                                            cardName: cardName!,
-                                            CVV: CVV!,
-                                            expMonth: expMounth!,
-                                            expYear: expYear!);
+                      // showModalBottomSheet(
+                      //   context: context,
+                      //   builder: (context) {
+                      //     return Expanded(
+                      //       child: Padding(
+                      //         padding: EdgeInsets.only(
+                      //           top: 24.h,
+                      //         ),
+                      //         child: Column(
+                      //           children: <Widget>[
+                      //             AppText(
+                      //               text: "Add New Card".toUpperCase(),
+                      //               weight: FontWeight.bold,
+                      //               size: 24.sp,
+                      //             ),
+                      //             Gap(20.h),
+                      //             Padding(
+                      //               padding:
+                      //                   EdgeInsets.symmetric(horizontal: 8.h),
+                      //               child: Form(
+                      //                 autovalidateMode: autovalidate
+                      //                     ? AutovalidateMode.onUserInteraction
+                      //                     : AutovalidateMode.disabled,
+                      //                 key: formKey,
+                      //                 child: Column(
+                      //                   children: <Widget>[
+                      //                     TextFormField(
+                      //                       keyboardType: TextInputType.name,
+                      //                       validator: (value) {
+                      //                         if (value!.isEmpty) {
+                      //                           return "Please Enter Name";
+                      //                         }
+                      //                         return null;
+                      //                       },
+                      //                       onChanged: (value) {
+                      //                         cardName = value;
+                      //                       },
+                      //                       style: TextStyle(
+                      //                         fontSize: 20.sp,
+                      //                         color: Colors.black,
+                      //                         fontWeight: FontWeight.bold,
+                      //                       ),
+                      //                       decoration: InputDecoration(
+                      //                         labelText:
+                      //                             "Name on Card".toUpperCase(),
+                      //                         labelStyle:
+                      //                             TextStyle(fontSize: 18.sp),
+                      //                         border: OutlineInputBorder(
+                      //                           borderRadius:
+                      //                               BorderRadius.circular(18),
+                      //                         ),
+                      //                       ),
+                      //                     ),
+                      //                     Gap(16.h),
+                      //                     TextFormField(
+                      //                       validator: (value) {
+                      //                         if (value!.isEmpty) {
+                      //                           return "Please Enter Card Number";
+                      //                         } else if (value.length != 16) {
+                      //                           return "Invalid Card Number";
+                      //                         }
+                      //                         return null;
+                      //                       },
+                      //                       onChanged: (value) {
+                      //                         cardNum = value;
+                      //                       },
+                      //                       style: TextStyle(
+                      //                         fontSize: 20.sp,
+                      //                         color: Colors.black,
+                      //                         fontWeight: FontWeight.bold,
+                      //                       ),
+                      //                       keyboardType: TextInputType.number,
+                      //                       decoration: InputDecoration(
+                      //                         labelText:
+                      //                             "CARD NUMBER".toUpperCase(),
+                      //                         labelStyle:
+                      //                             TextStyle(fontSize: 18.sp),
+                      //                         suffix: Image.asset(
+                      //                           "assets/Icons/Mastercard.png",
+                      //                           height: 20.h,
+                      //                         ),
+                      //                         border: OutlineInputBorder(
+                      //                           borderRadius:
+                      //                               BorderRadius.circular(18),
+                      //                         ),
+                      //                       ),
+                      //                     ),
+                      //                     Gap(16.h),
+                      //                     Row(
+                      //                       children: <Widget>[
+                      //                         Expanded(
+                      //                           flex: 1,
+                      //                           child: TextFormField(
+                      //                             validator: (value) {
+                      //                               if (value!.isEmpty) {
+                      //                                 return "Please Enter Date";
+                      //                               }
+                      //                               return null;
+                      //                             },
+                      //                             onChanged: (value) {
+                      //                               expMounth = value;
+                      //                             },
+                      //                             keyboardType:
+                      //                                 TextInputType.number,
+                      //                             style: TextStyle(
+                      //                               fontSize: 20.sp,
+                      //                               color: Colors.black,
+                      //                               fontWeight: FontWeight.bold,
+                      //                             ),
+                      //                             decoration: InputDecoration(
+                      //                               labelText: "M",
+                      //                               labelStyle: TextStyle(
+                      //                                   fontSize: 18.sp),
+                      //                               border: OutlineInputBorder(
+                      //                                 borderRadius:
+                      //                                     BorderRadius.circular(
+                      //                                         18),
+                      //                               ),
+                      //                             ),
+                      //                           ),
+                      //                         ),
+                      //                         Gap(4.w),
+                      //                         const AppText(
+                      //                           text: " / ",
+                      //                           weight: FontWeight.bold,
+                      //                         ),
+                      //                         Gap(4.w),
+                      //                         Expanded(
+                      //                           flex: 1,
+                      //                           child: TextFormField(
+                      //                             validator: (value) {
+                      //                               if (value!.isEmpty) {
+                      //                                 return "Please Enter Date";
+                      //                               }
+                      //                               return null;
+                      //                             },
+                      //                             onChanged: (value) {
+                      //                               expYear = value;
+                      //                             },
+                      //                             keyboardType:
+                      //                                 TextInputType.number,
+                      //                             style: TextStyle(
+                      //                               fontSize: 20.sp,
+                      //                               color: Colors.black,
+                      //                               fontWeight: FontWeight.bold,
+                      //                             ),
+                      //                             decoration: InputDecoration(
+                      //                               labelText: "Y",
+                      //                               labelStyle: TextStyle(
+                      //                                   fontSize: 18.sp),
+                      //                               border: OutlineInputBorder(
+                      //                                 borderRadius:
+                      //                                     BorderRadius.circular(
+                      //                                         18),
+                      //                               ),
+                      //                             ),
+                      //                           ),
+                      //                         ),
+                      //                         Gap(4.w),
+                      //                         Expanded(
+                      //                           flex: 2,
+                      //                           child: TextFormField(
+                      //                             validator: (value) {
+                      //                               if (value!.isEmpty) {
+                      //                                 return "Please Enter CVV";
+                      //                               }
+                      //                               return null;
+                      //                             },
+                      //                             onChanged: (value) {
+                      //                               CVV = value;
+                      //                             },
+                      //                             keyboardType:
+                      //                                 TextInputType.number,
+                      //                             style: TextStyle(
+                      //                               fontSize: 20.sp,
+                      //                               color: Colors.black,
+                      //                               fontWeight: FontWeight.bold,
+                      //                             ),
+                      //                             decoration: InputDecoration(
+                      //                               labelText: "CVV",
+                      //                               labelStyle: TextStyle(
+                      //                                   fontSize: 18.sp),
+                      //                               border: OutlineInputBorder(
+                      //                                 borderRadius:
+                      //                                     BorderRadius.circular(
+                      //                                         18),
+                      //                               ),
+                      //                             ),
+                      //                           ),
+                      //                         ),
+                      //                       ],
+                      //                     ),
+                      //                     Gap(24.h),
+                      //                     Row(
+                      //                       children: <Widget>[
+                      //                         Checkbox(
+                      //                           value: isChecked2,
+                      //                           onChanged: (onChanged) {
+                      //                             setState(() {
+                      //                               isChecked2 = !isChecked2;
+                      //                             });
+                      //                           },
+                      //                         ),
+                      //                         AppText(
+                      //                           text:
+                      //                               "Agree to Terms & Conditions",
+                      //                           size: 16.sp,
+                      //                           color: kSecondaryFontColor,
+                      //                         ),
+                      //                       ],
+                      //                     ),
+                      //                   ],
+                      //                 ),
+                      //               ),
+                      //             ),
+                      //             const Spacer(),
+                      //             AppButton(
+                      //               text: "Add Card".toUpperCase(),
+                      //               onTap: () {
+                      //                 if (formKey.currentState!.validate()) {
+                      //                   addToPayment(
+                      //                       cardNum: int.parse(cardNum!),
+                      //                       cardName: cardName!,
+                      //                       CVV: CVV!,
+                      //                       expMonth: expMounth!,
+                      //                       expYear: expYear!);
 
-                                        context.pop();
-                                      } else {
-                                        setState(() {
-                                          autovalidate = true;
-                                        });
-                                      }
-                                    },
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        },
-                      );
+                      //                   context.pop();
+                      //                 } else {
+                      //                   setState(() {
+                      //                     autovalidate = true;
+                      //                   });
+                      //                 }
+                      //               },
+                      //             ),
+                      //           ],
+                      //         ),
+                      //       ),
+                      //     );
+                      //   },
+                      // );
                     },
                     child: Row(
                       children: <Widget>[

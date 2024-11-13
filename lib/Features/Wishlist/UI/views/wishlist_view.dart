@@ -24,24 +24,27 @@ class _WishListViewState extends State<WishListView> {
         padding: EdgeInsets.only(left: 16.w, right: 16.w, top: 50.h),
         child: Column(
           children: [
-            CustomAppBar(
-              title: "Donations",
-              image: "assets/Icons/Shopping bag.png",
-              onTap: () {
-                context.pushNamed(Routes.cartView);
-              },
-            ),
+            AppText(text: "Donations", size: 26.sp, weight: FontWeight.w700),
+            // CustomAppBar(
+            //   title: "Donations",
+            //   image: "assets/Icons/Shopping bag.png",
+            //   onTap: () {
+            //     context.pushNamed(Routes.cartView);
+            //   },
+            // ),
             Expanded(
               child: Center(
                 child: Column(
                   children: [
                     const Spacer(),
-                    Image.asset(
-                      "assets/Images/soon.png",
-                      fit: BoxFit.contain,
-                    ),
+                    // Image.asset(
+                    //   "assets/Images/soon.png",
+                    //   fit: BoxFit.contain,
+                    // ),
                     Gap(24.h),
-                    const AppText(text: "Donations will be here soon"),
+                    const AppText(
+                        text:
+                            "All clothes that you want to donate will appear here"),
                     const Spacer(),
                   ],
                 ),
